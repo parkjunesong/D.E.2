@@ -21,8 +21,6 @@ public class BattleSystem : MonoBehaviour
     {
         rota++;
         if (rota >= RotaList.Count) rota = 0;
-
-        BG.MainChara = RotaList[rota];
     }
 
     public void TurnEnd()
