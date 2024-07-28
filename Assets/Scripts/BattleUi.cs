@@ -11,7 +11,7 @@ public class BattleUi : MonoBehaviour
         //mana = GameObject.Find("마나보드");
         uiReset();
     }
-    void uiReset()
+    public void uiReset()
     {
         /*
         skill.transform.GetChild(0).GetComponentsInChildren<Image>()[1].sprite = Resources.Load("Icon/" + MainChara.GetComponent<BattleUnit>().Data.Get_UnitData.Get_Name + "_스킬1", typeof(Sprite)) as Sprite;
