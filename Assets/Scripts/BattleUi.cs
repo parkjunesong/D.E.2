@@ -20,8 +20,25 @@ public class BattleUi : MonoBehaviour
         */
         cost.GetComponent<CostSet>().CostReset();
     }
-    public void useskill()
+
+    int[] SkillCost;
+    int[] CostNow;
+    public void useskill1()
     {
-        cost.GetComponent<CostSet>().CostUse(new int[] { 1, 2, 0 });
+        CostNow = cost.GetComponent<CostSet>().CostCount();
+        SkillCost = new int[] { 1, 1, 0 };
+        if (CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && CostNow[2] >= SkillCost[2])
+            cost.GetComponent<CostSet>().CostUse(SkillCost);
+        else
+            Debug.Log("Can't Use Skill");
+    }
+    public void useskill2()
+    {
+        CostNow = cost.GetComponent<CostSet>().CostCount();
+        SkillCost = new int[] { 0, 0, 1 };
+        if (CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && CostNow[2] >= SkillCost[2])
+            cost.GetComponent<CostSet>().CostUse(SkillCost);
+        else
+            Debug.Log("Can't Use Skill");
     }
 }
