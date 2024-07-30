@@ -39,16 +39,9 @@ public class CostSet : MonoBehaviour
         CostSprite[3] = Resources.Load("Used", typeof(Sprite)) as Sprite;
 
         // 초기 세팅 작업
-        for (int i = 0; i < 6; i++)
-        {
-            Cost.Add(new CostClass(0));
-            gameObject.GetComponentsInChildren<Image>()[i + 1].sprite = CostSprite[Cost[i].Type];
-        }
-        for (int i = 6; i < 12; i++)
-        {
-            Cost.Add(new CostClass(1));
-            gameObject.GetComponentsInChildren<Image>()[i + 1].sprite = CostSprite[Cost[i].Type];
-        }
+        for (int i = 0; i < 6; i++) Cost.Add(new CostClass(0));    
+        for (int i = 6; i < 12; i++) Cost.Add(new CostClass(1));
+        ImageReset();
     }
 
     public void CostUse(int[] target)
@@ -59,13 +52,15 @@ public class CostSet : MonoBehaviour
         foreach (CostClass co in Cost)
         {
             if (goal[0] >= target[0] && goal[1] >= target[1] && goal[2] >= target[2])
+            {
+                ImageReset();
                 return;
+            }
             else
                 for (int i = 0; i < 3; i++)
                 {
                     if (co.Type == i && goal[i] < target[i])
                     {
-                        gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[3];
                         Cost[no].Prev = Cost[no].Type;
                         Cost[no].Type = 10;
                         goal[i]++;
@@ -74,7 +69,6 @@ public class CostSet : MonoBehaviour
                 }
             no++;
         }
-        SetOrder();
     }
 
     public void CostReset()
@@ -83,7 +77,7 @@ public class CostSet : MonoBehaviour
         foreach (CostClass co in Cost)
         {
             if (co.Type == 10)
-            {          
+            {
                 if (co.Prev == 0) Cost[no].Type = 1;
                 else if (co.Prev == 1) Cost[no].Type = 0;
                 else if (co.Prev == 2) Cost[no].Type = 2;
@@ -91,17 +85,17 @@ public class CostSet : MonoBehaviour
             }
             no++;
         }
-        SetOrder();
+        ImageReset();
     }
-
 
     public int[] CostCount()
     {
+        int no = 0;
         int[] result = new int[4] { 0, 0, 0, 0 };
 
         foreach (CostClass co in Cost)
         {
-            if (co.Type == 10) // 10번은 비활성 코스트(사용 후)
+            if (co.Type == 10) 
                 result[3]++;
             else
                 for (int i = 0; i < 3; i++)
@@ -112,16 +106,64 @@ public class CostSet : MonoBehaviour
                         break;
                     }
                 }
+            no++;
         }
         return result;
     }
 
-    void SetOrder() // 양옆 끝부터 카르나 생기게 변경
+    void ImageReset()
+    {
+        SetOrder();
+
+        int no = 0;
+        foreach (CostClass co in Cost)
+        {
+            if(co.Type == 0)
+            {
+                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[0];
+            }
+            else if (co.Type == 1)
+            {
+                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[1];
+            }
+            else if (co.Type == 2)
+            {
+                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[2];
+            }
+            else if (co.Type == 10)
+            {
+                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[3];
+            }
+            no++;
+        }
+    }
+    void SetOrder() 
     {
         Cost.Sort(delegate (CostClass A, CostClass B)
         {
             if (A.Type < B.Type) return -1;
             else return 1;
         });
+
+        int no = 0;
+        foreach (CostClass co in Cost)
+        {
+            if (co.Type == 10)
+            {
+                if (co.Prev == 0)
+                {
+                    
+                }
+                else if (co.Prev == 1)
+                {
+                    
+                }
+                else if (co.Prev == 2)
+                {
+                    
+                }
+            }
+            no++;
+        }       
     }
 }
