@@ -7,6 +7,6 @@ public class UnitData : Ablity
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("name: " + Name);
+        
     }
 }
