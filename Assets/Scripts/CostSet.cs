@@ -7,7 +7,6 @@ public class CostClass
 {
     private int type;   
     private int prev;
-
     public int Type
     {
         get { return type; }
@@ -18,7 +17,6 @@ public class CostClass
         get { return prev; }
         set { prev = value; }
     }
-
     public CostClass(int i)
     {
         type = i;
@@ -35,9 +33,9 @@ public class CostSet : MonoBehaviour
     {
         CostSprite[0] = Resources.Load("Mana", typeof(Sprite)) as Sprite;
         CostSprite[1] = Resources.Load("Prana", typeof(Sprite)) as Sprite;
-        CostSprite[2] = Resources.Load("Karna", typeof(Sprite)) as Sprite;
-        CostSprite[3] = Resources.Load("Used", typeof(Sprite)) as Sprite;
-        CostSprite[4] = Resources.Load("SemiKarna", typeof(Sprite)) as Sprite;
+        CostSprite[2] = Resources.Load("Karna", typeof(Sprite)) as Sprite;        
+        CostSprite[3] = Resources.Load("SemiKarna", typeof(Sprite)) as Sprite;
+        CostSprite[4] = Resources.Load("Used", typeof(Sprite)) as Sprite;
 
         // 초기 세팅 작업
         for (int i = 0; i < 6; i++) Cost.Add(new CostClass(0));    
@@ -47,17 +45,11 @@ public class CostSet : MonoBehaviour
 
     public void CostUse(int[] target)
     {
-        int no = 0;
         int[] goal = new int[3] { 0, 0, 0 };
-
-        foreach (CostClass co in Cost)
+        while (goal[0] < target[0] || goal[1] < target[1] || goal[2] < target[2])
         {
-            if (goal[0] >= target[0] && goal[1] >= target[1] && goal[2] >= target[2])
-            {
-                ImageReset();
-                return;
-            }
-            else
+            int no = 0;
+            foreach (CostClass co in Cost)
             {
                 if (co.Type == 0 && goal[0] < target[0])
                 {
@@ -71,28 +63,16 @@ public class CostSet : MonoBehaviour
                     Cost[no].Type = 3;
                     goal[1]++;
                 }
-                else if (goal[2] < target[2])
+                else if ((co.Type == 2 || co.Type == 3) && goal[2] < target[2])
                 {
-                    if (co.Type == 2)
-                    {
-                        Cost[no].Prev = Cost[no].Type;
-                        Cost[no].Type = 10;
-                        goal[2]++;
-                    }
-                    else if (co.Type == 3) 
-                    {
-                        Debug.Log("d");
-                        Cost[no].Prev = Cost[no].Type;
-                        Cost[no].Type = 10;
-                        goal[2]++;
-                    }
+                    Cost[no].Prev = Cost[no].Type;
+                    Cost[no].Type = 4;
+                    goal[2]++;
                 }
-
-
+                no++;
             }
-                
-            no++;
         }
+        ImageReset();
     }
 
     public void CostReset()
@@ -107,10 +87,10 @@ public class CostSet : MonoBehaviour
                 else if (co.Prev == 2) Cost[no].Type = 2;
                 Cost[no].Prev = 3;
             }
-            else if(co.Type == 10)
+            else if(co.Type == 4)
             {
                 Cost[no].Type = 2;     
-                Cost[no].Prev = 10;
+                Cost[no].Prev = 4;
             }
             no++;
         }
@@ -120,21 +100,18 @@ public class CostSet : MonoBehaviour
     public int[] CostCount()
     {
         int no = 0;
-        int[] result = new int[4] { 0, 0, 0, 0 };
+        int[] result = new int[5] { 0, 0, 0, 0, 0 };
 
         foreach (CostClass co in Cost)
         {
-            if (co.Type == 10) 
-                result[3]++;
-            else
-                for (int i = 0; i < 3; i++)
+            for (int i = 0; i <= 4; i++)
+            {
+                if (co.Type == i)
                 {
-                    if (co.Type == i)
-                    {
-                        result[i]++;
-                        break;
-                    }
+                    result[i]++;
+                    break;
                 }
+            }
             no++;
         }
         return result;
@@ -147,26 +124,9 @@ public class CostSet : MonoBehaviour
         int no = 0;
         foreach (CostClass co in Cost)
         {
-            if(co.Type == 0)
-            {
-                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[0];
-            }
-            else if (co.Type == 1)
-            {
-                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[1];
-            }
-            else if (co.Type == 2)
-            {
-                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[2];
-            }
-            else if (co.Type == 3)
-            {
-                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[4];
-            }
-            else if (co.Type == 10)
-            {
-                gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[3];
-            }
+            for (int i = 0; i <= 4; i++)           
+                if (co.Type == i)               
+                    gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[i];                               
             no++;
         }
     }
@@ -176,27 +136,6 @@ public class CostSet : MonoBehaviour
         {
             if (A.Type < B.Type) return -1;
             else return 1;
-        });
-
-        int no = 0;
-        foreach (CostClass co in Cost)
-        {
-            if (co.Type == 10)
-            {
-                if (co.Prev == 0)
-                {
-                    
-                }
-                else if (co.Prev == 1)
-                {
-                    
-                }
-                else if (co.Prev == 2)
-                {
-                    
-                }
-            }
-            no++;
-        }       
+        });      
     }
 }
