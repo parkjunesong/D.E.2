@@ -6,7 +6,7 @@ public class BattleSystem : MonoBehaviour
 {
     public List<GameObject> RotaList = new List<GameObject>();
     BattleGroup BG;
-    public int Turn;
+    public static int Turn;
     int rota;
 
     void Start()
@@ -21,6 +21,8 @@ public class BattleSystem : MonoBehaviour
     {
         rota++;
         if (rota >= RotaList.Count) rota = 0;
+
+        TurnEnd();
     }
 
     public void TurnEnd()
