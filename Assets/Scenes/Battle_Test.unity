@@ -502,7 +502,6 @@ GameObject:
   - component: {fileID: 558577169}
   - component: {fileID: 558577168}
   - component: {fileID: 558577167}
-  - component: {fileID: 558577170}
   m_Layer: 5
   m_Name: skill1
   m_TagString: Untagged
@@ -574,10 +573,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949508758}
-        m_TargetAssemblyTypeName: BattleUi, Assembly-CSharp
-        m_MethodName: useskill1
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Unit, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -624,21 +623,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558577165}
   m_CullTransparentMesh: 1
---- !u!114 &558577170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558577165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf83350fe9f848247972315a9d932fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skill_Cost: 010000000100000000000000
-  Skill_Name: test_skill_1
-  Skill_Icon: {fileID: 0}
 --- !u!1 &795459121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,6 +1446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1949508756}
+  - component: {fileID: 1949508762}
   - component: {fileID: 1949508761}
   - component: {fileID: 1949508759}
   - component: {fileID: 1949508758}
@@ -1545,6 +1530,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f1392245f29a54283b830eeed4440e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1949508762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949508755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53322ffed88744a418b7bef9837aba6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skills:
+  - {fileID: 7743629163628772051, guid: 679b9e6a2440efe40bf70cef6c1218ab, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

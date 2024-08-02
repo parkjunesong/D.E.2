@@ -12,9 +12,7 @@ public class Skill_Test : Skill_Base
     }
     public override void execute()
     {
-        Debug.Log("use skill");
         Effects[0].execute();
-        
     }
-
+    
 }

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Unit_Base : MonoBehaviour
 {
-    public virtual void Attack() { }
+    public virtual void Attack(int i) { }
     public virtual void Damaged(int damage) { }
 }

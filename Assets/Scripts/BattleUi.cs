@@ -23,32 +23,4 @@ public class BattleUi : MonoBehaviour
         cost.GetComponent<CostSet>().CostReset();
         turn.GetComponent<Text>().text = BattleSystem.Turn + " Turn";
     }
-
-
-    int[] SkillCost;
-    int[] CostNow;
-    public void useskill1()
-    {
-        Skill_Base skill = GameObject.Find("skill1").GetComponent<Skill_Test>();
-        SkillCost = skill.Skill_Cost;
-        CostNow = cost.GetComponent<CostSet>().CostCount();
-        
-        if (CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2]))
-        {
-            skill.execute();
-            cost.GetComponent<CostSet>().CostUse(SkillCost);
-
-        }
-        else
-            Debug.Log("Can't Use Skill");
-    }
-    public void useskill2()
-    {
-        CostNow = cost.GetComponent<CostSet>().CostCount();
-        SkillCost = new int[] { 0, 0, 1 };
-        if (CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2]))
-            cost.GetComponent<CostSet>().CostUse(SkillCost);
-        else
-            Debug.Log("Can't Use Skill");
-    }
 }
