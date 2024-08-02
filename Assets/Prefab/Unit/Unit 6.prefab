@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2324888412393489709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6958557239060655836}
+  - component: {fileID: 7049177125183799255}
+  - component: {fileID: 7124090570858524794}
+  - component: {fileID: -4420841836736881877}
+  - component: {fileID: 6570200060377937042}
+  m_Layer: 0
+  m_Name: Unit 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6958557239060655836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324888412393489709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7049177125183799255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324888412393489709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf83350fe9f848247972315a9d932fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill_Cost: 010000000100000000000000
+  Skill_Name: TestSkill
+  Skill_Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!114 &7124090570858524794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324888412393489709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8066202850a1e1b459fe02ba11255b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Unit_Name: enemy3
+  Ability: {fileID: 0}
+  Animation: {fileID: 0}
+--- !u!114 &-4420841836736881877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324888412393489709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa78bc0a8a9b914ea4597d1b4b7719c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AT: 100
+  SP: 10
+  HP: 1000
+  DF: 10
+  CR: 10
+  CD: 100
+  DR: 10
+  Element: 
+--- !u!114 &6570200060377937042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324888412393489709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45bc3cdd7b83ddf40a9efedcaddd4380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Unit_Face: {fileID: 0}
+  Unit_Standing: {fileID: 1656123705495100252, guid: 84e9a87d7bf39484fabe4d5b5fcc1251, type: 3}
