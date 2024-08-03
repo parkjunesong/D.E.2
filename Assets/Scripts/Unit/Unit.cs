@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit: Unit_Base
 {
-    public string Unit_Name;
+    public List<Skill_Base> Skills = new List<Skill_Base>();
     public Unit_Ablity Ability;
     public Unit_Animation Animation;
+
+    public string Unit_Name;
+    int AT, SP, HP, DF;
+    float CR, CD, RD, ID;
+    // 능력치 원본
+
     public SkillManager SC;
-    public List<Skill_Base> Skills = new List<Skill_Base>();
+    Slider HpBar;
+
     void Awake()
     {
         Transform[] allChildren = transform.GetChild(0).GetComponentsInChildren<Transform>();
@@ -20,17 +28,26 @@ public class Unit: Unit_Base
         }
         
         SC = GameObject.Find("GameManager").GetComponent<SkillManager>();
+        HpBar = gameObject.transform.GetChild(1).GetChild(0).GetComponent<Slider>();
         Ability = gameObject.GetComponent<Unit_Ablity>();
         Animation = gameObject.GetComponent<Unit_Animation>();
+
+        AT = Ability.AT;
+        SP = Ability.SP;
+        HP = Ability.HP;
+        DF = Ability.DF;
+        CR = Ability.CR;
+        CD = Ability.CD;
+        RD = Ability.RD;
+        ID = Ability.ID;
     }
     public override void Attack(int i)
     {
-        Debug.Log(Unit_Name + " 스킬 사용");
-        Skill_Base skill = Skills[i];
-        SC.UseSkill(skill); 
+        SC.UseSkill(Skills[i], Ability); 
     }
-    public override void Damaged(int damage)
+    public override void Damaged(float damage, DType dT, int ignore)
     {
-        
+        Ability.Damaged(damage, dT, ignore);
+        HpBar.value = (float)Ability.HP / HP;
     }
 }

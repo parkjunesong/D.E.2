@@ -1,13 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+
+public enum DType { Normal, Penetrate, True };
 
 public class Effect_Damage : Effect_Base
 {
-    enum DamageType { Normal, Penetrate, True };
-    enum AttackType { Select, Front, Back, Random};
-    public override void execute()
+    public DType DamageType;
+    public int IgnoreDefence = 0;
+
+    public override void Awake()
     {
-        Debug.Log("Attack");
+        base.Awake();
     }
+    public override void execute(Unit_Ablity ability)
+    {
+        Debug.Log("b");
+        float damage = Value * ability.AT * (1 + ability.ID / 100);
+        if (ability.CR >= Random.Range(0, 100)) damage *= (1 + ability.CD / 100);
+
+        switch (AimType)
+        {
+            case AType.Select:
+                {
+                    
+                    break;
+                }
+            case AType.Front:
+                {
+                    BG.EGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    break;
+                }
+            case AType.Back:
+                {
+                    BG.EGroup[BG.EGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    break;
+                }
+            case AType.Random:
+                {
+
+                    BG.EGroup[Random.Range(0, BG.EGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    break;
+                }
+            case AType.Near:
+                {
+                   
+                    break;
+                }
+            case AType.All:
+                {
+                    
+                    break;
+                }
+        }
+    }
+  
 }

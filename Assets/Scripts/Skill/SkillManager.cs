@@ -10,14 +10,14 @@ public class SkillManager : MonoBehaviour
     { 
         cost = GameObject.Find("코스트보드");
     }
-    public void UseSkill(Skill_Base skill)
+    public void UseSkill(Skill_Base skill, Unit_Ablity ability)
     {
         int[] SkillCost = skill.Skill_Cost;
         int[] CostNow = cost.GetComponent<CostSet>().CostCount();
 
         if (CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2]))
         {
-            skill.execute();
+            skill.execute(ability);
             cost.GetComponent<CostSet>().CostUse(SkillCost);
         }
         else

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2973502221663767723}
   - component: {fileID: 7743629163628772051}
+  - component: {fileID: -7882616743812668148}
   m_Layer: 0
   m_Name: Skill_Test
   m_TagString: Untagged
@@ -47,4 +48,21 @@ MonoBehaviour:
   Skill_Cost: 010000000100000000000000
   Skill_Name: TestSkill
   Skill_Icon: {fileID: 3904167472952893590, guid: a9d9387f595e0ee42a38faf7d46e735b, type: 3}
-  Effects: []
+  Effects:
+  - {fileID: -7882616743812668148}
+--- !u!114 &-7882616743812668148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123971896425304000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8d43c827c1df34894e4d6538494cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0.5
+  AimType: 1
+  DamageType: 0
+  IgnoreDefence: 0

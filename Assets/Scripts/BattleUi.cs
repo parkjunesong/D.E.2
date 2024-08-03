@@ -24,7 +24,7 @@ public class BattleUi : MonoBehaviour
     }
     public void UseSkill(int i)
     {
-        Unit MC = gameObject.GetComponent<BattleSystem>().RotaList[0].GetComponent<Unit>();
-        MC.Attack(i);
+        BattleSystem BC = gameObject.GetComponent<BattleSystem>();
+        BC.RotaList[0].GetComponent<Unit>().Attack(i);
     }
 }
