@@ -12,5 +12,6 @@ public class UnitSpawn : MonoBehaviour
         Unit.AddComponent<BoxCollider2D>();
         Unit.AddComponent<SpriteRenderer>();
         Unit.GetComponent<SpriteRenderer>().sprite = Unit.GetComponent<Unit_Animation>().Unit_Standing;
+    
     }
 }
