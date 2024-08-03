@@ -2,25 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleSystem : MonoBehaviour
+public class BattleSystem : BattleGroup
 {
-    public List<GameObject> RotaList = new List<GameObject>();
-    BattleGroup BG;
     public static int Turn;
-    int rota;
 
     void Start()
     {
-        rota = 0;
         Turn = 0;
-        BG = gameObject.GetComponent<BattleGroup>();
-        foreach (GameObject unit in BG.CGroup) RotaList.Add(unit);     
     }
 
     public void Rotation()
     {
-        rota++;
-        if (rota >= RotaList.Count) rota = 0;
+        GameObject temp = RotaList[0];
+        RotaList.RemoveAt(0);
+        RotaList.Add(temp);
 
         TurnEnd();
     }

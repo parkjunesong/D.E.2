@@ -25,6 +25,7 @@ public class Unit: Unit_Base
     }
     public override void Attack(int i)
     {
+        Debug.Log(Unit_Name + " 스킬 사용");
         Skill_Base skill = Skills[i];
         SC.UseSkill(skill); 
     }

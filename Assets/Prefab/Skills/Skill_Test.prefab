@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skill_Cost: 010000000100000000000000
   Skill_Name: TestSkill
-  Skill_Icon: {fileID: 0}
+  Skill_Icon: {fileID: 3904167472952893590, guid: a9d9387f595e0ee42a38faf7d46e735b, type: 3}
+  Effects: []
