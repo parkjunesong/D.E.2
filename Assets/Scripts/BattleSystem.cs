@@ -5,10 +5,13 @@ using UnityEngine;
 public class BattleSystem : BattleGroup
 {
     public static int Turn;
+    BattleUi ui;
 
     void Start()
     {
         Turn = 0;
+        ui = gameObject.GetComponent<BattleUi>();
+        TurnStart();
     }
 
     public void Rotation()
@@ -20,18 +23,33 @@ public class BattleSystem : BattleGroup
         TurnEnd();
     }
 
-    public void TurnEnd()
+    public void TurnStart()
     {
         Turn++;
-        /*
+        ui.uiReset();
+
         for (int i = 0; i < RotaList.Count; i++)
         {
-            CGroup[i].GetComponent<BattleUnit>().TurnEnd_Before();
+            RotaList[i].GetComponent<Unit>().TurnStart();
         }
         for (int i = 0; i < EGroup.Count; i++)
         {
-            EGroup[i].GetComponent<BattleUnit>().TurnEnd_Before();
+            EGroup[i].GetComponent<Unit>().TurnStart();
+            EGroup[i].GetComponent<Enemy_Base>().TurnStart();
         }
-        */
+
+    }
+    public void TurnEnd()
+    {
+        for (int i = 0; i < RotaList.Count; i++)
+        {
+            RotaList[i].GetComponent<Unit>().TurnEnd();
+        }
+        for (int i = 0; i < EGroup.Count; i++)
+        {
+            EGroup[i].GetComponent<Unit>().TurnEnd();
+            EGroup[i].GetComponent<Enemy_Base>().TurnEnd();
+        }
+        TurnStart();
     }
 }

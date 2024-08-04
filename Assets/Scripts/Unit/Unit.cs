@@ -10,7 +10,6 @@ public class Unit: Unit_Base
     public Unit_Ablity Ability;
     public Unit_Animation Animation;
 
-    public string Unit_Name;
     int AT, SP, HP, DF;
     float CR, CD, RD, ID;
     // 능력치 원본
@@ -49,5 +48,14 @@ public class Unit: Unit_Base
     {
         Ability.Damaged(damage, dT, ignore);
         HpBar.value = (float)Ability.HP / HP;
+    }
+    public override void TurnStart()
+    {
+        foreach (Skill_Base skill in Skills) skill.TurnStart();
+    }
+    public override void TurnEnd()
+    {
+        foreach (Skill_Base skill in Skills) skill.TurnEnd();
+
     }
 }

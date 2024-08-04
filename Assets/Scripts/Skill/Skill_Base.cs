@@ -9,4 +9,10 @@ public abstract class Skill_Base : MonoBehaviour
     public Sprite Skill_Icon;
     public Effect_Base[] Effects;
     public abstract void execute(Unit_Ablity ability);
+    public void AfterUseSkill()
+    {
+        GameObject.Find("GameManager").GetComponent<BattleSystem>().TurnEnd();
+    }
+    public virtual void TurnStart() { }
+    public virtual void TurnEnd() { }
 }

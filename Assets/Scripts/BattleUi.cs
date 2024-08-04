@@ -11,7 +11,6 @@ public class BattleUi : MonoBehaviour
         skill = GameObject.Find("스킬보드");
         cost = GameObject.Find("코스트보드");
         turn = GameObject.Find("Turn");
-        uiReset();
     }
     public void uiReset()
     {

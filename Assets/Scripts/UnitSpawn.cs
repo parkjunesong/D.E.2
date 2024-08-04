@@ -12,6 +12,7 @@ public class UnitSpawn : MonoBehaviour
         Unit.AddComponent<BoxCollider2D>();
         Unit.AddComponent<SpriteRenderer>();
         Unit.GetComponent<SpriteRenderer>().sprite = Unit.GetComponent<Unit_Animation>().Unit_Standing;
+        Unit.GetComponent<Unit>().Ability.Team = Team;
 
         if (Team == "Chara")
         {
@@ -20,7 +21,6 @@ public class UnitSpawn : MonoBehaviour
         }
         else if (Team == "Enemy")
             gameObject.GetComponent<BattleGroup>().EGroup.Add(Unit);
-
-
+        
     }
 }

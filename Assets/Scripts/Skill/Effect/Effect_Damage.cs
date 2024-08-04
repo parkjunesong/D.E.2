@@ -16,7 +16,6 @@ public class Effect_Damage : Effect_Base
     }
     public override void execute(Unit_Ablity ability)
     {
-        Debug.Log("b");
         float damage = Value * ability.AT * (1 + ability.ID / 100);
         if (ability.CR >= Random.Range(0, 100)) damage *= (1 + ability.CD / 100);
 
@@ -29,18 +28,28 @@ public class Effect_Damage : Effect_Base
                 }
             case AType.Front:
                 {
-                    BG.EGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    if (ability.Team == "Chara")
+                        BS.EGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    else if (ability.Team == "Enemy")
+                        BS.RotaList[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+
                     break;
                 }
             case AType.Back:
                 {
-                    BG.EGroup[BG.EGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    if (ability.Team == "Chara")
+                        BS.EGroup[BS.EGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    else if (ability.Team == "Enemy")
+                        BS.RotaList[BS.RotaList.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+
                     break;
                 }
             case AType.Random:
                 {
-
-                    BG.EGroup[Random.Range(0, BG.EGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    if (ability.Team == "Chara")
+                        BS.EGroup[Random.Range(0, BS.EGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    else if (ability.Team == "Enemy")
+                        BS.RotaList[Random.Range(0, BS.RotaList.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     break;
                 }
             case AType.Near:

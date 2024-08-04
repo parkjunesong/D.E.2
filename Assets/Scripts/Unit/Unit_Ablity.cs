@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Unit_Ablity : Unit_Base
 {
+    public string Unit_Name;
+    public string Team;
     public int AT, SP, HP, DF;
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
     public string Element;
+
 
     public override void Damaged(float damage, DType dT, int ignore)
     {
