@@ -14,7 +14,6 @@ public class Unit: Unit_Base
     float CR, CD, RD, ID;
     // 능력치 원본
 
-    public SkillManager SC;
     Slider HpBar;
 
     void Awake()
@@ -26,7 +25,6 @@ public class Unit: Unit_Base
             Skills.Add(skill);
         }
         
-        SC = GameObject.Find("GameManager").GetComponent<SkillManager>();
         HpBar = gameObject.transform.GetChild(1).GetChild(0).GetComponent<Slider>();
         Ability = gameObject.GetComponent<Unit_Ablity>();
         Animation = gameObject.GetComponent<Unit_Animation>();
@@ -42,7 +40,7 @@ public class Unit: Unit_Base
     }
     public override void Attack(int i)
     {
-        SC.UseSkill(Skills[i], Ability); 
+        SkillManager.skill.UseSkill(Skills[i], Ability); 
     }
     public override void Damaged(float damage, DType dT, int ignore)
     {

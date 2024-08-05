@@ -24,13 +24,20 @@ public class CostClass
     }
 }
 
-public class CostSet : MonoBehaviour
+public class CostManager : MonoBehaviour
 {
-    public List<CostClass> Cost = new List<CostClass>();
+    public static CostManager cost;
+    public List<CostClass> CostList = new List<CostClass>();
     Sprite[] CostSprite = new Sprite[5];
+    public GameObject CostUi;
 
+    void Awake()
+    {
+        cost = this;
+    }
     void Start()
     {
+        CostUi = GameObject.Find("코스트보드");
         CostSprite[0] = Resources.Load("Mana", typeof(Sprite)) as Sprite;
         CostSprite[1] = Resources.Load("Prana", typeof(Sprite)) as Sprite;
         CostSprite[2] = Resources.Load("Karna", typeof(Sprite)) as Sprite;        
@@ -38,8 +45,8 @@ public class CostSet : MonoBehaviour
         CostSprite[4] = Resources.Load("Used", typeof(Sprite)) as Sprite;
 
         // 초기 세팅 작업
-        for (int i = 0; i < 6; i++) Cost.Add(new CostClass(0));    
-        for (int i = 6; i < 12; i++) Cost.Add(new CostClass(1));
+        for (int i = 0; i < 6; i++) CostList.Add(new CostClass(0));    
+        for (int i = 6; i < 12; i++) CostList.Add(new CostClass(1));
         ImageReset();
     }
 
@@ -49,24 +56,24 @@ public class CostSet : MonoBehaviour
         while (goal[0] < target[0] || goal[1] < target[1] || goal[2] < target[2])
         {
             int no = 0;
-            foreach (CostClass co in Cost)
+            foreach (CostClass co in CostList)
             {
                 if (co.Type == 0 && goal[0] < target[0])
                 {
-                    Cost[no].Prev = Cost[no].Type;
-                    Cost[no].Type = 3;
+                    CostList[no].Prev = CostList[no].Type;
+                    CostList[no].Type = 3;
                     goal[0]++;
                 }
                 else if (co.Type == 1 && goal[1] < target[1])
                 {
-                    Cost[no].Prev = Cost[no].Type;
-                    Cost[no].Type = 3;
+                    CostList[no].Prev = CostList[no].Type;
+                    CostList[no].Type = 3;
                     goal[1]++;
                 }
                 else if ((co.Type == 2 || co.Type == 3) && goal[2] < target[2])
                 {
-                    Cost[no].Prev = Cost[no].Type;
-                    Cost[no].Type = 4;
+                    CostList[no].Prev = CostList[no].Type;
+                    CostList[no].Type = 4;
                     goal[2]++;
                 }
                 no++;
@@ -78,19 +85,19 @@ public class CostSet : MonoBehaviour
     public void CostReset()
     {
         int no = 0;
-        foreach (CostClass co in Cost)
+        foreach (CostClass co in CostList)
         {
             if (co.Type == 3)
             {
-                if (co.Prev == 0) Cost[no].Type = 1;
-                else if (co.Prev == 1) Cost[no].Type = 0;
-                else if (co.Prev == 2) Cost[no].Type = 2;
-                Cost[no].Prev = 3;
+                if (co.Prev == 0) CostList[no].Type = 1;
+                else if (co.Prev == 1) CostList[no].Type = 0;
+                else if (co.Prev == 2) CostList[no].Type = 2;
+                CostList[no].Prev = 3;
             }
             else if(co.Type == 4)
             {
-                Cost[no].Type = 2;     
-                Cost[no].Prev = 4;
+                CostList[no].Type = 2;
+                CostList[no].Prev = 4;
             }
             no++;
         }
@@ -102,7 +109,7 @@ public class CostSet : MonoBehaviour
         int no = 0;
         int[] result = new int[5] { 0, 0, 0, 0, 0 };
 
-        foreach (CostClass co in Cost)
+        foreach (CostClass co in CostList)
         {
             for (int i = 0; i <= 4; i++)
             {
@@ -122,17 +129,17 @@ public class CostSet : MonoBehaviour
         SetOrder();
 
         int no = 0;
-        foreach (CostClass co in Cost)
+        foreach (CostClass co in CostList)
         {
             for (int i = 0; i <= 4; i++)           
                 if (co.Type == i)               
-                    gameObject.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[i];                               
+                    CostUi.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[i];                               
             no++;
         }
     }
     void SetOrder() 
     {
-        Cost.Sort(delegate (CostClass A, CostClass B)
+        CostList.Sort(delegate (CostClass A, CostClass B)
         {
             if (A.Type < B.Type) return -1;
             else return 1;

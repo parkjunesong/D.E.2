@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FieldEffect : MonoBehaviour
 {
+    /*
     void Start()
     {
     }
@@ -31,4 +32,5 @@ public class FieldEffect : MonoBehaviour
         }
         
     }
+    */
 }

@@ -1,32 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleSystem : BattleGroup
 {
     public static int Turn;
-    BattleUi ui;
+    GameObject TurnUi;
 
     void Start()
     {
         Turn = 0;
-        ui = gameObject.GetComponent<BattleUi>();
+        TurnUi = GameObject.Find("Turn");
         TurnStart();
     }
-
-    public void Rotation()
-    {
-        GameObject temp = RotaList[0];
-        RotaList.RemoveAt(0);
-        RotaList.Add(temp);
-
-        TurnEnd();
-    }
-
     public void TurnStart()
     {
         Turn++;
-        ui.uiReset();
+        TurnUi.GetComponent<Text>().text = Turn + " Turn";
+        SkillManager.skill.uiReset();
 
         for (int i = 0; i < RotaList.Count; i++)
         {
@@ -37,7 +29,6 @@ public class BattleSystem : BattleGroup
             EGroup[i].GetComponent<Unit>().TurnStart();
             EGroup[i].GetComponent<Enemy_Base>().TurnStart();
         }
-
     }
     public void TurnEnd()
     {
@@ -51,5 +42,14 @@ public class BattleSystem : BattleGroup
             EGroup[i].GetComponent<Enemy_Base>().TurnEnd();
         }
         TurnStart();
+    }
+    public void Rotation()
+    {
+        GameObject temp = RotaList[0];
+        RotaList.RemoveAt(0);
+        RotaList.Add(temp);
+
+        CostManager.cost.CostReset();
+        TurnEnd();
     }
 }
