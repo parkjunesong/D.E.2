@@ -27,7 +27,6 @@ public class BattleSystem : BattleGroup
         for (int i = 0; i < EGroup.Count; i++)
         {
             EGroup[i].GetComponent<Unit>().TurnStart();
-            EGroup[i].GetComponent<Enemy_Base>().TurnStart();
         }
     }
     public void TurnEnd()
@@ -39,7 +38,6 @@ public class BattleSystem : BattleGroup
         for (int i = 0; i < EGroup.Count; i++)
         {
             EGroup[i].GetComponent<Unit>().TurnEnd();
-            EGroup[i].GetComponent<Enemy_Base>().TurnEnd();
         }
         TurnStart();
     }

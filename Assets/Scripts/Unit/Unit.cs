@@ -4,17 +4,19 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum UnitType { Unit, Summoned, Object };
 public class Unit: Unit_Base
 {
     public List<Skill_Base> Skills = new List<Skill_Base>();
     public Unit_Ablity Ability;
     public Unit_Animation Animation;
+    public UnitType Type;
 
     int AT, SP, HP, DF;
     float CR, CD, RD, ID;
     // 능력치 원본
 
-    Slider HpBar;
+    private Slider HpBar;
 
     void Awake()
     {
@@ -54,6 +56,5 @@ public class Unit: Unit_Base
     public override void TurnEnd()
     {
         foreach (Skill_Base skill in Skills) skill.TurnEnd();
-
     }
 }

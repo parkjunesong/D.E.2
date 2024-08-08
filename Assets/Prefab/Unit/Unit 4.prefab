@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6958557239060655836}
-  - component: {fileID: 8864521079949464762}
   - component: {fileID: 7124090570858524794}
   - component: {fileID: -4420841836736881877}
   - component: {fileID: 6570200060377937042}
@@ -37,18 +36,6 @@ Transform:
   - {fileID: 4972953630214031891}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8864521079949464762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2324888412393489709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 210464da96ecdd742b935e2068a0fb8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7124090570858524794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +51,7 @@ MonoBehaviour:
   Skills: []
   Ability: {fileID: 0}
   Animation: {fileID: 0}
-  SC: {fileID: 0}
+  Type: 0
 --- !u!114 &-4420841836736881877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +129,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8941570784138182353}
     m_Modifications:
+    - target: {fileID: -1520781990901273922, guid: 84a718767aa55fc4c858c48a0360fdeb, type: 3}
+      propertyPath: Skill_CoolTime
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1123971896425304000, guid: 84a718767aa55fc4c858c48a0360fdeb, type: 3}
       propertyPath: m_Name
       value: Skill_Enemy_Test
