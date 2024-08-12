@@ -17,7 +17,6 @@ public class UnitSpawn : MonoBehaviour
         if (Team == "Chara")
         {
             gameObject.GetComponent<BattleGroup>().CGroup.Add(Unit);
-            gameObject.GetComponent<BattleGroup>().RotaList.Add(Unit);
         }
         else if (Team == "Enemy")
             gameObject.GetComponent<BattleGroup>().EGroup.Add(Unit);

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public abstract class Skill_Base : MonoBehaviour
 {
     public int[] Skill_Cost;
@@ -13,7 +12,7 @@ public abstract class Skill_Base : MonoBehaviour
     public Effect_Base[] Effects;
     protected Text CountUi;
     BattleSystem bs;
-
+    
     public virtual void Awake()
     {
         bs = GameObject.Find("GameManager").GetComponent<BattleSystem>();

@@ -31,7 +31,7 @@ public class Effect_Damage : Effect_Base
                     if (ability.Team == "Chara")
                         BS.EGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     else if (ability.Team == "Enemy")
-                        BS.RotaList[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        BS.CGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
 
                     break;
                 }
@@ -40,7 +40,7 @@ public class Effect_Damage : Effect_Base
                     if (ability.Team == "Chara")
                         BS.EGroup[BS.EGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     else if (ability.Team == "Enemy")
-                        BS.RotaList[BS.RotaList.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        BS.CGroup[BS.CGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
 
                     break;
                 }
@@ -49,7 +49,7 @@ public class Effect_Damage : Effect_Base
                     if (ability.Team == "Chara")
                         BS.EGroup[Random.Range(0, BS.EGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     else if (ability.Team == "Enemy")
-                        BS.RotaList[Random.Range(0, BS.RotaList.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        BS.CGroup[Random.Range(0, BS.CGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     break;
                 }
             case AType.Near:

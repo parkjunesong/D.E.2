@@ -1110,6 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab5c73607033ed4996ea3f380dbf839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainChara: {fileID: 0}
   CGroup: []
   EGroup: []
   RotaList: []
@@ -1126,6 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CGroup:
+  - {fileID: 2324888412393489709, guid: 5aba4044ee323234b8ed896a0e1739e5, type: 3}
   - {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}
   - {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}
   - {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}

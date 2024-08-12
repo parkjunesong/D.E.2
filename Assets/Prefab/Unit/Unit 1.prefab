@@ -51,7 +51,7 @@ MonoBehaviour:
   Skills: []
   Ability: {fileID: 0}
   Animation: {fileID: 0}
-  SC: {fileID: 0}
+  Type: 0
 --- !u!114 &-4420841836736881877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,8 +70,8 @@ MonoBehaviour:
   SP: 10
   HP: 1000
   DF: 10
-  CR: 10
-  CD: 100
+  CR: 0
+  CD: 0
   RD: 0
   ID: 0
   Element: 
