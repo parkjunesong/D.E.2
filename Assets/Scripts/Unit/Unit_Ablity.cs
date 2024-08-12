@@ -13,19 +13,19 @@ public class Unit_Ablity
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
 
-    public Unit_Ablity(UnitData ablity)
+    public Unit_Ablity(UnitData data)
     {
-        Name = ablity.Name;
-        Element = ablity.Element;
-        UT = ablity.UT;
-        AT = ablity.AT;
-        SP = ablity.SP;
-        HP = ablity.HP;
-        DF = ablity.DF;
-        CR = ablity.CR;
-        CD = ablity.CD;
-        RD = ablity.RD;
-        ID = ablity.ID;
+        Name = data.Name;
+        Element = data.Element;
+        UT = data.UT;
+        AT = data.AT;
+        SP = data.SP;
+        HP = data.HP;
+        DF = data.DF;
+        CR = data.CR;
+        CD = data.CD;
+        RD = data.RD;
+        ID = data.ID;
     }
 
 

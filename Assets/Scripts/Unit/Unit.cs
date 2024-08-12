@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Unit: Unit_Base
+public class Unit : MonoBehaviour
 {
     public UnitData Data;
     public Unit_Ablity Ability;
@@ -21,23 +21,25 @@ public class Unit: Unit_Base
         }
 
         Ability = new Unit_Ablity(Data);                     
-        Animation = gameObject.GetComponent<Unit_Animation>();
+        Animation = new Unit_Animation(Data);
         Ui = transform.GetChild(1).GetComponent<UnitUi>();
+
+        Animation.Default(gameObject);
     }
-    public override void Attack(int i)
+    public void Attack(int i)
     {
         SkillManager.skill.UseSkill(Skills[i], Ability); 
     }
-    public override void Damaged(float damage, DType dT, int ignore)
+    public void Damaged(float damage, DType dT, int ignore)
     {
         Ability.Damaged(damage, dT, ignore);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
     }
-    public override void TurnStart()
+    public void TurnStart()
     {
         foreach (Skill_Base skill in Skills) skill.TurnStart();
     }
-    public override void TurnEnd()
+    public void TurnEnd()
     {
         foreach (Skill_Base skill in Skills) skill.TurnEnd();
     }

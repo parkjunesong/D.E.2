@@ -12,4 +12,5 @@ public class UnitData : ScriptableObject
     public int AT, SP, HP, DF;
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
+    public Sprite Face, Standing;
 }
