@@ -6,17 +6,22 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.UI;
 
-public class BattleSystem : BattleGroup
+public class SystemManager : BattleGroup
 {
-    public static int Turn;
+    public static SystemManager system;
+    public int Turn;
     GameObject TurnUi;
 
+    void Awake()
+    {
+        system = this;
+    }
     void Start()
     {
         foreach(GameObject chara in CGroup)
         {
             Unit unit = chara.GetComponent<Unit>();
-            if (unit.Type == UnitType.Unit_Alive)
+            if (unit.Ability.UT == UnitType.Unit_Alive)
             {
                 RotaList.Add(chara);
             }
@@ -65,14 +70,17 @@ public class BattleSystem : BattleGroup
         for (int i = 0; i < CGroup.Count; i++)
         {
             Unit unit = CGroup[i].GetComponent<Unit>();
-            if (unit.Type == UnitType.Unit_Alive)
+            if (unit.Ability.UT == UnitType.Unit_Alive)
             {
                 CGroup[i] = RotaList[j];
                 j++;
             }
         }
+        MainChara = RotaList[0];
 
         CostManager.cost.CostReset();
         TurnEnd();
     }
+
+
 }

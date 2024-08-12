@@ -2,21 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
-public enum UnitType { Unit_Alive, Unit_Dead, Summoned, Object }
 public class Unit: Unit_Base
 {
-    public List<Skill_Base> Skills = new List<Skill_Base>();
+    public UnitData Data;
     public Unit_Ablity Ability;
     public Unit_Animation Animation;
-    public UnitType Type;
- 
-    int AT, SP, HP, DF;
-    float CR, CD, RD, ID;
-    // 능력치 원본
-
-    private Slider HpBar;
+    public List<Skill_Base> Skills = new List<Skill_Base>();
+    UnitUi Ui;
 
     void Awake()
     {
@@ -26,19 +19,10 @@ public class Unit: Unit_Base
             Skill_Base skill = allChildren[i].GetComponent<Skill_Base>();
             Skills.Add(skill);
         }
-        
-        HpBar = gameObject.transform.GetChild(1).GetChild(0).GetComponent<Slider>();
-        Ability = gameObject.GetComponent<Unit_Ablity>();
-        Animation = gameObject.GetComponent<Unit_Animation>();
 
-        AT = Ability.AT;
-        SP = Ability.SP;
-        HP = Ability.HP;
-        DF = Ability.DF;
-        CR = Ability.CR;
-        CD = Ability.CD;
-        RD = Ability.RD;
-        ID = Ability.ID;
+        Ability = new Unit_Ablity(Data);                     
+        Animation = gameObject.GetComponent<Unit_Animation>();
+        Ui = transform.GetChild(1).GetComponent<UnitUi>();
     }
     public override void Attack(int i)
     {
@@ -47,7 +31,7 @@ public class Unit: Unit_Base
     public override void Damaged(float damage, DType dT, int ignore)
     {
         Ability.Damaged(damage, dT, ignore);
-        HpBar.value = (float)Ability.HP / HP;
+        Ui.UpdateHPBar(Ability.HP, Data.HP);
     }
     public override void TurnStart()
     {

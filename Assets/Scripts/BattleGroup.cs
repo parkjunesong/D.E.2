@@ -9,4 +9,5 @@ public class BattleGroup : MonoBehaviour
     public List<GameObject> CGroup = new List<GameObject>();
     public List<GameObject> EGroup = new List<GameObject>();
     public List<GameObject> RotaList = new List<GameObject>();
+    public GameObject SelectedChara, SelectedEnemy;
 }

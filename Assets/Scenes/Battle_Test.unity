@@ -1074,6 +1074,7 @@ GameObject:
   - component: {fileID: 1949508761}
   - component: {fileID: 1949508759}
   - component: {fileID: 1949508760}
+  - component: {fileID: 1949508762}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1114,6 +1115,8 @@ MonoBehaviour:
   CGroup: []
   EGroup: []
   RotaList: []
+  SelectedChara: {fileID: 0}
+  SelectedEnemy: {fileID: 0}
 --- !u!114 &1949508760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1145,6 +1148,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14f1392245f29a54283b830eeed4440e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1949508762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949508755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223eb22db1f262e4fb661931b4c14f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

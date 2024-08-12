@@ -7,9 +7,8 @@ using UnityEngine.UI;
 public class Skill_Enemy_Test : Skill_Base
 {
     protected int MoveCount;
-    public override void Awake()
+    void Awake()
     {
-        base.Awake();
         MoveCount = Skill_CoolTime;
     }
    
@@ -20,24 +19,15 @@ public class Skill_Enemy_Test : Skill_Base
     public override void TurnStart()
     {
         MoveCount--;
-        resetUi();
+        //resetUi();
     }
     public override void TurnEnd()
     {
         if (MoveCount == 0)
         {
-            Unit_Ablity unit = transform.parent.parent.GetComponent<Unit_Ablity>();
+            Unit_Ablity unit = transform.parent.parent.GetComponent<Unit>().Ability;
             execute(unit);
             MoveCount = Skill_CoolTime;
         }
-    }
-
-    void resetUi()
-    {
-        CountUi.text = MoveCount + "";
-        if (MoveCount == 0)
-            CountUi.color = new Color32(255, 0, 0, 255);
-        else if (CountUi.color == new Color32(255, 0, 0, 255))
-            CountUi.color = new Color32(0, 0, 0, 255);
     }
 }

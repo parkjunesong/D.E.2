@@ -9,10 +9,5 @@ public abstract class Effect_Base : MonoBehaviour
 {
     public float Value;
     public AType AimType;
-    protected BattleSystem BS;
-    public virtual void Awake()
-    {
-        BS = GameObject.Find("GameManager").GetComponent<BattleSystem>();
-    }
     public abstract void execute(Unit_Ablity ability);
 }

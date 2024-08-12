@@ -3,17 +3,33 @@ using System.Collections.Generic;
 using UnityEditor.Playables;
 using UnityEngine;
 
-public class Unit_Ablity : Unit_Base
+public class Unit_Ablity
 {
-    public string Unit_Name;
     public string Team;
+    public string Name;
+    public string Element;
+    public UnitType UT;
     public int AT, SP, HP, DF;
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
-    public string Element;
+
+    public Unit_Ablity(UnitData ablity)
+    {
+        Name = ablity.Name;
+        Element = ablity.Element;
+        UT = ablity.UT;
+        AT = ablity.AT;
+        SP = ablity.SP;
+        HP = ablity.HP;
+        DF = ablity.DF;
+        CR = ablity.CR;
+        CD = ablity.CD;
+        RD = ablity.RD;
+        ID = ablity.ID;
+    }
 
 
-    public override void Damaged(float damage, DType dT, int ignore)
+    public void Damaged(float damage, DType dT, int ignore)
     {
         float dam = damage * 100 / (100 + DF * (1 - ignore / 100));
 

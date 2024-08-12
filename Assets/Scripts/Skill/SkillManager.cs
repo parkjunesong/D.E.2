@@ -8,12 +8,10 @@ public class SkillManager : MonoBehaviour
 {
     public static SkillManager skill;
     public GameObject SkillUi;
-    BattleSystem BS;
 
     void Awake()
     {
         skill = this;
-        BS = GameObject.Find("GameManager").GetComponent<BattleSystem>();
         SkillUi = GameObject.Find("스킬보드");
     }
     public void UseSkill(Skill_Base skill, Unit_Ablity ability)
@@ -31,12 +29,12 @@ public class SkillManager : MonoBehaviour
     }
     public void MainCharaUseSkill(int i)
     {
-        BS.MainChara.GetComponent<Unit>().Attack(i);
+        SystemManager.system.MainChara.GetComponent<Unit>().Attack(i);
     }
 
     public void uiReset()
     {
-        Unit unit = BS.MainChara.GetComponent<Unit>();
+        Unit unit = SystemManager.system.MainChara.GetComponent<Unit>();
         SkillUi.transform.GetChild(0).GetComponentsInChildren<Image>()[1].sprite = unit.Skills[0].Skill_Icon;
         //skill.transform.GetChild(1).GetComponentsInChildren<Image>()[1].sprite = MainChara.Skills[1].Skill_Icon;
         //skill.transform.GetChild(2).GetComponentsInChildren<Image>()[1].sprite = MainChara.Skills[2].Skill_Icon;

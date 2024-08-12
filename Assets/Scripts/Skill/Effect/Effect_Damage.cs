@@ -10,10 +10,6 @@ public class Effect_Damage : Effect_Base
     public DType DamageType;
     public int IgnoreDefence = 0;
 
-    public override void Awake()
-    {
-        base.Awake();
-    }
     public override void execute(Unit_Ablity ability)
     {
         float damage = Value * ability.AT * (1 + ability.ID / 100);
@@ -29,27 +25,27 @@ public class Effect_Damage : Effect_Base
             case AType.Front:
                 {
                     if (ability.Team == "Chara")
-                        BS.EGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        SystemManager.system.EGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     else if (ability.Team == "Enemy")
-                        BS.CGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        SystemManager.system.CGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
 
                     break;
                 }
             case AType.Back:
                 {
                     if (ability.Team == "Chara")
-                        BS.EGroup[BS.EGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        SystemManager.system.EGroup[SystemManager.system.EGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     else if (ability.Team == "Enemy")
-                        BS.CGroup[BS.CGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        SystemManager.system.CGroup[SystemManager.system.CGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
 
                     break;
                 }
             case AType.Random:
                 {
                     if (ability.Team == "Chara")
-                        BS.EGroup[Random.Range(0, BS.EGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        SystemManager.system.EGroup[Random.Range(0, SystemManager.system.EGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     else if (ability.Team == "Enemy")
-                        BS.CGroup[Random.Range(0, BS.CGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                        SystemManager.system.CGroup[Random.Range(0, SystemManager.system.CGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
                     break;
                 }
             case AType.Near:
