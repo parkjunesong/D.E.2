@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b19e262d6fd36949a8cb2e20af519e2, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  Name: Unit
+  Name: Enemy
   Element: None
   UT: 0
   AT: 100
   SP: 10
   HP: 1000
-  DF: 100
+  DF: 50
   CR: 0
   CD: 0
-  RD: 10
+  RD: 0
   ID: 10
+  Face: {fileID: 1656123705495100252, guid: 84e9a87d7bf39484fabe4d5b5fcc1251, type: 3}
+  Standing: {fileID: 1656123705495100252, guid: 84e9a87d7bf39484fabe4d5b5fcc1251, type: 3}

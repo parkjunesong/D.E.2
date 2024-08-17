@@ -19,7 +19,11 @@ public class Effect_Damage : Effect_Base
         {
             case AType.Select:
                 {
-                    
+                    if (ability.Team == "Chara")
+                        SystemManager.system.EGroup[SystemManager.system.SelectedEnemy].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+                    else if (ability.Team == "Enemy")
+                        SystemManager.system.CGroup[SystemManager.system.SelectedChara].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
+
                     break;
                 }
             case AType.Front:

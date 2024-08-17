@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class MouseClick : MonoBehaviour
 {
@@ -23,16 +25,27 @@ public class MouseClick : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Unit unit = hit.transform.GetComponent<Unit>();
-                if (unit.Ability.Team == "Chara")
-                {
-                    SystemManager.system.SelectedChara = hit.transform.gameObject;
-                }
-                else if(unit.Ability.Team == "Enemy")
-                {
-                    SystemManager.system.SelectedEnemy = hit.transform.gameObject;
-                }
+                UpdateSelectIcon(hit.transform.GetComponent<Unit>());           
             }          
+        }
+    }
+    void UpdateSelectIcon(Unit unit)
+    {
+        List<GameObject> Group = new List<GameObject>();
+        if (unit.Ability.Team == "Chara")
+        {
+            Group = SystemManager.system.CGroup;
+            SystemManager.system.SelectedChara = unit.GroupNo;
+
+            foreach(GameObject chara in SystemManager.system.CGroup)
+            {
+                chara.GetComponent<Unit>().Ui.UpdateSelectIcon(unit.Ability.Team);
+            }
+        }
+        else if (unit.Ability.Team == "Enemy")
+        {
+            Group = SystemManager.system.EGroup;
+            SystemManager.system.SelectedEnemy = unit.GroupNo;
         }
     }
 }

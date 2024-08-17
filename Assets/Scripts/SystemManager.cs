@@ -31,6 +31,7 @@ public class SystemManager : BattleGroup
 
         Turn = 0;
         TurnUi = GameObject.Find("Turn");
+
         TurnStart();
     }
     public void TurnStart()
@@ -76,6 +77,14 @@ public class SystemManager : BattleGroup
                 j++;
             }
         }
+        foreach(GameObject chara in CGroup)
+        {
+            Unit unit = chara.GetComponent<Unit>();
+            unit.GroupNo = CGroup.IndexOf(chara);
+            chara.transform.position = new Vector2(-200 - 280 * unit.GroupNo, 1100);
+        }
+
+        //SelectedChara = unit.GroupNo;
         MainChara = RotaList[0];
 
         CostManager.cost.CostReset();

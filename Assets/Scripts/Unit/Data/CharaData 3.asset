@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b19e262d6fd36949a8cb2e20af519e2, type: 3}
-  m_Name: ObjData
+  m_Name: CharaData 3
   m_EditorClassIdentifier: 
-  Name: Object
+  Name: Chara
   Element: None
-  UT: 3
-  AT: 0
-  SP: 0
-  HP: 1000
-  DF: 100
+  UT: 0
+  AT: 100
+  SP: 10
+  HP: 500
+  DF: 20
   CR: 0
   CD: 0
   RD: 0
   ID: 0
-  Face: {fileID: 1274519464305497331, guid: 2696b99fd4b859b41bba267fdf43861a, type: 3}
-  Standing: {fileID: 1274519464305497331, guid: 2696b99fd4b859b41bba267fdf43861a, type: 3}
+  Face: {fileID: 2033137780978210098, guid: 4e13ab02919fbe644a68a32f1b56b24c, type: 3}
+  Standing: {fileID: 2033137780978210098, guid: 4e13ab02919fbe644a68a32f1b56b24c, type: 3}

@@ -13,10 +13,16 @@ public class UnitSpawn : MonoBehaviour
 
         if (Team == "Chara")
         {
+            Unit.GetComponent<Unit>().GroupNo = SystemManager.system.CGroup.Count;
+            Unit.name = Team + Unit.GetComponent<Unit>().GroupNo;
             gameObject.GetComponent<BattleGroup>().CGroup.Add(Unit);
         }
         else if (Team == "Enemy")
+        {
+            Unit.GetComponent<Unit>().GroupNo = SystemManager.system.EGroup.Count;
+            Unit.name = Team + Unit.GetComponent<Unit>().GroupNo;
             gameObject.GetComponent<BattleGroup>().EGroup.Add(Unit);
+        }
         
     }
 }

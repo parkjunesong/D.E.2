@@ -9,7 +9,8 @@ public class Unit : MonoBehaviour
     public Unit_Ablity Ability;
     public Unit_Animation Animation;
     public List<Skill_Base> Skills = new List<Skill_Base>();
-    UnitUi Ui;
+    public UnitUi Ui;
+    public int GroupNo; // Enemy 사망시 GroupNo 갱신 필요
 
     void Awake()
     {
@@ -19,7 +20,6 @@ public class Unit : MonoBehaviour
             Skill_Base skill = allChildren[i].GetComponent<Skill_Base>();
             Skills.Add(skill);
         }
-
         Ability = new Unit_Ablity(Data);                     
         Animation = new Unit_Animation(Data);
         Ui = transform.GetChild(1).GetComponent<UnitUi>();

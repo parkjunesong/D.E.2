@@ -1115,8 +1115,9 @@ MonoBehaviour:
   CGroup: []
   EGroup: []
   RotaList: []
-  SelectedChara: {fileID: 0}
-  SelectedEnemy: {fileID: 0}
+  SelectedChara: 0
+  SelectedEnemy: 0
+  Turn: 0
 --- !u!114 &1949508760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1132,8 +1133,8 @@ MonoBehaviour:
   CGroup:
   - {fileID: 2324888412393489709, guid: 5aba4044ee323234b8ed896a0e1739e5, type: 3}
   - {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}
-  - {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}
-  - {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}
+  - {fileID: 2324888412393489709, guid: 87a9ac24e02189c4faf182d7ed0defa8, type: 3}
+  - {fileID: 2324888412393489709, guid: 5250aa410ccbd9e46a008c4f02148376, type: 3}
   EGroup:
   - {fileID: 2324888412393489709, guid: e7737da90af359c49b86446e1841aae8, type: 3}
   - {fileID: 2324888412393489709, guid: e7737da90af359c49b86446e1841aae8, type: 3}

@@ -19,7 +19,6 @@ public class Skill_Enemy_Test : Skill_Base
     public override void TurnStart()
     {
         MoveCount--;
-        //resetUi();
     }
     public override void TurnEnd()
     {
