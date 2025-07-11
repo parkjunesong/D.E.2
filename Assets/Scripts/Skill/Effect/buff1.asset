@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8d43c827c1df34894e4d6538494cea, type: 3}
-  m_Name: damage1
+  m_Script: {fileID: 11500000, guid: 1e2254f9fcb46f144a7fff15e7fc6ccf, type: 3}
+  m_Name: buff1
   m_EditorClassIdentifier: 
   AimType: 1
-  AimTarget: 1
-  Value: 1
-  DamageType: 0
-  IgnoreDefence: 0
+  AimTarget: 0
+  Value: 0
+  Buff: {fileID: 11400000, guid: 8eb569f2fe24b2a4d98f7f9649197350, type: 2}

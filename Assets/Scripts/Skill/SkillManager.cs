@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
-public enum AType { Select, Front, Back, Random, Near, All, Self}; 
+public enum AType { Select, Front, Back, Random, Near, All, Self};
+public enum ATarget { Chara, Enemy };
 
 public class SkillManager : MonoBehaviour
 {
@@ -18,9 +19,9 @@ public class SkillManager : MonoBehaviour
         skill = this;
         SkillUi = GameObject.Find("스킬보드");
     }
-    public List<Unit> setTargets(AType AimType, Unit caster)
+    public List<Unit> setTargets(AType AimType, ATarget AimTarget)
     {
-        if (caster.Ability.Team == "Chara")
+        if (AimTarget == ATarget.Enemy)
         {
             switch (AimType)
             {
@@ -37,10 +38,10 @@ public class SkillManager : MonoBehaviour
                 case AType.All: 
                     return null;
                 case AType.Self: 
-                    return new List<Unit> { caster };
+                    return null;
             }
         }
-        else if (caster.Ability.Team == "Enemy")
+        else if (AimTarget == ATarget.Chara)
         {
             switch (AimType)
             {
@@ -57,7 +58,7 @@ public class SkillManager : MonoBehaviour
                 case AType.All:
                     return null;
                 case AType.Self:
-                    return new List<Unit> { caster };      
+                    return null;
             }
         }
         return null;
@@ -76,7 +77,7 @@ public class SkillManager : MonoBehaviour
             {
                 List<Unit> targets = new List<Unit>();
 
-                targets = setTargets(effect.AimType, caster);
+                targets = setTargets(effect.AimType, effect.AimTarget);
                 effectTargets.Add(targets);
             }
             skill.Execute(caster, effectTargets);

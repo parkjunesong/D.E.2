@@ -9,6 +9,7 @@ public enum DType { Normal, Penetrate, True };
 public class Effect_Damage : Effect_Base
 {
     public DType DamageType;
+    public float Value;
     public int IgnoreDefence = 0;
 
     public override void Execute(Unit caster, List<Unit> targets)

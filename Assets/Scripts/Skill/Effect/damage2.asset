@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8d43c827c1df34894e4d6538494cea, type: 3}
   m_Name: damage2
   m_EditorClassIdentifier: 
+  AimType: 2
+  AimTarget: 0
   Value: 1
   DamageType: 0
   IgnoreDefence: 0
