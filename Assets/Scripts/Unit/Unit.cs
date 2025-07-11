@@ -13,22 +13,16 @@ public class Unit : MonoBehaviour
     public int GroupNo; // Enemy 사망시 GroupNo 갱신 필요
 
     void Awake()
-    {
-        Transform[] allChildren = transform.GetChild(0).GetComponentsInChildren<Transform>();
-        for (int i = 1; i < allChildren.Length; i++)
-        {
-            Skill_Base skill = allChildren[i].GetComponent<Skill_Base>();
-            Skills.Add(skill);
-        }
+    {       
         Ability = new Unit_Ablity(Data);                     
         Animation = new Unit_Animation(Data);
-        Ui = transform.GetChild(1).GetComponent<UnitUi>();
+        Ui = transform.GetChild(0).GetComponent<UnitUi>();
 
         Animation.Default(gameObject);
     }
-    public void Attack(int i)
+    public void Skill(int i)
     {
-        SkillManager.skill.UseSkill(Skills[i], Ability); 
+        SkillManager.skill.UseSkill(Skills[i], this); 
     }
     public void Damaged(float damage, DType dT, int ignore)
     {
@@ -37,10 +31,10 @@ public class Unit : MonoBehaviour
     }
     public void TurnStart()
     {
-        foreach (Skill_Base skill in Skills) skill.TurnStart();
+        //foreach (Skill_Base skill in Skills) skill.TurnStart();
     }
     public void TurnEnd()
     {
-        foreach (Skill_Base skill in Skills) skill.TurnEnd();
+        //foreach (Skill_Base skill in Skills) skill.TurnEnd();
     }
 }

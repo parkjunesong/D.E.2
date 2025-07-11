@@ -5,64 +5,17 @@ using static UnityEngine.GraphicsBuffer;
 
 public enum DType { Normal, Penetrate, True };
 
+[CreateAssetMenu(fileName = "Effect_Damage", menuName = "Scriptable Object/EffectData/Effect_Damage", order = int.MaxValue)]
 public class Effect_Damage : Effect_Base
 {
     public DType DamageType;
     public int IgnoreDefence = 0;
 
-    public override void execute(Unit_Ablity ability)
+    public override void Execute(Unit caster, Unit target)
     {
-        float damage = Value * ability.AT * (1 + ability.ID / 100);
-        if (ability.CR >= Random.Range(0, 100)) damage *= (1 + ability.CD / 100);
+        float damage = Value * caster.Ability.AT * (1 + caster.Ability.ID / 100);
+        if (caster.Ability.CR >= Random.Range(0, 100)) damage *= (1 + caster.Ability.CD / 100);
 
-        switch (AimType)
-        {
-            case AType.Select:
-                {
-                    if (ability.Team == "Chara")
-                        SystemManager.system.EGroup[SystemManager.system.SelectedEnemy].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
-                    else if (ability.Team == "Enemy")
-                        SystemManager.system.CGroup[SystemManager.system.SelectedChara].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
-
-                    break;
-                }
-            case AType.Front:
-                {
-                    if (ability.Team == "Chara")
-                        SystemManager.system.EGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
-                    else if (ability.Team == "Enemy")
-                        SystemManager.system.CGroup[0].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
-
-                    break;
-                }
-            case AType.Back:
-                {
-                    if (ability.Team == "Chara")
-                        SystemManager.system.EGroup[SystemManager.system.EGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
-                    else if (ability.Team == "Enemy")
-                        SystemManager.system.CGroup[SystemManager.system.CGroup.Count-1].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
-
-                    break;
-                }
-            case AType.Random:
-                {
-                    if (ability.Team == "Chara")
-                        SystemManager.system.EGroup[Random.Range(0, SystemManager.system.EGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
-                    else if (ability.Team == "Enemy")
-                        SystemManager.system.CGroup[Random.Range(0, SystemManager.system.CGroup.Count)].GetComponent<Unit>().Damaged(damage, DamageType, IgnoreDefence);
-                    break;
-                }
-            case AType.Near:
-                {
-                   
-                    break;
-                }
-            case AType.All:
-                {
-                    
-                    break;
-                }
-        }
+        target.Damaged(damage, DamageType, IgnoreDefence);           
     }
-  
 }

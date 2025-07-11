@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28198b69327578943855702722ce0ddf, type: 3}
+  m_Name: Test_Attack_Skill
+  m_EditorClassIdentifier: 
+  Skill_Cost: 010000000100000000000000
+  Skill_CoolTime: 5
+  Skill_Name: Test_Attack
+  Skill_Icon: {fileID: 3904167472952893590, guid: a9d9387f595e0ee42a38faf7d46e735b, type: 3}
+  Effects:
+  - {fileID: 11400000, guid: ae42b07d1acf6e149b48e7912e335538, type: 2}
+  AimType: 0

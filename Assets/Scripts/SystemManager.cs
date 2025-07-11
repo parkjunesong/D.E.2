@@ -83,8 +83,6 @@ public class SystemManager : BattleGroup
             unit.GroupNo = CGroup.IndexOf(chara);
             chara.transform.position = new Vector2(-200 - 280 * unit.GroupNo, 1100);
         }
-
-        //SelectedChara = unit.GroupNo;
         MainChara = RotaList[0];
 
         CostManager.cost.CostReset();

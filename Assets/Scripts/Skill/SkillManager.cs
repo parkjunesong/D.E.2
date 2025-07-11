@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
+
+public enum AType { Select, Front, Back, Random, Near, All }; 
 
 public class SkillManager : MonoBehaviour
 {
@@ -14,14 +18,14 @@ public class SkillManager : MonoBehaviour
         skill = this;
         SkillUi = GameObject.Find("스킬보드");
     }
-    public void UseSkill(Skill_Base skill, Unit_Ablity ability)
+    public void UseSkill(Skill_Base skill, Unit caster)
     {
         int[] SkillCost = skill.Skill_Cost;
         int[] CostNow = CostManager.cost.GetComponent<CostManager>().CostCount();
 
         if (CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2]))
         {
-            skill.execute(ability);
+            skill.Execute(caster, FindTarget(caster, skill.AimType));
             CostManager.cost.GetComponent< CostManager> ().CostUse(SkillCost);
         }
         else
@@ -29,7 +33,36 @@ public class SkillManager : MonoBehaviour
     }
     public void MainCharaUseSkill(int i)
     {
-        SystemManager.system.MainChara.GetComponent<Unit>().Attack(i);
+        SystemManager.system.MainChara.GetComponent<Unit>().Skill(i);
+    }
+
+    public Unit FindTarget(Unit caster, AType AimType)
+    {
+        if (caster.Ability.Team == "Chara")
+        {
+            switch (AimType) 
+            {
+                case AType.Select: return SystemManager.system.EGroup[SystemManager.system.SelectedEnemy].GetComponent<Unit>();        
+                case AType.Front: return SystemManager.system.EGroup[0].GetComponent<Unit>();                    
+                case AType.Back: return SystemManager.system.EGroup[SystemManager.system.EGroup.Count - 1].GetComponent<Unit>();                  
+                case AType.Random: return SystemManager.system.EGroup[Random.Range(0, SystemManager.system.EGroup.Count)].GetComponent<Unit>();                   
+                case AType.Near: return null;                
+                case AType.All: return null;
+            }
+        }
+        else if(caster.Ability.Team == "Enemy")
+        {
+            switch (AimType)
+            {
+                case AType.Select: return SystemManager.system.CGroup[SystemManager.system.SelectedChara].GetComponent<Unit>();   
+                case AType.Front: return SystemManager.system.CGroup[0].GetComponent<Unit>();                   
+                case AType.Back: return SystemManager.system.CGroup[SystemManager.system.CGroup.Count - 1].GetComponent<Unit>();                   
+                case AType.Random: return SystemManager.system.CGroup[Random.Range(0, SystemManager.system.CGroup.Count)].GetComponent<Unit>();
+                case AType.Near: return null;
+                case AType.All: return null;
+            }
+        }
+        return null;
     }
 
     public void uiReset()
