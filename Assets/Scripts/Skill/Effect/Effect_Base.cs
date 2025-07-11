@@ -6,7 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public abstract class Effect_Base : ScriptableObject
 {
+    public AType AimType;
     public float Value;
 
-    public abstract void Execute(Unit caster, Unit target);
+    public abstract void Execute(Unit caster, List<Unit> targets);
 }

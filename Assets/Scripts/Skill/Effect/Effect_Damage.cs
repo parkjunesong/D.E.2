@@ -11,11 +11,14 @@ public class Effect_Damage : Effect_Base
     public DType DamageType;
     public int IgnoreDefence = 0;
 
-    public override void Execute(Unit caster, Unit target)
+    public override void Execute(Unit caster, List<Unit> targets)
     {
         float damage = Value * caster.Ability.AT * (1 + caster.Ability.ID / 100);
         if (caster.Ability.CR >= Random.Range(0, 100)) damage *= (1 + caster.Ability.CD / 100);
-
-        target.Damaged(damage, DamageType, IgnoreDefence);           
+        
+        foreach (var target in targets)
+        {
+            target.Damaged(damage, DamageType, IgnoreDefence);
+        }               
     }
 }

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 177f923aa89e7fc429ee178b34b315a3, type: 2}
   Skills:
-  - {fileID: 11400000, guid: 2218e57aa2d572b4ab2631c781c0ec8b, type: 2}
+  - {fileID: 11400000, guid: 235b31d66a7e4fe4eb6b7234f02ab3c3, type: 2}
   Ui: {fileID: 0}
   GroupNo: 0
 --- !u!1001 &7763033923310673969

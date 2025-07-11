@@ -10,7 +10,6 @@ public abstract class Skill_Base : ScriptableObject
     public string Skill_Name;
     public Sprite Skill_Icon;
     public Effect_Base[] Effects;
-    public AType AimType;
 
-    public abstract void Execute(Unit caster, Unit target);
+    public abstract void Execute(Unit caster, List<List<Unit>> effectTargets);
 }

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Skill_Simple", menuName = "Scriptable Object/SkillData/Skill_Simple", order = int.MaxValue)]
 public class Skill_Simple : Skill_Base
 {
-    public override void Execute(Unit caster, Unit target)
+    public override void Execute(Unit caster, List<List<Unit>> effectTargets)
     {
-        foreach (var effect in Effects)
+        for (int i = 0; i < Effects.Length; i++)
         {
-            effect.Execute(caster, target);
-        }
+            Effects[i].Execute(caster, effectTargets[i]);
+        }       
     }
 }
