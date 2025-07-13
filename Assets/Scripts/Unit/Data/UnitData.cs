@@ -13,4 +13,5 @@ public class UnitData : ScriptableObject
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
     public Sprite Face, Standing;
+    public List<Skill_Base> Skills;
 }

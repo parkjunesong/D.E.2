@@ -3,84 +3,58 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
     public UnitData Data;
     public Unit_Ablity Ability;
-    public Unit_Animation Animation;
-    public List<Skill_Base> Skills = new List<Skill_Base>();
-    public UnitUi Ui;
-    public int GroupNo; // Enemy 사망시 GroupNo 갱신 필요
-
-    private List<Buff_Base> activeBuffs = new List<Buff_Base>();
+    public Unit_Skill Skill;
+    public Unit_Animation Animation;  
+    public Unit_Ui Ui;
+    public Unit_Buff Buff;
 
     void Awake()
     {       
-        Ability = new Unit_Ablity(Data);                     
-        Animation = new Unit_Animation(Data);
-        Ui = transform.GetChild(0).GetComponent<UnitUi>();
-
-        Animation.Default(gameObject);
+        Ability = new Unit_Ablity(Data);
+        Skill = new Unit_Skill(Data);
+        Animation = new Unit_Animation(this);
+        Ui = gameObject.AddComponent<Unit_Ui>();
+        Buff = gameObject.AddComponent<Unit_Buff>();
     }
-    public void Skill(int i)
+
+    public virtual void TurnStart()
     {
-        SkillManager.skill.UseSkill(Skills[i], this);
+        Skill.OnTurnStart();
+        Buff.OnTurnStart();
+    }
+    public virtual void TurnEnd()
+    {
+        Skill.OnTurnEnd();
+        Buff.OnTurnEnd();
+    }
+
+    public void OnSkillUsed(int i)
+    {
+        Skill.OnUseSkill(i, this);
         SystemManager.system.TurnEnd();
     }
-    public void AddBuff(Buff_Base newBuff)
+    public void OnBuffGained(Buff_Base newBuff)
     {
-        Buff_Base existing = activeBuffs.Find(buff => buff.Buff_Name == newBuff.Buff_Name);
-
-        if (existing != null) existing.AddStack();
-        else
-        {
-            Buff_Base instance = Instantiate(newBuff);
-            instance.Apply(this);
-            activeBuffs.Add(instance);
-        }
-        Ability.RecalculBuff(activeBuffs);
-        Ui.UpdateBuffUI(activeBuffs);
+        Buff.OnBuffGained(newBuff);
     }
-    public void Damaged(float damage, DType dT, int ignore)
+    public void OnDamaged(float damage, DType dT, int ignore)
     {
-        Ability.Damaged(damage, dT, ignore);
+        Ability.OnDamaged(damage, dT, ignore);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
         Ui.UpdateShildBar(Ability.Shild, Ability.HP);
     }
-    public void Healed(float heal)
+    public void OnHealed(float heal)
     {
-        Ability.Healed(heal);
+        Ability.OnHealed(heal);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
     }
-    public void getShild(float shild)
+    public void OnShieldGained(float shild)
     {
-        Ability.getShild(shild);
+        Ability.OnShieldGained(shild);
         Ui.UpdateShildBar(Ability.Shild, Ability.HP);
-        Debug.Log("HP: " + Ability.HP + " / Shild: " + Ability.Shild);
-    }
-
-
-
-    public void TurnStart()
-    {
-        foreach (var buff in activeBuffs)
-            buff.TurnStart(this);
-
-        Ability.RecalculBuff(activeBuffs);
-        Ui.UpdateBuffUI(activeBuffs);
-    }
-    public void TurnEnd()
-    {
-        for (int i = activeBuffs.Count - 1; i >= 0; i--) 
-        {
-            var buff = activeBuffs[i];
-            buff.TurnEnd(this); 
-
-            if (buff.currentStack <= 0)
-            {
-                buff.Remove(this);
-                activeBuffs.RemoveAt(i);
-            }    
-        }
     }
 }

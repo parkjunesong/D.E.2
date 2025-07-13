@@ -6,24 +6,26 @@ using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitUi : MonoBehaviour
+public class Unit_Ui : MonoBehaviour
 {
-    private Unit unit;
+    private Unit Unit;
     private Slider HpBar;
     private Slider ShildBar;
     private Text CountText;
-    private GameObject SelectIcon;
+    private Transform SelectIcon;
     private Transform BuffSlot;
+
     void Awake()
     {
-        unit = transform.parent.GetComponent<Unit>();
+        Unit = gameObject.GetComponent<Unit>();
+        Transform info = transform.GetChild(0).GetChild(0);
 
-        HpBar = transform.GetChild(0).GetChild(0).GetComponent<Slider>();
-        ShildBar = transform.GetChild(0).GetChild(1).GetComponent<Slider>();
-        BuffSlot = transform.GetChild(0).GetChild(2);
+        HpBar = info.GetChild(0).GetComponent<Slider>();
+        ShildBar = info.GetChild(1).GetComponent<Slider>();
+        BuffSlot = info.GetChild(2);
 
-        CountText = transform.GetChild(1).GetChild(0).GetComponent<Text>();
-        SelectIcon = transform.GetChild(2).gameObject;      
+        CountText = gameObject.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>();
+        SelectIcon = gameObject.transform.GetChild(0).GetChild(2);
     }
 
     public void UpdateHPBar(int inGame, int inData)
@@ -44,11 +46,11 @@ public class UnitUi : MonoBehaviour
     }
     public void UpdateSelectIcon(string team)
     {
-        SelectIcon.SetActive(false);
+        SelectIcon.gameObject.SetActive(false);
         if (team == "Chara")
         {
-            if (SystemManager.system.SelectedChara == unit.GroupNo)
-                SelectIcon.SetActive(true);
+            if (SystemManager.system.SelectedChara == Unit.Ability.GroupNo)
+                SelectIcon.gameObject.SetActive(true);
         }
         else if(team == "Enemy")
         {
@@ -71,7 +73,7 @@ public class UnitUi : MonoBehaviour
             icon.GetComponent<Image>().sprite = buff.Buff_Icon;
             icon.GetComponentInChildren<Text>().text = "x" + buff.currentStack;
             icon.name = buff.Buff_Name;
-            icon.SetActive(true);        
+            icon.SetActive(true);   
         }
     }
 }

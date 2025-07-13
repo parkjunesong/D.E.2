@@ -12,7 +12,7 @@ public class Effect_Shild : Effect_Base
   
         foreach (var target in targets)
         {
-            target.getShild(shild);
+            target.OnShieldGained(shild);
         }               
     }
 }

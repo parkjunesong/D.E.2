@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6958557239060655836}
   - component: {fileID: 5179345451338365425}
   - component: {fileID: -6523760071101531556}
-  - component: {fileID: 7124090570858524794}
+  - component: {fileID: 7187558268542386306}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 170.66667, y: 256}
   m_EdgeRadius: 0
---- !u!114 &7124090570858524794
+--- !u!114 &7187558268542386306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,14 +144,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2324888412393489709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8066202850a1e1b459fe02ba11255b92, type: 3}
+  m_Script: {fileID: 11500000, guid: 85137c7865a9d164f8d3e3ddec20df30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 2a6470fb9dcd0004bba90f86d283da6f, type: 2}
-  Skills:
-  - {fileID: 11400000, guid: 2218e57aa2d572b4ab2631c781c0ec8b, type: 2}
   Ui: {fileID: 0}
   GroupNo: 0
+  Skills:
+  - {fileID: 11400000, guid: 2218e57aa2d572b4ab2631c781c0ec8b, type: 2}
+  activeBuffs: []
 --- !u!1001 &7588723809684947791
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -25,3 +25,5 @@ MonoBehaviour:
   ID: 0
   Face: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
   Standing: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
+  Skills:
+  - {fileID: 11400000, guid: 235b31d66a7e4fe4eb6b7234f02ab3c3, type: 2}

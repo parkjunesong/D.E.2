@@ -12,7 +12,7 @@ public class Effect_Heal : Effect_Base
   
         foreach (var target in targets)
         {
-            target.Healed(heal);
+            target.OnHealed(heal);
         }               
     }
 }

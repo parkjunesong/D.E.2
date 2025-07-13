@@ -14,6 +14,7 @@ public class Unit_Ablity
     public float RD, ID; // ReduceDamage, IncreaseDamage 
     public int Shild;
     protected int maxHP;
+    public int GroupNo; // Enemy 사망시 GroupNo 갱신 필요
 
     protected UnitData Data;
     protected BuffModifier BuffModifiers;
@@ -62,7 +63,7 @@ public class Unit_Ablity
         }
     }
 
-    public void Damaged(float damage, DType dT, int ignore)
+    public void OnDamaged(float damage, DType dT, int ignore)
     {
         float dam = damage * 100 / (100 + DF * (1 - ignore / 100));
 
@@ -102,18 +103,15 @@ public class Unit_Ablity
         if (HP <= 0) HP = 0;
     }
 
-    public void Healed(float heal)
-    {
-        Debug.Log("heal: " + heal); // 받는 회복량 구현
-
+    public void OnHealed(float heal)
+    {       
         if (heal + HP < maxHP)
             HP += (int)(heal);
         else
             HP = maxHP;
     }
-    public void getShild(float shild)
+    public void OnShieldGained(float shild)
     {
-        Debug.Log("shild: " + shild); // 받는 회복량 구현
         Shild += (int)(shild);
     }
 }

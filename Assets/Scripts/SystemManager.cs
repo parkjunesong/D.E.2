@@ -80,8 +80,8 @@ public class SystemManager : BattleGroup
         foreach(GameObject chara in CGroup)
         {
             Unit unit = chara.GetComponent<Unit>();
-            unit.GroupNo = CGroup.IndexOf(chara);
-            chara.transform.position = new Vector2(-200 - 280 * unit.GroupNo, 1100);
+            unit.Ability.GroupNo = CGroup.IndexOf(chara);
+            chara.transform.position = new Vector2(-200 - 280 * unit.Ability.GroupNo, 1100);
         }
         MainChara = RotaList[0];
 

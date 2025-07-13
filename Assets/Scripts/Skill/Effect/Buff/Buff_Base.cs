@@ -20,7 +20,7 @@ public abstract class Buff_Base : ScriptableObject
     public int currentStack;
     protected bool wasAppliedThisTurn = false;
 
-    public virtual void Apply(Unit target) 
+    public virtual void Apply() 
     {
         currentStack = Buff_Stack;
         wasAppliedThisTurn = true;
@@ -33,8 +33,8 @@ public abstract class Buff_Base : ScriptableObject
        
         wasAppliedThisTurn = true;
     }
-    public virtual void TurnStart(Unit target) { }
-    public virtual void TurnEnd(Unit target) 
+    public virtual void TurnStart() { }
+    public virtual void TurnEnd() 
     {
         if (wasAppliedThisTurn) // 다음 턴부터 Tick 허용
         {
@@ -43,7 +43,7 @@ public abstract class Buff_Base : ScriptableObject
         }
         currentStack--;      
     }
-    public virtual void Remove(Unit target) 
+    public virtual void Remove() 
     {
         currentStack = 0;
     }

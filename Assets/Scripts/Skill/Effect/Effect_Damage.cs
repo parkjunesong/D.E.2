@@ -19,7 +19,7 @@ public class Effect_Damage : Effect_Base
         
         foreach (var target in targets)
         {
-            target.Damaged(damage, DamageType, IgnoreDefence);
+            target.OnDamaged(damage, DamageType, IgnoreDefence);
         }               
     }
 }

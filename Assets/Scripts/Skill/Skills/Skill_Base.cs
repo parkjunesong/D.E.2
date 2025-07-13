@@ -7,9 +7,22 @@ public abstract class Skill_Base : ScriptableObject
 {
     public int[] Skill_Cost;
     public int Skill_CoolTime;
+    public int CurrentCooldown = 0;
     public string Skill_Name;
     public Sprite Skill_Icon;
     public Effect_Base[] Effects;
 
+
     public abstract void Execute(Unit caster, List<List<Unit>> effectTargets);
+
+    public void TickCooldown()
+    {
+        if (CurrentCooldown > 0)
+            CurrentCooldown--;
+    }
+
+    public void ResetCooldown()
+    {
+        CurrentCooldown = Skill_CoolTime;
+    }
 }

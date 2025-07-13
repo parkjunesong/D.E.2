@@ -35,7 +35,7 @@ public class MouseClick : MonoBehaviour
         if (unit.Ability.Team == "Chara")
         {
             Group = SystemManager.system.CGroup;
-            SystemManager.system.SelectedChara = unit.GroupNo;
+            SystemManager.system.SelectedChara = unit.Ability.GroupNo;
 
             foreach(GameObject chara in SystemManager.system.CGroup)
             {
@@ -45,7 +45,7 @@ public class MouseClick : MonoBehaviour
         else if (unit.Ability.Team == "Enemy")
         {
             Group = SystemManager.system.EGroup;
-            SystemManager.system.SelectedEnemy = unit.GroupNo;
+            SystemManager.system.SelectedEnemy = unit.Ability.GroupNo;
         }
     }
 }

@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Unit_Animation
 {
-    public Sprite Face, Standing;
+    private Unit Unit;
 
-    public Unit_Animation(UnitData data)
+    public Unit_Animation(Unit unit)
     {
-        Face = data.Face;
-        Standing = data.Standing;
+        Unit = unit;
+        Default();
     }
 
-    public void Default(GameObject unit)
+    public void Default()
     {
-        unit.GetComponent<SpriteRenderer>().sprite = Standing;
+        Unit.GetComponent<SpriteRenderer>().sprite = Unit.Data.Standing;
     }
 }

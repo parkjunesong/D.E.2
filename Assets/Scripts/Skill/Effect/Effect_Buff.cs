@@ -10,7 +10,7 @@ public class Effect_Buff : Effect_Base
     {
         foreach (var target in targets)
         {
-            target.AddBuff(Buff);
+            target.OnBuffGained(Buff);
         }
     }
 }

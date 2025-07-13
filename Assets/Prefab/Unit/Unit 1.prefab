@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6958557239060655836}
   - component: {fileID: -1398157639223226631}
   - component: {fileID: 7909341083403311754}
-  - component: {fileID: 7124090570858524794}
+  - component: {fileID: 8805984512771710551}
   m_Layer: 0
   m_Name: Unit 1
   m_TagString: Untagged
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 170.66667, y: 256}
   m_EdgeRadius: 0
---- !u!114 &7124090570858524794
+--- !u!114 &8805984512771710551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,14 +144,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2324888412393489709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8066202850a1e1b459fe02ba11255b92, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ef1e528d4611e540b0edd352b9ffbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 177f923aa89e7fc429ee178b34b315a3, type: 2}
-  Skills:
-  - {fileID: 11400000, guid: 235b31d66a7e4fe4eb6b7234f02ab3c3, type: 2}
   Ui: {fileID: 0}
   GroupNo: 0
+  Skills:
+  - {fileID: 11400000, guid: 235b31d66a7e4fe4eb6b7234f02ab3c3, type: 2}
+  activeBuffs: []
 --- !u!1001 &7763033923310673969
 PrefabInstance:
   m_ObjectHideFlags: 0
