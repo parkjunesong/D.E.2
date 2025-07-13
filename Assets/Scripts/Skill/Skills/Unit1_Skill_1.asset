@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Unit1_Skill_1
   m_EditorClassIdentifier: 
   Skill_Cost: 010000000100000000000000
-  Skill_CoolTime: 5
+  Skill_CoolTime: 1
   CurrentCooldown: 0
   Skill_Name: 
-  Skill_Icon: {fileID: 0}
+  Skill_Icon: {fileID: 3904167472952893590, guid: a9d9387f595e0ee42a38faf7d46e735b, type: 3}
   Effects:
   - {fileID: 11400000, guid: ddbb56b09e813f7429e11f78a4565764, type: 2}
   - {fileID: 11400000, guid: ae42b07d1acf6e149b48e7912e335538, type: 2}

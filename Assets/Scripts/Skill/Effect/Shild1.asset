@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AimType: 1
   AimTarget: 0
-  Value: 1
+  Value: 1.5

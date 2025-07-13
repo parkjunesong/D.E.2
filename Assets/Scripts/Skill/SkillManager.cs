@@ -25,8 +25,18 @@ public class SkillManager : MonoBehaviour
     public void uiReset()
     {
         Unit unit = SystemManager.system.MainChara.GetComponent<Unit>();
-        SkillUi.transform.GetChild(0).GetComponentsInChildren<Image>()[1].sprite = unit.Skill.Skills[0].Skill_Icon;
-        //skill.transform.GetChild(1).GetComponentsInChildren<Image>()[1].sprite = MainChara.Skills[1].Skill_Icon;
-        //skill.transform.GetChild(2).GetComponentsInChildren<Image>()[1].sprite = MainChara.Skills[2].Skill_Icon;
+        for (int i = 0; i < 3; i++)
+        {
+            SkillUi.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = unit.Skill.Skills[i].Skill_Icon;
+            if (unit.Skill.Skills[i].CurrentCooldown > 0)
+            {
+                SkillUi.transform.GetChild(i).GetChild(1).gameObject.SetActive(true);
+                SkillUi.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Text>().text = unit.Skill.Skills[i].CurrentCooldown.ToString();
+            }
+            else
+            {
+                SkillUi.transform.GetChild(i).GetChild(1).gameObject.SetActive(false);
+            }
+        }             
     }
 }

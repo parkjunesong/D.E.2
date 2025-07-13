@@ -27,3 +27,5 @@ MonoBehaviour:
   Standing: {fileID: -4446505711168334986, guid: 3d55d052cf4a6024f9413d16a754cad5, type: 3}
   Skills:
   - {fileID: 11400000, guid: 75404c36b0fa717448594c2b6d9aec93, type: 2}
+  - {fileID: 11400000, guid: 75404c36b0fa717448594c2b6d9aec93, type: 2}
+  - {fileID: 11400000, guid: 75404c36b0fa717448594c2b6d9aec93, type: 2}

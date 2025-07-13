@@ -23,6 +23,6 @@ public abstract class Skill_Base : ScriptableObject
 
     public void ResetCooldown()
     {
-        CurrentCooldown = Skill_CoolTime;
+        CurrentCooldown = Skill_CoolTime + 1;
     }
 }

@@ -16,14 +16,15 @@ public class EnemyUnit : Unit
 
     public override void TurnStart()
     {
+        MoveCount--;
+        Ui.UpdateCountText(MoveCount);
+    }
+    public override void TurnEnd()
+    {       
         if (MoveCount == 0)
         {
             OnSkillUsed(skillNo);
             MoveCount = Skill.Skills[0].Skill_CoolTime;
         }
-    }
-    public override void TurnEnd()
-    {
-        MoveCount--;
     }
 }
