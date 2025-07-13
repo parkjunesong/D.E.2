@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/main.unity
+    guid: 76e3585971b692f4fa4350b3c33d5f5d
+  - enabled: 1
+    path: Assets/Scenes/talk.unity
+    guid: 69f842f865847f64d876ba77cae4754a
+  - enabled: 1
+    path: Assets/Scenes/team.unity
+    guid: baedd7169ee66aa4d87b1549b6727007
+  - enabled: 1
     path: Assets/Scenes/Battle_Test.unity
     guid: c07dd69d37bb33846be0b5aedfb91f86
   m_configObjects: {}

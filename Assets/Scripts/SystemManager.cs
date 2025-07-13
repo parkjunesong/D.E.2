@@ -17,28 +17,64 @@ public class SystemManager : MonoBehaviour
     public List<GameObject> RotaList = new List<GameObject>();
     public int SelectedChara, SelectedEnemy;
 
+    public ScenarioData data;
+
     void Awake()
     {
         system = this;
     }
-    void Start()
+    private void Start()
     {
-        foreach(GameObject chara in CGroup)
+        //data = ScenarioManager.Instance.CurrentScenario;
+
+        if (data != null)
         {
-            Unit unit = chara.GetComponent<Unit>();
-            if (unit.Ability.UT == UnitType.Unit_Alive)
+            MapMaker(data.MapToLoad);
+
+            foreach (GameObject chara in CGroup)
             {
-                RotaList.Add(chara);
+                Unit unit = chara.GetComponent<Unit>();
+                if (unit.Ability.UT == UnitType.Unit_Alive)
+                {
+                    RotaList.Add(chara);
+                }
             }
+
+            MainChara = RotaList[0];
+
+            Turn = 0;
+            TurnUi = GameObject.Find("Turn");
+
+            TurnStart();
         }
-
-        MainChara = RotaList[0];
-
-        Turn = 0;
-        TurnUi = GameObject.Find("Turn");
-
-        TurnStart();
     }
+    
+    public void MapMaker(MapData map)
+    {
+        int i = 0;
+        foreach (UnitData data in map.CGroup)
+        {
+            UnitData uData = Instantiate(data);
+            GameObject.Find("GameManager").GetComponent<UnitSpawn>().InitSpawn(uData, new Vector2(-200 - 280 * i, 1100), "Chara");
+            CGroup[i].GetComponent<Unit>().Ability.GroupNo = i;
+            CGroup[i].GetComponent<Unit>().name = "Chara" + i;
+            CGroup[i].GetComponent<Unit>().Ability.Team = "Chara";
+
+            i++;
+        }
+        i = 0;
+        foreach (UnitData data in map.EGroup)
+        {
+            UnitData uData = Instantiate(data);
+            GameObject.Find("GameManager").GetComponent<UnitSpawn>().InitSpawn(uData, new Vector2(200 + 280 * i, 1100), "Enemy");
+            EGroup[i].GetComponent<Unit>().Ability.GroupNo = i;
+            EGroup[i].GetComponent<Unit>().name = "Enemy" + i;
+            EGroup[i].GetComponent<Unit>().Ability.Team = "Enemy";
+
+            i++;
+        }
+    }
+
     public void TurnStart()
     {
         Turn++;
@@ -72,7 +108,7 @@ public class SystemManager : MonoBehaviour
         RotaList.RemoveAt(0);
         RotaList.Add(temp);
 
-        int j = 0;     
+        int j = 0;
         for (int i = 0; i < CGroup.Count; i++)
         {
             Unit unit = CGroup[i].GetComponent<Unit>();
@@ -82,7 +118,7 @@ public class SystemManager : MonoBehaviour
                 j++;
             }
         }
-        foreach(GameObject chara in CGroup)
+        foreach (GameObject chara in CGroup)
         {
             Unit unit = chara.GetComponent<Unit>();
             unit.Ability.GroupNo = CGroup.IndexOf(chara);
@@ -93,6 +129,4 @@ public class SystemManager : MonoBehaviour
         CostManager.cost.CostReset();
         TurnEnd();
     }
-
-
 }

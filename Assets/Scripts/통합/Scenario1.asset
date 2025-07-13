@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e6e2f4131e1214e8d447a3d31edd7b, type: 3}
+  m_Name: Scenario1
+  m_EditorClassIdentifier: 
+  ScenarioName: TestBattle
+  Description: dd
+  DialogueJSON: {fileID: 0}
+  MapToLoad: {fileID: 11400000, guid: 56c602a437bf33e4da2287d1e23489dc, type: 2}

@@ -789,7 +789,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949508759}
+      - m_Target: {fileID: 1949508763}
         m_TargetAssemblyTypeName: SystemManager, Assembly-CSharp
         m_MethodName: Rotation
         m_Mode: 1
@@ -1112,9 +1112,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1949508756}
   - component: {fileID: 1949508761}
-  - component: {fileID: 1949508759}
-  - component: {fileID: 1949508760}
   - component: {fileID: 1949508762}
+  - component: {fileID: 1949508763}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1139,45 +1138,6 @@ Transform:
   - {fileID: 365532393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1949508759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949508755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab5c73607033ed4996ea3f380dbf839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Turn: 0
-  MainChara: {fileID: 0}
-  CGroup: []
-  EGroup: []
-  RotaList: []
-  SelectedChara: 0
-  SelectedEnemy: 0
---- !u!114 &1949508760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949508755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b09ebba4104604c4b93a048fac1d23fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CGroup:
-  - {fileID: 11400000, guid: 177f923aa89e7fc429ee178b34b315a3, type: 2}
-  - {fileID: 11400000, guid: 30321300956986f4dbdcaea5ef43db1f, type: 2}
-  - {fileID: 11400000, guid: d27066dbcb922864e8931ad72dff94a4, type: 2}
-  EGroup:
-  - {fileID: 11400000, guid: 2a6470fb9dcd0004bba90f86d283da6f, type: 2}
-  - {fileID: 11400000, guid: 2a6470fb9dcd0004bba90f86d283da6f, type: 2}
-  - {fileID: 11400000, guid: 2a6470fb9dcd0004bba90f86d283da6f, type: 2}
 --- !u!114 &1949508761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,6 +1163,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223eb22db1f262e4fb661931b4c14f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1949508763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949508755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab5c73607033ed4996ea3f380dbf839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Turn: 0
+  MainChara: {fileID: 0}
+  CGroup: []
+  EGroup: []
+  RotaList: []
+  SelectedChara: 0
+  SelectedEnemy: 0
+  data: {fileID: 11400000, guid: b0966bbc372501b4ea40a0251e5f247a, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
