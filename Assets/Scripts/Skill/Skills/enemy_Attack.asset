@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28198b69327578943855702722ce0ddf, type: 3}
-  m_Name: Test_Heal_Skill 1
+  m_Name: enemy_Attack
   m_EditorClassIdentifier: 
-  Skill_Cost: 010000000000000000000000
+  Skill_Cost: 000000000000000000000000
   Skill_CoolTime: 5
-  Skill_Name: Test_Attack
+  Skill_Name: 
   Skill_Icon: {fileID: 3904167472952893590, guid: a9d9387f595e0ee42a38faf7d46e735b, type: 3}
   Effects:
-  - {fileID: 11400000, guid: 7d3b43999e2c2964a84d25bb4073b6c7, type: 2}
+  - {fileID: 11400000, guid: 389d04498ce7fd34898f62a65cc6ff21, type: 2}

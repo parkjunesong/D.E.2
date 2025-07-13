@@ -12,6 +12,8 @@ public class Unit_Ablity
     public int AT, SP, HP, DF;
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
+    public int Shild;
+    protected int maxHP;
 
     protected UnitData Data;
     protected BuffModifier BuffModifiers;
@@ -25,11 +27,13 @@ public class Unit_Ablity
         AT = data.AT;
         SP = data.SP;
         HP = data.HP;
+        maxHP = HP;
         DF = data.DF;
         CR = data.CR;
         CD = data.CD;
         RD = data.RD;
         ID = data.ID;
+        Shild = 0;
     }
 
     public void RecalculBuff(List<Buff_Base> buffs)
@@ -49,7 +53,7 @@ public class Unit_Ablity
 
             AT = (int)(Data.AT * (1 + BuffModifiers.AT));
             SP = (int)(Data.SP * (1 + BuffModifiers.SP));
-            HP = (int)(Data.HP * (1 + BuffModifiers.HP));
+            maxHP = (int)(Data.HP * (1 + BuffModifiers.HP));
             DF = (int)(Data.DF * (1 + BuffModifiers.DF));
             CR = Data.CR + BuffModifiers.CR;
             CD = Data.CD + BuffModifiers.CD;
@@ -67,10 +71,23 @@ public class Unit_Ablity
             case DType.Normal:
                 {
                     Debug.Log("damage: " + dam * (1 - RD / 100));
-                    HP -= (int)(dam * (1 - RD / 100));
-                    break;
+                    if (Shild > 0)
+                    {
+                        Shild -= (int)(dam * (1 - RD / 100));
+                        if (Shild <= 0)
+                        {
+                            HP += Shild;
+                            Shild = 0;
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        HP -= (int)(dam * (1 - RD / 100));
+                        break;
+                    }         
                 }
-            case DType.Penetrate: // 실드 미구현
+            case DType.Penetrate:
                 {
                     HP -= (int)(dam * (1 - RD / 100));
                     break;
@@ -88,6 +105,15 @@ public class Unit_Ablity
     public void Healed(float heal)
     {
         Debug.Log("heal: " + heal); // 받는 회복량 구현
-        HP += (int)(heal);
+
+        if (heal + HP < maxHP)
+            HP += (int)(heal);
+        else
+            HP = maxHP;
+    }
+    public void getShild(float shild)
+    {
+        Debug.Log("shild: " + shild); // 받는 회복량 구현
+        Shild += (int)(shild);
     }
 }

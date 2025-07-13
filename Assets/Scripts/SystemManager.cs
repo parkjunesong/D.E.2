@@ -48,7 +48,6 @@ public class SystemManager : BattleGroup
         {
             EGroup[i].GetComponent<Unit>().TurnStart();
         }
-        Debug.Log("----- turn start: " + Turn + " -----");
     }
     public void TurnEnd()
     {
@@ -60,7 +59,6 @@ public class SystemManager : BattleGroup
         {
             EGroup[i].GetComponent<Unit>().TurnEnd();
         }
-        Debug.Log("----- turn end: " + Turn + " -----");
         TurnStart();
     }
     public void Rotation()

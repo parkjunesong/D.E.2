@@ -24,7 +24,6 @@ public abstract class Buff_Base : ScriptableObject
     {
         currentStack = Buff_Stack;
         wasAppliedThisTurn = true;
-        Debug.Log(Buff_Name + " has first applied!");
     }
     public virtual void AddStack()
     {
@@ -33,7 +32,6 @@ public abstract class Buff_Base : ScriptableObject
             currentStack = MaxStack;
        
         wasAppliedThisTurn = true;
-        Debug.Log(Buff_Name + " has added!");
     }
     public virtual void TurnStart(Unit target) { }
     public virtual void TurnEnd(Unit target) 
@@ -47,7 +45,6 @@ public abstract class Buff_Base : ScriptableObject
     }
     public virtual void Remove(Unit target) 
     {
-        Debug.Log(Buff_Name + " has removed!");
         currentStack = 0;
     }
 }

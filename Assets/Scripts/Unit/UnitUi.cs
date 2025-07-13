@@ -10,24 +10,29 @@ public class UnitUi : MonoBehaviour
 {
     private Unit unit;
     private Slider HpBar;
+    private Slider ShildBar;
     private Text CountText;
     private GameObject SelectIcon;
     private Transform BuffSlot;
-    private GameObject buffIcon;
     void Awake()
     {
         unit = transform.parent.GetComponent<Unit>();
-        HpBar = transform.GetChild(0).GetComponent<Slider>();
+
+        HpBar = transform.GetChild(0).GetChild(0).GetComponent<Slider>();
+        ShildBar = transform.GetChild(0).GetChild(1).GetComponent<Slider>();
+        BuffSlot = transform.GetChild(0).GetChild(2);
+
         CountText = transform.GetChild(1).GetChild(0).GetComponent<Text>();
-        BuffSlot = transform.GetChild(2);
-        buffIcon = BuffSlot.transform.GetChild(0).gameObject;
-        SelectIcon = transform.GetChild(3).gameObject;
-        
+        SelectIcon = transform.GetChild(2).gameObject;      
     }
 
     public void UpdateHPBar(int inGame, int inData)
     {
         HpBar.value = (float)inGame / inData;
+    }
+    public void UpdateShildBar(int inGame, int inData)
+    {
+        ShildBar.value = (float)inGame / inData;       
     }
     public void UpdateCountText(int Count)
     {
@@ -62,7 +67,7 @@ public class UnitUi : MonoBehaviour
         }
         foreach (var buff in activeBuffs)
         {
-            var icon = Instantiate(buffIcon, BuffSlot);
+            var icon = Instantiate(BuffSlot.GetChild(0).gameObject, BuffSlot);
             icon.GetComponent<Image>().sprite = buff.Buff_Icon;
             icon.GetComponentInChildren<Text>().text = "x" + buff.currentStack;
             icon.name = buff.Buff_Name;

@@ -45,12 +45,22 @@ public class Unit : MonoBehaviour
     {
         Ability.Damaged(damage, dT, ignore);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
+        Ui.UpdateShildBar(Ability.Shild, Ability.HP);
     }
     public void Healed(float heal)
     {
         Ability.Healed(heal);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
     }
+    public void getShild(float shild)
+    {
+        Ability.getShild(shild);
+        Ui.UpdateShildBar(Ability.Shild, Ability.HP);
+        Debug.Log("HP: " + Ability.HP + " / Shild: " + Ability.Shild);
+    }
+
+
+
     public void TurnStart()
     {
         foreach (var buff in activeBuffs)
