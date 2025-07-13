@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour
     }
     public void AddBuff(Buff_Base newBuff)
     {
-        Buff_Base existing = activeBuffs.Find(buff => buff.name == newBuff.name);
+        Buff_Base existing = activeBuffs.Find(buff => buff.Buff_Name == newBuff.Buff_Name);
 
         if (existing != null) existing.AddStack();
         else
@@ -38,6 +38,8 @@ public class Unit : MonoBehaviour
             instance.Apply(this);
             activeBuffs.Add(instance);
         }
+        Ability.RecalculBuff(activeBuffs);
+        Ui.UpdateBuffUI(activeBuffs);
     }
     public void Damaged(float damage, DType dT, int ignore)
     {
@@ -55,11 +57,11 @@ public class Unit : MonoBehaviour
             buff.TurnStart(this);
 
         Ability.RecalculBuff(activeBuffs);
-        Debug.Log(Ability.Name + ": " + Ability.AT);
+        Ui.UpdateBuffUI(activeBuffs);
     }
     public void TurnEnd()
     {
-        for (int i = activeBuffs.Count - 1; i >= 0; i--)
+        for (int i = activeBuffs.Count - 1; i >= 0; i--) 
         {
             var buff = activeBuffs[i];
             buff.TurnEnd(this); 

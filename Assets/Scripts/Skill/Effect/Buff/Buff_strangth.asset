@@ -23,6 +23,6 @@ MonoBehaviour:
     ID: 0
   Buff_Name: strangthen
   Buff_Icon: {fileID: 0}
-  Buff_Stack: 2
+  Buff_Stack: 1
   MaxStack: 3
   currentStack: 0

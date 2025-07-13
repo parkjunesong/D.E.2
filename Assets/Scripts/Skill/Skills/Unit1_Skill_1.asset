@@ -17,5 +17,5 @@ MonoBehaviour:
   Skill_Name: 
   Skill_Icon: {fileID: 0}
   Effects:
-  - {fileID: 11400000, guid: ae42b07d1acf6e149b48e7912e335538, type: 2}
   - {fileID: 11400000, guid: ddbb56b09e813f7429e11f78a4565764, type: 2}
+  - {fileID: 11400000, guid: ae42b07d1acf6e149b48e7912e335538, type: 2}

@@ -18,22 +18,36 @@ public abstract class Buff_Base : ScriptableObject
     public int Buff_Stack; // 버프 중첩 수, 매 턴마다 1 감소
     public int MaxStack;
     public int currentStack;
+    protected bool wasAppliedThisTurn = false;
 
     public virtual void Apply(Unit target) 
     {
         currentStack = Buff_Stack;
+        wasAppliedThisTurn = true;
+        Debug.Log(Buff_Name + " has first applied!");
     }
     public virtual void AddStack()
     {
-        currentStack = Mathf.Min(currentStack + 1, MaxStack);
+        currentStack += Buff_Stack;
+        if (currentStack >= MaxStack)
+            currentStack = MaxStack;
+       
+        wasAppliedThisTurn = true;
+        Debug.Log(Buff_Name + " has added!");
     }
     public virtual void TurnStart(Unit target) { }
     public virtual void TurnEnd(Unit target) 
     {
+        if (wasAppliedThisTurn) // 다음 턴부터 Tick 허용
+        {
+            wasAppliedThisTurn = false;
+            return;
+        }
         currentStack--;      
     }
     public virtual void Remove(Unit target) 
     {
+        Debug.Log(Buff_Name + " has removed!");
         currentStack = 0;
     }
 }
