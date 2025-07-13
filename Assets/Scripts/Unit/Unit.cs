@@ -51,7 +51,7 @@ public abstract class Unit : MonoBehaviour
     {
         Ability.OnDamaged(damage, dT, ignore);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
-        Ui.UpdateShildBar(Ability.Shild, Ability.HP);
+        Ui.UpdateShildBar(Ability.Shild, Ability.maxHP);
     }
     public void OnHealed(float heal)
     {
@@ -61,6 +61,6 @@ public abstract class Unit : MonoBehaviour
     public void OnShieldGained(float shild)
     {
         Ability.OnShieldGained(shild);
-        Ui.UpdateShildBar(Ability.Shild, Ability.HP);
+        Ui.UpdateShildBar(Ability.Shild, Ability.maxHP);
     }
 }

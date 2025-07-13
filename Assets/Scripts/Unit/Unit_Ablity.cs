@@ -13,7 +13,7 @@ public class Unit_Ablity
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
     public int Shild;
-    protected int maxHP;
+    public int maxHP;
     public int GroupNo; // Enemy 사망시 GroupNo 갱신 필요
 
     protected UnitData Data;
