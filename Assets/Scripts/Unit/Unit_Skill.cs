@@ -9,9 +9,9 @@ public class Unit_Skill
 {
     public List<Skill_Base> Skills;
 
-    public Unit_Skill(UnitData data)
+    public Unit_Skill(List<Skill_Base> skills)
     {
-        Skills = data.Skills;
+        Skills = skills;
     }
 
     public List<Unit> setTargets(AType AimType, ATarget AimTarget)
@@ -64,22 +64,39 @@ public class Unit_Skill
         int[] SkillCost = skill.Skill_Cost;
         int[] CostNow = CostManager.cost.GetComponent<CostManager>().CostCount();
 
-        if ((CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2])) &&
-            skill.CurrentCooldown <= 0)
+        if ((CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2])))
         {
-            List<List<Unit>> effectTargets = new List<List<Unit>>();
-
-            foreach (var effect in skill.Effects)
+            if(caster.Ability.Team == "Chara" && skill.CurrentCooldown <= 0)
             {
-                List<Unit> targets = new List<Unit>();
+                List<List<Unit>> effectTargets = new List<List<Unit>>();
 
-                targets = setTargets(effect.AimType, effect.AimTarget);
-                effectTargets.Add(targets);
+                foreach (var effect in skill.Effects)
+                {
+                    List<Unit> targets = new List<Unit>();
+
+                    targets = setTargets(effect.AimType, effect.AimTarget);
+                    effectTargets.Add(targets);
+                }
+                skill.Execute(caster, effectTargets);
+                skill.ResetCooldown();
+                CostManager.cost.GetComponent<CostManager>().CostUse(SkillCost);
+                SystemManager.system.TurnEnd();
             }
-            skill.Execute(caster, effectTargets);
-            skill.ResetCooldown();
+            else if(caster.Ability.Team == "Enemy")
+            {
+                List<List<Unit>> effectTargets = new List<List<Unit>>();
 
-            CostManager.cost.GetComponent<CostManager>().CostUse(SkillCost);
+                foreach (var effect in skill.Effects)
+                {
+                    List<Unit> targets = new List<Unit>();
+
+                    targets = setTargets(effect.AimType, effect.AimTarget);
+                    effectTargets.Add(targets);
+                }
+                skill.Execute(caster, effectTargets);
+                skill.ResetCooldown();
+                CostManager.cost.GetComponent<CostManager>().CostUse(SkillCost);
+            }           
         }
         else
             Debug.Log("Can't Use Skill");

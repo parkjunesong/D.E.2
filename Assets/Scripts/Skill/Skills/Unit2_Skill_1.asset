@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skill_Cost: 010000000100000000000000
   Skill_CoolTime: 5
+  CurrentCooldown: 0
   Skill_Name: 
   Skill_Icon: {fileID: 0}
   Effects:

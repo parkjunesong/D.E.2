@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: enemy_Attack
   m_EditorClassIdentifier: 
   Skill_Cost: 000000000000000000000000
-  Skill_CoolTime: 5
+  Skill_CoolTime: 3
+  CurrentCooldown: 0
   Skill_Name: 
   Skill_Icon: {fileID: 3904167472952893590, guid: a9d9387f595e0ee42a38faf7d46e735b, type: 3}
   Effects:

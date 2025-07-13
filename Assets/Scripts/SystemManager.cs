@@ -6,11 +6,16 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.UI;
 
-public class SystemManager : BattleGroup
+public class SystemManager : MonoBehaviour
 {
     public static SystemManager system;
     public int Turn;
     GameObject TurnUi;
+    public GameObject MainChara;
+    public List<GameObject> CGroup = new List<GameObject>();
+    public List<GameObject> EGroup = new List<GameObject>();
+    public List<GameObject> RotaList = new List<GameObject>();
+    public int SelectedChara, SelectedEnemy;
 
     void Awake()
     {

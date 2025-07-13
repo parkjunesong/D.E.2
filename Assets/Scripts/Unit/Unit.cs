@@ -7,15 +7,22 @@ public abstract class Unit : MonoBehaviour
 {
     public UnitData Data;
     public Unit_Ablity Ability;
+    public Unit_Animation Animation;
     public Unit_Skill Skill;
-    public Unit_Animation Animation;  
     public Unit_Ui Ui;
     public Unit_Buff Buff;
 
-    void Awake()
-    {       
+    public virtual void Init()
+    {
+        List<Skill_Base> Skills = new List<Skill_Base>();
+        foreach (Skill_Base skill in Data.Skills)
+        {
+            Skill_Base instance = Instantiate(skill);
+            Skills.Add(instance);
+        }
+        Skill = new Unit_Skill(Skills);
+
         Ability = new Unit_Ablity(Data);
-        Skill = new Unit_Skill(Data);
         Animation = new Unit_Animation(this);
         Ui = gameObject.AddComponent<Unit_Ui>();
         Buff = gameObject.AddComponent<Unit_Buff>();
@@ -35,7 +42,6 @@ public abstract class Unit : MonoBehaviour
     public void OnSkillUsed(int i)
     {
         Skill.OnUseSkill(i, this);
-        SystemManager.system.TurnEnd();
     }
     public void OnBuffGained(Buff_Base newBuff)
     {

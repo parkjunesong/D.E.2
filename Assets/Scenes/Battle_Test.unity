@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53322ffed88744a418b7bef9837aba6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillUi: {fileID: 0}
 --- !u!1 &496093401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,13 +1087,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab5c73607033ed4996ea3f380dbf839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Turn: 0
   MainChara: {fileID: 0}
   CGroup: []
   EGroup: []
   RotaList: []
   SelectedChara: 0
   SelectedEnemy: 0
-  Turn: 0
 --- !u!114 &1949508760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,13 +1107,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CGroup:
-  - {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}
-  - {fileID: 2324888412393489709, guid: 87a9ac24e02189c4faf182d7ed0defa8, type: 3}
-  - {fileID: 2324888412393489709, guid: 5250aa410ccbd9e46a008c4f02148376, type: 3}
+  - {fileID: 11400000, guid: 177f923aa89e7fc429ee178b34b315a3, type: 2}
+  - {fileID: 11400000, guid: 30321300956986f4dbdcaea5ef43db1f, type: 2}
+  - {fileID: 11400000, guid: d27066dbcb922864e8931ad72dff94a4, type: 2}
   EGroup:
-  - {fileID: 2324888412393489709, guid: e7737da90af359c49b86446e1841aae8, type: 3}
-  - {fileID: 2324888412393489709, guid: e7737da90af359c49b86446e1841aae8, type: 3}
-  - {fileID: 2324888412393489709, guid: e7737da90af359c49b86446e1841aae8, type: 3}
+  - {fileID: 11400000, guid: 2a6470fb9dcd0004bba90f86d283da6f, type: 2}
+  - {fileID: 11400000, guid: 2a6470fb9dcd0004bba90f86d283da6f, type: 2}
+  - {fileID: 11400000, guid: 2a6470fb9dcd0004bba90f86d283da6f, type: 2}
 --- !u!114 &1949508761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,6 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f1392245f29a54283b830eeed4440e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  origin: {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}
 --- !u!114 &1949508762
 MonoBehaviour:
   m_ObjectHideFlags: 0

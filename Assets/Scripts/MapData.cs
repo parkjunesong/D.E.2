@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class MapData : MonoBehaviour
 {
-    public List<GameObject> CGroup = new List<GameObject>();
-    public List<GameObject> EGroup = new List<GameObject>();
+    public List<UnitData> CGroup = new List<UnitData>();
+    public List<UnitData> EGroup = new List<UnitData>();
     void Awake()
     {
         int i;
         i = 0;
-        foreach (GameObject unit in CGroup)
+        foreach (UnitData data in CGroup)
         {
-            GameObject.Find("GameManager").GetComponent<UnitSpawn>().Spawn(unit, new Vector2(-200 - 280 * i, 1100), "Chara");
+            UnitData uData = Instantiate(data);
+            gameObject.GetComponent<UnitSpawn>().Spawn(uData, new Vector2(-200 - 280 * i, 1100), "Chara");
             i++;
         }
         i = 0;
-        foreach (GameObject unit in EGroup)
+        foreach (UnitData data in EGroup)
         {
-            GameObject.Find("GameManager").GetComponent<UnitSpawn>().Spawn(unit, new Vector2(200 + 280 * i, 1100), "Enemy");
+            UnitData uData = Instantiate(data);
+            gameObject.GetComponent<UnitSpawn>().Spawn(uData, new Vector2(200 + 280 * i, 1100), "Enemy");
             i++;
         }
     }

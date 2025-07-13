@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 6958557239060655836}
   - component: {fileID: -1398157639223226631}
   - component: {fileID: 7909341083403311754}
-  - component: {fileID: 289627173052355144}
   m_Layer: 0
-  m_Name: Unit 3
+  m_Name: Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,24 +134,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 170.66667, y: 256}
   m_EdgeRadius: 0
---- !u!114 &289627173052355144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2324888412393489709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef1e528d4611e540b0edd352b9ffbcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: d27066dbcb922864e8931ad72dff94a4, type: 2}
-  Ui: {fileID: 0}
-  GroupNo: 0
-  Skills:
-  - {fileID: 11400000, guid: 75404c36b0fa717448594c2b6d9aec93, type: 2}
-  activeBuffs: []
 --- !u!1001 &7763033923310673969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244,6 +225,10 @@ PrefabInstance:
     - target: {fileID: 3194154823758350685, guid: 83050bf10b61d634eb9832931739ff1b, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194154823758350686, guid: 83050bf10b61d634eb9832931739ff1b, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3194154824238062217, guid: 83050bf10b61d634eb9832931739ff1b, type: 3}
       propertyPath: m_AnchorMax.x
