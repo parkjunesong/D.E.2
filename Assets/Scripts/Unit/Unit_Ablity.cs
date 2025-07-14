@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEditor.Playables;
 using UnityEngine;
 
+public enum UnitState
+{
+    Alive,       // 기본 상태
+    Dead,        // 사망
+    Summon,      // 소환된 유닛 (소환수 등)
+    Structure    // 구조물 (타겟팅 불가, 이동 불가 등)
+}
+public enum Position
+{
+    Front,
+    Middle,
+    Back
+}
+
 public class Unit_Ablity
 {
     public string Name;
@@ -14,6 +28,8 @@ public class Unit_Ablity
     public int maxHP;
     public string Team;
     public int GroupID;
+    public UnitState State;
+    public Position Position;
 
     protected UnitData Data;
     protected BuffModifier BuffModifiers;
@@ -33,6 +49,7 @@ public class Unit_Ablity
         RD = data.RD;
         ID = data.ID;
         Shild = 0;
+        State = UnitState.Alive;
     }
 
     public void RecalculBuff(List<Buff_Base> buffs)
@@ -98,7 +115,8 @@ public class Unit_Ablity
                 }
         }
 
-        if (HP <= 0) HP = 0;
+        if (HP <= 0)
+            HP = 0;          
     }
 
     public void OnHealed(float heal)

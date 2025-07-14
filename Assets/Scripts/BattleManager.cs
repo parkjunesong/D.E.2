@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +10,11 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance { get; private set; }
 
     public GameObject origin;
-    public List<BattleUnit> PlayerUnits = new();
-    public List<BattleUnit> EnemyUnits = new();
+    public List<Unit> PlayerUnits = new();
+    public List<Unit> EnemyUnits = new();
+
+    public List<Unit> alivePlayerUnits = new();
+    public List<Unit> deadPlayerUnits = new();
     public Unit SelectedPlayerUnit, SelectedEnemyUnit;
 
     public int Turn;
@@ -31,10 +35,16 @@ public class BattleManager : MonoBehaviour
     {
         Turn = 0;
         TurnUi = GameObject.Find("Turn");
-        SelectedPlayerUnit = PlayerUnits[0].Unit;
+        SelectedPlayerUnit = PlayerUnits[0];
         SelectedPlayerUnit.Ui.UpdateSelectIcon(true);
-        SelectedEnemyUnit = EnemyUnits[0].Unit;
+        SelectedEnemyUnit = EnemyUnits[0];
         SelectedEnemyUnit.Ui.UpdateSelectIcon(true);
+
+        alivePlayerUnits = PlayerUnits;
+        for (int i = 0; i < alivePlayerUnits.Count; i++)
+            alivePlayerUnits[i].Ability.Position = (Position)i;
+
+
         TurnStart();
     }
 
@@ -46,92 +56,113 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < PlayerUnits.Count; i++)
         {
-            PlayerUnits[i].Unit.TurnStart();
+            PlayerUnits[i].TurnStart();
         }
         for (int i = 0; i < EnemyUnits.Count; i++)
         {
-            EnemyUnits[i].Unit.TurnStart();
+            EnemyUnits[i].TurnStart();
         }
     }
     public void TurnEnd()
     {
         for (int i = 0; i < PlayerUnits.Count; i++)
         {
-            PlayerUnits[i].Unit.TurnEnd();
+            PlayerUnits[i].TurnEnd();
         }
         for (int i = 0; i < EnemyUnits.Count; i++)
         {
-            EnemyUnits[i].Unit.TurnEnd();
+            EnemyUnits[i].TurnEnd();
         }
         TurnStart();
     }
     public void Rotation()
     {
-        Vector2[] positions = {
-            new Vector2(-200, 1100), // Front
-            new Vector2(-480, 1100),    // Middle
-            new Vector2(-760, 1100)   // Back
-        };
+        if (alivePlayerUnits.Count <= 1) return;
 
-        if (PlayerUnits.Count == 0) return;
+        var last = alivePlayerUnits[alivePlayerUnits.Count - 1];
+        alivePlayerUnits.RemoveAt(alivePlayerUnits.Count - 1);
+        alivePlayerUnits.Insert(0, last);
 
-        var last = PlayerUnits[PlayerUnits.Count - 1];
-        PlayerUnits.RemoveAt(PlayerUnits.Count - 1);
-        PlayerUnits.Insert(0, last);
-
-        for (int i = 0; i < PlayerUnits.Count; i++)
+        for (int i = 0; i < alivePlayerUnits.Count; i++)
         {
-            PlayerUnits[i].Position = (Position)i;
-            PlayerUnits[i].GameObject.transform.position = positions[(int)(Position)i];
+            alivePlayerUnits[i].Ability.Position = (Position)i;
+            alivePlayerUnits[i].transform.position = GetPositionVector((Position)i);
         }
+
         CostManager.cost.CostReset();
         TurnEnd();
     }
 
     public void UnitSpawn(UnitData data, Vector2 xy, string Team, int GroupID)
     {
-        BattleUnit battleUnit;
-        GameObject Unit = Instantiate(origin, new Vector2(xy.x, xy.y), Quaternion.identity);
+        GameObject UnitGameObject = Instantiate(origin, new Vector2(xy.x, xy.y), Quaternion.identity);
 
         if (Team == "Player")
-            Unit.AddComponent<CharaUnit>();
+            UnitGameObject.AddComponent<CharaUnit>();
         else if (Team == "Enemy")
-            Unit.AddComponent<EnemyUnit>();
+            UnitGameObject.AddComponent<EnemyUnit>();
 
-        Unit.GetComponent<Unit>().Data = data;
-        Unit.GetComponent<Unit>().Init();
-        Unit.GetComponent<Unit>().Ability.Team = Team;
-        Unit.GetComponent<Unit>().Ability.GroupID = GroupID;
-        Unit.name = Team + GroupID;
-        battleUnit = new BattleUnit(Unit);
+        Unit unit = UnitGameObject.GetComponent<Unit>();
+        unit.Data = data;
+        unit.Init();
+        unit.Ability.Team = Team;
+        unit.Ability.GroupID = GroupID;
+        unit.name = Team + GroupID;
         
         if (Team == "Player")
-            PlayerUnits.Add(battleUnit);
+            PlayerUnits.Add(unit);
         else if (Team == "Enemy")
-            EnemyUnits.Add(battleUnit);        
-    }
-    
-    public void ClearDeadUnits()
-    {
-        PlayerUnits.RemoveAll(u => !u.IsAlive);
-        EnemyUnits.RemoveAll(u => !u.IsAlive);
+            EnemyUnits.Add(unit);        
     }
 
-    public bool IsPlayerUnit(Unit unit)
-    {
-        return PlayerUnits.Any(bu => bu.Unit == unit);
-    }
-    public bool IsEnemyUnit(Unit unit)
-    {
-        return EnemyUnits.Any(bu => bu.Unit == unit);
-    }
-    public BattleUnit GetBattleUnit(Unit unit)
-    {
-        if (IsPlayerUnit(unit))
-            return PlayerUnits.FirstOrDefault(bu => bu.Unit == unit);
-        if (IsEnemyUnit(unit))
-            return EnemyUnits.FirstOrDefault(bu => bu.Unit == unit);
-        return null;
+    public void OnUnitDied(Unit unit)
+    {      
+        if (unit.Ability.Team == "Player")
+        {
+            // ±‚¡∏ ªÁ∏¡¿Ø¥÷ ¿Á¡§∑ƒ          
+            for (int i = 0; i < deadPlayerUnits.Count && i < 1; i++)
+            {
+                Position pos = (Position)(1 - i);
+                deadPlayerUnits[i].Ability.Position = pos;
+                deadPlayerUnits[i].transform.position = GetPositionVector(pos);
+            }
+
+            // ¡ˆ±› ¡◊¿∫ ¿Ø¥÷ √≥∏Æ
+            unit.Ability.State = UnitState.Dead;
+            unit.Ability.Position = Position.Back;
+            unit.transform.position = GetPositionVector(Position.Back);
+            deadPlayerUnits.Add(unit);
+
+            // ªÏæ∆¿÷¥¬ ¿Ø¥÷ ¿Á¡§∑ƒ
+            alivePlayerUnits = PlayerUnits.Where(u => u.Ability.State == UnitState.Alive).OrderBy(u => u.Ability.Position).ToList();
+            for (int i = 0; i < alivePlayerUnits.Count; i++)
+            {
+                alivePlayerUnits[i].Ability.Position = (Position)i;
+                alivePlayerUnits[i].transform.position = GetPositionVector((Position)i);
+            }
+            if (SelectedPlayerUnit == unit)
+            {
+                unit.Ui.UpdateSelectIcon(false);
+                SelectedPlayerUnit = alivePlayerUnits[0];
+                SelectedPlayerUnit.Ui.UpdateSelectIcon(true);
+            }
+        }
+        else if (unit.Ability.Team == "Enemy")
+        {
+            
+            EnemyUnits.Remove(unit);
+            Destroy(unit.gameObject);
+        }
     }
 
+    public Vector2 GetPositionVector(Position pos)
+    {
+        return pos switch
+        {
+            Position.Front => new Vector2(-200, 1100),
+            Position.Middle => new Vector2(-480, 1100),
+            Position.Back => new Vector2(-760, 1100),
+            _ => new Vector2(0, 0)
+        };
+    }
 }

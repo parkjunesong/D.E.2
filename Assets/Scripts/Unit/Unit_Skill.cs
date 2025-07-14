@@ -24,11 +24,11 @@ public class Unit_Skill
                 case AType.Select:
                     return new List<Unit> { BM.SelectedEnemyUnit };
                 case AType.Front:
-                    return new List<Unit> { BM.EnemyUnits[0].Unit };
+                    return new List<Unit> { BM.EnemyUnits[0] };
                 case AType.Back:
-                    return new List<Unit> { BM.EnemyUnits[BM.EnemyUnits.Count - 1].Unit };
+                    return new List<Unit> { BM.EnemyUnits[BM.EnemyUnits.Count - 1] };
                 case AType.Random:
-                    return new List<Unit> { BM.EnemyUnits[Random.Range(0, BM.EnemyUnits.Count)].Unit };
+                    return new List<Unit> { BM.EnemyUnits[Random.Range(0, BM.EnemyUnits.Count)] };
                 case AType.Near:
                     return null;
                 case AType.All:
@@ -44,11 +44,11 @@ public class Unit_Skill
                 case AType.Select:
                     return new List<Unit> { BM.SelectedPlayerUnit };
                 case AType.Front:
-                    return new List<Unit> { BM.PlayerUnits[0].Unit };
+                    return new List<Unit> { BM.alivePlayerUnits[0] };
                 case AType.Back:
-                    return new List<Unit> { BM.PlayerUnits[BM.PlayerUnits.Count - 1].Unit };
+                    return new List<Unit> { BM.alivePlayerUnits[BM.alivePlayerUnits.Count - 1] };
                 case AType.Random:
-                    return new List<Unit> { BM.PlayerUnits[Random.Range(0, BM.PlayerUnits.Count)].Unit };
+                    return new List<Unit> { BM.alivePlayerUnits[Random.Range(0, BM.alivePlayerUnits.Count)] };
                 case AType.Near:
                     return null;
                 case AType.All:

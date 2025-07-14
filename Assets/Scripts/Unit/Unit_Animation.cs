@@ -16,4 +16,8 @@ public class Unit_Animation
     {
         Unit.GetComponent<SpriteRenderer>().sprite = Unit.Data.Standing;
     }
+    public void Dead()
+    {
+        Unit.GetComponent<SpriteRenderer>().sprite = Unit.Data.Dead;
+    }
 }

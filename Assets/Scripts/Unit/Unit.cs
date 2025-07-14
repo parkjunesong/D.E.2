@@ -38,6 +38,12 @@ public abstract class Unit : MonoBehaviour
         Skill.OnTurnEnd();
         Buff.OnTurnEnd();
     }
+    public virtual void Died() 
+    {
+        //버프 삭제, 능력치 초기화, ui 원복
+        Animation.Dead();
+        BattleManager.Instance.OnUnitDied(this);
+    }
 
     public void OnSkillUsed(int i)
     {
@@ -52,6 +58,9 @@ public abstract class Unit : MonoBehaviour
         Ability.OnDamaged(damage, dT, ignore);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
         Ui.UpdateShildBar(Ability.Shild, Ability.maxHP);
+
+        if (Ability.HP <= 0)
+            Died();
     }
     public void OnHealed(float heal)
     {
