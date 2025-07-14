@@ -5,24 +5,24 @@ using UnityEngine.UI;
 
 public class Unit_Ui : MonoBehaviour
 {
-    private Unit Unit;
     private Slider HpBar;
     private Slider ShildBar;
     private Text CountText;
     private Transform SelectIcon;
     private Transform BuffSlot;
+    private Transform unitCanvas;
+    private GameObject floatingText;
 
     void Awake()
     {
-        Unit = gameObject.GetComponent<Unit>();
-        Transform info = transform.GetChild(0).GetChild(0);
+        unitCanvas = transform.GetChild(0);
 
-        HpBar = info.GetChild(0).GetComponent<Slider>();
-        ShildBar = info.GetChild(1).GetComponent<Slider>();
-        BuffSlot = info.GetChild(2);
-
-        CountText = gameObject.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>();
-        SelectIcon = gameObject.transform.GetChild(0).GetChild(2);
+        HpBar = unitCanvas.GetChild(0).GetChild(0).GetComponent<Slider>();
+        ShildBar = unitCanvas.GetChild(0).GetChild(1).GetComponent<Slider>();
+        BuffSlot = unitCanvas.GetChild(0).GetChild(2);
+        CountText = unitCanvas.GetChild(1).GetChild(0).GetComponent<Text>();
+        SelectIcon = unitCanvas.GetChild(2);
+        floatingText = unitCanvas.GetChild(3).gameObject;
     }
 
     public void UpdateHPBar(int inGame, int inData)
@@ -63,5 +63,38 @@ public class Unit_Ui : MonoBehaviour
             icon.name = buff.Buff_Name;
             icon.SetActive(true);   
         }
+    }
+    public void ShowFloatingText(string text, Color color)
+    {    
+        GameObject obj = Instantiate(floatingText, unitCanvas);
+        obj.transform.position = transform.position + new Vector3(0, 150, 0);
+
+        // 텍스트 설정
+        Text txt = obj.GetComponentInChildren<Text>();
+        txt.text = text;
+        txt.color = color;
+
+        StartCoroutine(AnimateText(obj));
+    }
+    private IEnumerator AnimateText(GameObject obj, float duration = 1f, float height = 30f)
+    {
+        CanvasGroup group = obj.GetComponent<CanvasGroup>();
+        RectTransform rect = obj.GetComponent<RectTransform>();
+
+        Vector3 start = rect.anchoredPosition;
+        Vector3 end = start + new Vector3(0, height, 0);
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+
+            rect.anchoredPosition = Vector3.Lerp(start, end, t);
+            if (group != null)
+                group.alpha = 1f - t;
+
+            yield return null;
+        }
+        Destroy(obj);
     }
 }

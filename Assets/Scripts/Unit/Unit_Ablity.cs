@@ -78,15 +78,15 @@ public class Unit_Ablity
         }
     }
 
-    public void OnDamaged(float damage, DType dT, int ignore)
+    public void OnDamaged(Unit target, float damage, DType dT, int ignore)
     {
         float dam = damage * 100 / (100 + DF * (1 - ignore / 100));
+        target.Ui.ShowFloatingText(dam.ToString(), Color.red);
 
         switch (dT)
         {
             case DType.Normal:
                 {
-                    Debug.Log("damage: " + dam * (1 - RD / 100));
                     if (Shild > 0)
                     {
                         Shild -= (int)(dam * (1 - RD / 100));
@@ -119,15 +119,18 @@ public class Unit_Ablity
             HP = 0;          
     }
 
-    public void OnHealed(float heal)
-    {       
+    public void OnHealed(Unit target, float heal)
+    {
+        target.Ui.ShowFloatingText(heal.ToString(), Color.green);
+
         if (heal + HP < maxHP)
             HP += (int)(heal);
         else
             HP = maxHP;
     }
-    public void OnShieldGained(float shild)
+    public void OnShieldGained(Unit target, float shild)
     {
+        target.Ui.ShowFloatingText(shild.ToString(), Color.yellow);
         Shild += (int)(shild);
     }
 }
