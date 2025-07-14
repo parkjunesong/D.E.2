@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
 
 public class MouseClick : MonoBehaviour
 {
@@ -30,22 +26,21 @@ public class MouseClick : MonoBehaviour
         }
     }
     void UpdateSelectIcon(Unit unit)
-    {
-        List<GameObject> Group = new List<GameObject>();
-        if (unit.Ability.Team == "Chara")
+    {       
+        if (unit.Ability.Team == "Player")
         {
-            Group = SystemManager.system.CGroup;
-            SystemManager.system.SelectedChara = unit.Ability.GroupNo;
+            BattleManager.Instance.SelectedPlayerUnit = unit;
 
-            foreach(GameObject chara in SystemManager.system.CGroup)
-            {
-                chara.GetComponent<Unit>().Ui.UpdateSelectIcon(unit.Ability.Team);
-            }
+            foreach(BattleUnit bu in BattleManager.Instance.PlayerUnits)
+                bu.Unit.Ui.UpdateSelectIcon(false);
+            unit.Ui.UpdateSelectIcon(true);
         }
         else if (unit.Ability.Team == "Enemy")
         {
-            Group = SystemManager.system.EGroup;
-            SystemManager.system.SelectedEnemy = unit.Ability.GroupNo;
+            BattleManager.Instance.SelectedEnemyUnit = unit;
+            foreach(BattleUnit bu in BattleManager.Instance.EnemyUnits)
+                bu.Unit.Ui.UpdateSelectIcon(false);
+            unit.Ui.UpdateSelectIcon(true);
         }
     }
 }

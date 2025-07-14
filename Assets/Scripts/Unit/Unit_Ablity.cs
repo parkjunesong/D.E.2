@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class Unit_Ablity
 {
-    public string Team;
     public string Name;
     public string Element;
-    public UnitType UT;
     public int AT, SP, HP, DF;
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
     public int Shild;
     public int maxHP;
-    public int GroupNo; // Enemy 사망시 GroupNo 갱신 필요
+    public string Team;
+    public int GroupID;
 
     protected UnitData Data;
     protected BuffModifier BuffModifiers;
@@ -24,7 +23,6 @@ public class Unit_Ablity
         Data = data;
         Name = data.Name;
         Element = data.Element;
-        UT = data.UT;
         AT = data.AT;
         SP = data.SP;
         HP = data.HP;

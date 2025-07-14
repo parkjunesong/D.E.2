@@ -3,31 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum AType { Select, Front, Back, Random, Near, All, Self };
-public enum ATarget { Chara, Enemy };
+public enum ATarget { Player, Enemy };
 
 public class Unit_Skill
 {
-    public List<Skill_Base> Skills;
+    public List<Skill_Base> SkillList;
 
     public Unit_Skill(List<Skill_Base> skills)
     {
-        Skills = skills;
+        SkillList = skills;
     }
 
     public List<Unit> setTargets(AType AimType, ATarget AimTarget)
     {
+        BattleManager BM = BattleManager.Instance;
         if (AimTarget == ATarget.Enemy)
         {
             switch (AimType)
             {
                 case AType.Select:
-                    return new List<Unit> { SystemManager.system.EGroup[SystemManager.system.SelectedEnemy].GetComponent<Unit>() };
+                    return new List<Unit> { BM.SelectedEnemyUnit };
                 case AType.Front:
-                    return new List<Unit> { SystemManager.system.EGroup[0].GetComponent<Unit>() };
+                    return new List<Unit> { BM.EnemyUnits[0].Unit };
                 case AType.Back:
-                    return new List<Unit> { SystemManager.system.EGroup[SystemManager.system.EGroup.Count - 1].GetComponent<Unit>() };
+                    return new List<Unit> { BM.EnemyUnits[BM.EnemyUnits.Count - 1].Unit };
                 case AType.Random:
-                    return new List<Unit> { SystemManager.system.EGroup[Random.Range(0, SystemManager.system.EGroup.Count)].GetComponent<Unit>() };
+                    return new List<Unit> { BM.EnemyUnits[Random.Range(0, BM.EnemyUnits.Count)].Unit };
                 case AType.Near:
                     return null;
                 case AType.All:
@@ -36,18 +37,18 @@ public class Unit_Skill
                     return null;
             }
         }
-        else if (AimTarget == ATarget.Chara)
+        else if (AimTarget == ATarget.Player)
         {
             switch (AimType)
             {
                 case AType.Select:
-                    return new List<Unit> { SystemManager.system.CGroup[SystemManager.system.SelectedChara].GetComponent<Unit>() };
+                    return new List<Unit> { BM.SelectedPlayerUnit };
                 case AType.Front:
-                    return new List<Unit> { SystemManager.system.CGroup[0].GetComponent<Unit>() };
+                    return new List<Unit> { BM.PlayerUnits[0].Unit };
                 case AType.Back:
-                    return new List<Unit> { SystemManager.system.CGroup[SystemManager.system.CGroup.Count - 1].GetComponent<Unit>() };
+                    return new List<Unit> { BM.PlayerUnits[BM.PlayerUnits.Count - 1].Unit };
                 case AType.Random:
-                    return new List<Unit> { SystemManager.system.CGroup[Random.Range(0, SystemManager.system.CGroup.Count)].GetComponent<Unit>() };
+                    return new List<Unit> { BM.PlayerUnits[Random.Range(0, BM.PlayerUnits.Count)].Unit };
                 case AType.Near:
                     return null;
                 case AType.All:
@@ -60,13 +61,13 @@ public class Unit_Skill
     }
     public void OnUseSkill(int i, Unit caster)
     {
-        Skill_Base skill = Skills[i];
+        Skill_Base skill = SkillList[i];
         int[] SkillCost = skill.Skill_Cost;
         int[] CostNow = CostManager.cost.GetComponent<CostManager>().CostCount();
 
         if ((CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2])))
         {
-            if(caster.Ability.Team == "Chara" && skill.CurrentCooldown <= 0)
+            if(caster.Ability.Team == "Player" && skill.CurrentCooldown <= 0)
             {
                 List<List<Unit>> effectTargets = new List<List<Unit>>();
 
@@ -80,7 +81,7 @@ public class Unit_Skill
                 skill.Execute(caster, effectTargets);
                 skill.ResetCooldown();
                 CostManager.cost.GetComponent<CostManager>().CostUse(SkillCost);
-                SystemManager.system.TurnEnd();
+                BattleManager.Instance.TurnEnd();
             }
             else if(caster.Ability.Team == "Enemy")
             {
@@ -105,7 +106,7 @@ public class Unit_Skill
     public void OnTurnStart() { }
     public void OnTurnEnd() 
     {
-        foreach (var skill in Skills)
+        foreach (var skill in SkillList)
             skill.TickCooldown();
     }
 }

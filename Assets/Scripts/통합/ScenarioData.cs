@@ -8,5 +8,5 @@ public class ScenarioData : ScriptableObject
     public string ScenarioName;
     public string Description;
     public TextAsset DialogueJSON;
-    public MapData MapToLoad;
+    public MapData mData;
 }

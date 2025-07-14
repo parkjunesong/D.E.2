@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,21 +40,12 @@ public class Unit_Ui : MonoBehaviour
             CountText.color = new Color32(255, 0, 0, 255);
         else if (CountText.color == new Color32(255, 0, 0, 255))
             CountText.color = new Color32(0, 0, 0, 255);
-    }
-    public void UpdateSelectIcon(string team)
+    }   
+    public void UpdateSelectIcon(bool on)
     {
-        SelectIcon.gameObject.SetActive(false);
-        if (team == "Chara")
-        {
-            if (SystemManager.system.SelectedChara == Unit.Ability.GroupNo)
-                SelectIcon.gameObject.SetActive(true);
-        }
-        else if(team == "Enemy")
-        {
-
-        }
-            
+        SelectIcon.gameObject.SetActive(on);
     }
+
     public void UpdateBuffUI(List<Buff_Base> activeBuffs)
     {
         foreach (Transform child in BuffSlot)

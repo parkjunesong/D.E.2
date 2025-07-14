@@ -11,7 +11,7 @@ public class EnemyUnit : Unit
         base.Init();
 
         skillNo = 0;
-        MoveCount = Skill.Skills[skillNo].Skill_CoolTime; // 패턴 따라 스킬 교체
+        MoveCount = Skill.SkillList[skillNo].Skill_CoolTime; // 패턴 따라 스킬 교체
     }
 
     public override void TurnStart()
@@ -24,7 +24,7 @@ public class EnemyUnit : Unit
         if (MoveCount == 0)
         {
             OnSkillUsed(skillNo);
-            MoveCount = Skill.Skills[0].Skill_CoolTime;
+            MoveCount = Skill.SkillList[0].Skill_CoolTime;
         }
     }
 }

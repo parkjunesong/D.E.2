@@ -15,4 +15,4 @@ MonoBehaviour:
   ScenarioName: TestBattle
   Description: dd
   DialogueJSON: {fileID: 0}
-  MapToLoad: {fileID: 11400000, guid: 56c602a437bf33e4da2287d1e23489dc, type: 2}
+  mData: {fileID: 11400000, guid: 56c602a437bf33e4da2287d1e23489dc, type: 2}

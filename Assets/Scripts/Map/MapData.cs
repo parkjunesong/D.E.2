@@ -7,6 +7,6 @@ using UnityEngine;
 public class MapData : ScriptableObject
 {
     //bgm, image 등 구현 바람
-    public List<UnitData> CGroup = new List<UnitData>();
-    public List<UnitData> EGroup = new List<UnitData>();   
+    public List<UnitData> PlayerUnitData = new();
+    public List<UnitData> EnemyUnitData = new();   
 }
