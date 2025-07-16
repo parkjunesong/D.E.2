@@ -7,8 +7,8 @@ public class UnitData : ScriptableObject
 {
     public string Name;
     public string Element;
-    public int AT, SP, HP, DF;
-    public float CR, CD;
+    public int AT, SP, HP, DF; // AT%, HP%, DF%, SP´Â ±ø½ºÅÝ
+    public float CR, CD; // CritRate, 
     public float RD, ID; // ReduceDamage, IncreaseDamage 
     public Sprite Face, Standing, Dead;
     public List<Skill_Base> Skills;

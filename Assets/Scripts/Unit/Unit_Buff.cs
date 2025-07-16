@@ -15,9 +15,9 @@ public class Unit_Buff : MonoBehaviour
 
     public void OnBuffGained(Buff_Base newBuff)
     {
-        Buff_Base existing = Buffs.Find(buff => buff.Buff_Name == newBuff.Buff_Name);
+        Buff_Base existing = Buffs.Find(buff => buff.Name == newBuff.Name);
 
-        if (existing != null) existing.AddStack();
+        if (existing != null) existing.AddStack(1);
         else
         {
             Buff_Base instance = Instantiate(newBuff);
@@ -45,7 +45,7 @@ public class Unit_Buff : MonoBehaviour
             var buff = Buffs[i];
             buff.TurnEnd();
 
-            if (buff.currentStack <= 0)
+            if (buff.Duration <= 0)
             {
                 buff.Remove();
                 Buffs.RemoveAt(i);

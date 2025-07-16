@@ -62,6 +62,10 @@ public class BattleManager : MonoBehaviour
         {
             EnemyUnits[i].TurnStart();
         }
+        if (Turn % 5 == 0) // 5배수 턴마다 FieldEffect 갱신
+        {
+            CostFieldManager.Instance.UpdateFieldEffect();
+        }
     }
     public void TurnEnd()
     {
@@ -89,7 +93,7 @@ public class BattleManager : MonoBehaviour
             alivePlayerUnits[i].transform.position = GetPositionVector((Position)i);
         }
 
-        CostManager.cost.CostReset();
+        CostManager.Instance.CostReset();
         TurnEnd();
     }
 
@@ -149,8 +153,13 @@ public class BattleManager : MonoBehaviour
         }
         else if (unit.Ability.Team == "Enemy")
         {
-            
             EnemyUnits.Remove(unit);
+            if (SelectedEnemyUnit == unit)
+            {
+                unit.Ui.UpdateSelectIcon(false);
+                SelectedEnemyUnit = EnemyUnits[0];
+                SelectedEnemyUnit.Ui.UpdateSelectIcon(true);
+            }           
             Destroy(unit.gameObject);
         }
     }

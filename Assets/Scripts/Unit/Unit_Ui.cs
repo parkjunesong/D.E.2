@@ -9,7 +9,7 @@ public class Unit_Ui : MonoBehaviour
     private Slider ShildBar;
     private Text CountText;
     private Transform SelectIcon;
-    private Transform BuffSlot;
+    private RectTransform BuffSlot;
     private Transform unitCanvas;
     private GameObject floatingText;
 
@@ -19,7 +19,7 @@ public class Unit_Ui : MonoBehaviour
 
         HpBar = unitCanvas.GetChild(0).GetChild(0).GetComponent<Slider>();
         ShildBar = unitCanvas.GetChild(0).GetChild(1).GetComponent<Slider>();
-        BuffSlot = unitCanvas.GetChild(0).GetChild(2);
+        BuffSlot = unitCanvas.GetChild(0).GetChild(2).GetComponent<RectTransform>();
         CountText = unitCanvas.GetChild(1).GetChild(0).GetComponent<Text>();
         SelectIcon = unitCanvas.GetChild(2);
         floatingText = unitCanvas.GetChild(3).gameObject;
@@ -48,20 +48,48 @@ public class Unit_Ui : MonoBehaviour
 
     public void UpdateBuffUI(List<Buff_Base> activeBuffs)
     {
-        foreach (Transform child in BuffSlot)
+        GameObject template = BuffSlot.GetChild(0).gameObject;
+        int buffCount = activeBuffs.Count;
+        int iconIndex = 0;
+
+        for (int i = 1; i < BuffSlot.childCount; i++)  // 템플릿을 제외한 모든 버프
         {
-            if (child.gameObject.name != "bufficon")  // 템플릿은 그대로 두기
+            GameObject icon = BuffSlot.GetChild(i).gameObject;
+
+            if (iconIndex < buffCount)
             {
-                Destroy(child.gameObject);  // 또는 SetActive(false)
+                Buff_Base buff = activeBuffs[iconIndex];
+                icon.name = buff.Name;
+                icon.GetComponent<Image>().sprite = buff.Icon;
+                icon.GetComponentInChildren<Text>().text = "x" + buff.Level;
+                icon.SetActive(true);
+
+                // 위치 재조정
+                RectTransform rect = icon.GetComponent<RectTransform>();
+                rect.anchoredPosition = new Vector2(-100 + iconIndex * 30f, 0);
+
+                iconIndex++;
+            }
+            else
+            {
+                icon.SetActive(false); // 더 이상 필요한 아이콘 없음
             }
         }
-        foreach (var buff in activeBuffs)
+
+        // 필요한 아이콘이 부족한 경우 → 추가 생성
+        while (iconIndex < buffCount)
         {
-            var icon = Instantiate(BuffSlot.GetChild(0).gameObject, BuffSlot);
-            icon.GetComponent<Image>().sprite = buff.Buff_Icon;
-            icon.GetComponentInChildren<Text>().text = "x" + buff.currentStack;
-            icon.name = buff.Buff_Name;
-            icon.SetActive(true);   
+            Buff_Base buff = activeBuffs[iconIndex];
+            GameObject icon = Instantiate(template, BuffSlot);
+            icon.name = buff.Name;
+            icon.GetComponent<Image>().sprite = buff.Icon;
+            icon.GetComponentInChildren<Text>().text = "x" + buff.Level;
+            icon.SetActive(true);
+
+            RectTransform rect = icon.GetComponent<RectTransform>();
+            rect.anchoredPosition = new Vector2(-100 + iconIndex * 30f, 0);
+
+            iconIndex++;
         }
     }
     public void ShowFloatingText(string text, Color color)

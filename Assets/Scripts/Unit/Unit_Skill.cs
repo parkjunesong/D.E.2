@@ -63,7 +63,7 @@ public class Unit_Skill
     {
         Skill_Base skill = SkillList[i];
         int[] SkillCost = skill.Skill_Cost;
-        int[] CostNow = CostManager.cost.GetComponent<CostManager>().CostCount();
+        int[] CostNow = CostManager.Instance.CostCount();
 
         if ((CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2])))
         {
@@ -80,7 +80,7 @@ public class Unit_Skill
                 }
                 skill.Execute(caster, effectTargets);
                 skill.ResetCooldown();
-                CostManager.cost.GetComponent<CostManager>().CostUse(SkillCost);
+                CostManager.Instance.CostUse(SkillCost);
                 BattleManager.Instance.TurnEnd();
             }
             else if(caster.Ability.Team == "Enemy")
@@ -96,7 +96,7 @@ public class Unit_Skill
                 }
                 skill.Execute(caster, effectTargets);
                 skill.ResetCooldown();
-                CostManager.cost.GetComponent<CostManager>().CostUse(SkillCost);
+                CostManager.Instance.CostUse(SkillCost);
             }           
         }
         else

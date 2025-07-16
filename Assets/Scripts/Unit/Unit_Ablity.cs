@@ -58,19 +58,19 @@ public class Unit_Ablity
 
         foreach (var buff in buffs)
         {
-            BuffModifiers.AT += buff.Modifier.AT * buff.currentStack;
-            BuffModifiers.DF += buff.Modifier.DF * buff.currentStack;
-            BuffModifiers.SP += buff.Modifier.SP * buff.currentStack;
-            BuffModifiers.HP += buff.Modifier.HP * buff.currentStack;
-            BuffModifiers.CR += buff.Modifier.CR * buff.currentStack;
-            BuffModifiers.CD += buff.Modifier.CD * buff.currentStack;
-            BuffModifiers.RD += buff.Modifier.RD * buff.currentStack;
-            BuffModifiers.ID += buff.Modifier.ID * buff.currentStack;
+            BuffModifiers.AT += buff.Modifier.AT * buff.Level;
+            BuffModifiers.DF += buff.Modifier.DF * buff.Level;
+            BuffModifiers.SP += buff.Modifier.SP * buff.Level;
+            BuffModifiers.HP += buff.Modifier.HP * buff.Level;
+            BuffModifiers.CR += buff.Modifier.CR * buff.Level;
+            BuffModifiers.CD += buff.Modifier.CD * buff.Level;
+            BuffModifiers.RD += buff.Modifier.RD * buff.Level;
+            BuffModifiers.ID += buff.Modifier.ID * buff.Level;
 
-            AT = (int)(Data.AT * (1 + BuffModifiers.AT));
+            AT = (int)(Data.AT * (1 + BuffModifiers.AT / 100));
             SP = (int)(Data.SP * (1 + BuffModifiers.SP));
-            maxHP = (int)(Data.HP * (1 + BuffModifiers.HP));
-            DF = (int)(Data.DF * (1 + BuffModifiers.DF));
+            maxHP = (int)(Data.HP * (1 + BuffModifiers.HP / 100));
+            DF = (int)(Data.DF * (1 + BuffModifiers.DF / 100));
             CR = Data.CR + BuffModifiers.CR;
             CD = Data.CD + BuffModifiers.CD;
             RD = Data.RD + BuffModifiers.RD;

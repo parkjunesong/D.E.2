@@ -9,20 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e2a9f0462d5fe4d83b4b78bb8e3ba2, type: 3}
-  m_Name: Buff_strangth
+  m_Script: {fileID: 11500000, guid: 1e2254f9fcb46f144a7fff15e7fc6ccf, type: 3}
+  m_Name: buff2
   m_EditorClassIdentifier: 
-  Modifier:
-    AT: 0.15
-    SP: 0
-    HP: 0
-    DF: 0
-    CR: 0
-    CD: 0
-    RD: 0
-    ID: 0
-  Buff_Name: strangthen
-  Buff_Icon: {fileID: 0}
-  Buff_Stack: 1
-  MaxStack: 3
-  currentStack: 0
+  AimType: 1
+  AimTarget: 0
+  Buff: {fileID: 11400000, guid: 6f9a0be47ee69bb499717d83b98b0edb, type: 2}
