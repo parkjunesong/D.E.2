@@ -8,6 +8,7 @@ public class CostFieldManager : MonoBehaviour
 {
     public static CostFieldManager Instance { get; private set; }
     public Buff_Base[] FieldEffects = new Buff_Base[4];
+    private Buff_Base currentEffect;
 
     void Awake()
     {
@@ -16,30 +17,28 @@ public class CostFieldManager : MonoBehaviour
             Destroy(gameObject); // 중복 방지
             return;
         }
-
         Instance = this;
+        currentEffect = null;
     }
+
     public void UpdateFieldEffect()
     {
+        RemoveFieldEffect();
+
         switch (CostFieldCheck())
         {
             case CostFieldStatus.Balance:
                 {
-                    Debug.Log("### Field Effect Update ###");
-                    Debug.Log("New Effect: " + CostFieldStatus.Balance);
-                    Debug.Log("필드 위 모든 유닛의 받는 피해 10% 감소"); // 프리 로테이션 구현 바람
+                    currentEffect = FieldEffects[0];
 
                     foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
                     {
-                        unit.Buff.OnBuffGained(FieldEffects[0]);
+                        unit.Buff.OnBuffGained(currentEffect);
                     }
-
                     foreach (Unit unit in BattleManager.Instance.EnemyUnits)
                     {
-                        unit.Buff.OnBuffGained(FieldEffects[0]);
+                        unit.Buff.OnBuffGained(currentEffect);
                     }
-
-
                     break;
                 }
             case CostFieldStatus.ManaHigh:
@@ -56,6 +55,20 @@ public class CostFieldManager : MonoBehaviour
                 }
         }
     }
+    public void RemoveFieldEffect()
+    {
+        if (currentEffect == null) return;
+
+        foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
+        {
+            unit.Buff.RemoveByName(currentEffect.Name); 
+        }
+        foreach (Unit unit in BattleManager.Instance.EnemyUnits)
+        {
+            unit.Buff.RemoveByName(currentEffect.Name); 
+        }
+    }
+
 
     public CostFieldStatus CostFieldCheck()
     {

@@ -17,7 +17,6 @@ public abstract class Buff_Base : ScriptableObject
     public int Level;
     public int Duration;
     public BuffModifier Modifier = new BuffModifier();
-    // 제거불가 속성 추가 예정
 
     public virtual void Apply() { }
     public virtual void AddStack(int stack) { }

@@ -15,7 +15,7 @@ public class Unit_Buff : MonoBehaviour
 
     public void OnBuffGained(Buff_Base newBuff)
     {
-        Buff_Base existing = Buffs.Find(buff => buff.Name == newBuff.Name);
+        Buff_Base existing = Buffs.Find(b => b.Name == newBuff.Name);
 
         if (existing != null) existing.AddStack(1);
         else
@@ -26,7 +26,17 @@ public class Unit_Buff : MonoBehaviour
         }
 
         Unit.Ability.RecalculBuff(Buffs);
-        Unit.Ui.UpdateBuffUI(Buffs);
+    }
+
+    public void RemoveByName(string name)
+    {
+        Buff_Base buff = Buffs.Find(b => b.Name == name);
+        if (buff != null)
+        {
+            buff.Remove();
+            Buffs.Remove(buff);
+            Unit.Ability.RecalculBuff(Buffs);
+        }
     }
 
     public void OnTurnStart()
@@ -48,6 +58,7 @@ public class Unit_Buff : MonoBehaviour
             if (buff.Duration <= 0)
             {
                 buff.Remove();
+                Unit.Ability.RecalculBuff(Buffs);
                 Buffs.RemoveAt(i);
             }
         }

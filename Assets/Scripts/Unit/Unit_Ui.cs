@@ -76,7 +76,7 @@ public class Unit_Ui : MonoBehaviour
             }
         }
 
-        // 필요한 아이콘이 부족한 경우 → 추가 생성
+        // 필요한 아이콘이 부족한 경우 추가 생성
         while (iconIndex < buffCount)
         {
             Buff_Base buff = activeBuffs[iconIndex];

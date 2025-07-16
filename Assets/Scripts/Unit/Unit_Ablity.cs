@@ -80,8 +80,9 @@ public class Unit_Ablity
 
     public void OnDamaged(Unit target, float damage, DType dT, int ignore)
     {
-        float dam = damage * 100 / (100 + DF * (1 - ignore / 100));
-        target.Ui.ShowFloatingText(dam.ToString(), Color.red);
+        float dam = damage * 100 / (100 + DF * (1f - ignore / 100));
+        target.Ui.ShowFloatingText((dam * (1.0f - RD / 100)).ToString(), Color.red);
+
 
         switch (dT)
         {
@@ -89,7 +90,7 @@ public class Unit_Ablity
                 {
                     if (Shild > 0)
                     {
-                        Shild -= (int)(dam * (1 - RD / 100));
+                        Shild -= (int)(dam * (1.0f - RD / 100));
                         if (Shild <= 0)
                         {
                             HP += Shild;
@@ -99,13 +100,13 @@ public class Unit_Ablity
                     }
                     else
                     {
-                        HP -= (int)(dam * (1 - RD / 100));
+                        HP -= (int)(dam * (1.0f - RD / 100));
                         break;
                     }         
                 }
             case DType.Penetrate:
                 {
-                    HP -= (int)(dam * (1 - RD / 100));
+                    HP -= (int)(dam * (1.0f - RD / 100));
                     break;
                 }
             case DType.True: 
