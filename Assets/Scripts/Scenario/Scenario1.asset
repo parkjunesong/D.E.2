@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7e6e2f4131e1214e8d447a3d31edd7b, type: 3}
   m_Name: Scenario1
   m_EditorClassIdentifier: 
-  ScenarioName: TestBattle
+  Type: 3
+  Name: TestSc
   Description: dd
-  DialogueJSON: {fileID: 0}
+  Dialogue: {fileID: 11400000, guid: 2a7b185fe8e4d4a4c9001e5c4eaf7097, type: 2}
   mData: {fileID: 11400000, guid: 56c602a437bf33e4da2287d1e23489dc, type: 2}

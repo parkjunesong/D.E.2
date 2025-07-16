@@ -76,13 +76,14 @@ public class Unit_Ui : MonoBehaviour
 
         StartCoroutine(AnimateText(obj));
     }
-    private IEnumerator AnimateText(GameObject obj, float duration = 1f, float height = 30f)
+    private IEnumerator AnimateText(GameObject obj, float duration = 1f)
     {
         CanvasGroup group = obj.GetComponent<CanvasGroup>();
         RectTransform rect = obj.GetComponent<RectTransform>();
+        int rand = Random.Range(-20, 20);
 
-        Vector3 start = rect.anchoredPosition;
-        Vector3 end = start + new Vector3(0, height, 0);
+        Vector3 start = rect.anchoredPosition + new Vector2(rand, rand);
+        Vector3 end = start + new Vector3(0, 30, 0);
 
         float t = 0f;
         while (t < 1f)
