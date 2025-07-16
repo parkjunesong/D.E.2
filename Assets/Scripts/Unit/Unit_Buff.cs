@@ -26,6 +26,7 @@ public class Unit_Buff : MonoBehaviour
         }
 
         Unit.Ability.RecalculBuff(Buffs);
+        Unit.Ui.UpdateBuffUI(Buffs);
     }
 
     public void RemoveByName(string name)
@@ -36,6 +37,7 @@ public class Unit_Buff : MonoBehaviour
             buff.Remove();
             Buffs.Remove(buff);
             Unit.Ability.RecalculBuff(Buffs);
+            Unit.Ui.UpdateBuffUI(Buffs);
         }
     }
 

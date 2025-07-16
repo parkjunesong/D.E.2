@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: FE_Balance
   Icon: {fileID: 0}
   Level: 1
-  Duration: 5
+  Duration: 99
   Modifier:
     AT: 0
     SP: 0

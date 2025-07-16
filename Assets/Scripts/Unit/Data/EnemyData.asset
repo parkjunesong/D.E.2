@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Enemy
   Element: None
-  UT: 0
   AT: 100
   SP: 10
   HP: 1000
@@ -22,8 +21,9 @@ MonoBehaviour:
   CR: 0
   CD: 0
   RD: 0
-  ID: 10
+  ID: 0
   Face: {fileID: 1656123705495100252, guid: 84e9a87d7bf39484fabe4d5b5fcc1251, type: 3}
   Standing: {fileID: 1656123705495100252, guid: 84e9a87d7bf39484fabe4d5b5fcc1251, type: 3}
+  Dead: {fileID: 0}
   Skills:
   - {fileID: 11400000, guid: 2218e57aa2d572b4ab2631c781c0ec8b, type: 2}
