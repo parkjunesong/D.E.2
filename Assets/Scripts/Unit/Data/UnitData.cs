@@ -14,4 +14,5 @@ public class UnitData : ScriptableObject
     public float RD, ID; // ReduceDamage, IncreaseDamage 
     public Sprite Face, Standing, Dead;
     public List<Skill_Base> Skills;
+    public GameObject Passive;
 }

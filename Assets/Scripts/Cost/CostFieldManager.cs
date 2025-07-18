@@ -34,11 +34,11 @@ public class CostFieldManager : MonoBehaviour
 
                     foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
                     {
-                        unit.Buff.OnBuffGained(currentEffect);
+                        unit.Buff.OnBuffGained(currentEffect, 1);
                     }
                     foreach (Unit unit in BattleManager.Instance.EnemyUnits)
                     {
-                        unit.Buff.OnBuffGained(currentEffect);
+                        unit.Buff.OnBuffGained(currentEffect, 1);
                     }
                     break;
                 }

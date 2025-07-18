@@ -16,3 +16,4 @@ MonoBehaviour:
   AimType: 1
   AimTarget: 0
   Buff: {fileID: 11400000, guid: 8eb569f2fe24b2a4d98f7f9649197350, type: 2}
+  AddCount: 1

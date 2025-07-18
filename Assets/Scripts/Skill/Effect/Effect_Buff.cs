@@ -6,11 +6,12 @@ using UnityEngine;
 public class Effect_Buff : Effect_Base
 {
     public Buff_Base Buff;
+    public int AddCount;
     public override void Execute(Unit caster, List<Unit> targets)
     {
         foreach (var target in targets)
         {
-            target.OnBuffGained(Buff);
+            target.OnBuffGained(Buff, AddCount);
         }
     }
 }

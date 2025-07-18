@@ -13,11 +13,11 @@ public class Unit_Buff : MonoBehaviour
         Unit = gameObject.GetComponent<Unit>();
     }
 
-    public void OnBuffGained(Buff_Base newBuff)
+    public void OnBuffGained(Buff_Base newBuff, int count)
     {
         Buff_Base existing = Buffs.Find(b => b.Name == newBuff.Name);
 
-        if (existing != null) existing.AddStack(1);
+        if (existing != null) existing.AddStack(count);
         else
         {
             Buff_Base instance = Instantiate(newBuff);

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9206d20cb9f06004fbf807c851f13d5a, type: 3}
   m_Name: Skill_TestEnemy
   m_EditorClassIdentifier: 
-  Skill_Cost: 
-  Skill_CoolTime: 0
+  Skill_Cost: 000000000000000000000000
+  Skill_CoolTime: 4
   CurrentCooldown: 0
-  Skill_Name: 
+  Skill_Name: test
   Skill_Icon: {fileID: 0}
-  Effects: []
+  Effects:
+  - {fileID: 11400000, guid: 389d04498ce7fd34898f62a65cc6ff21, type: 2}

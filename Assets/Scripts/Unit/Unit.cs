@@ -11,6 +11,7 @@ public abstract class Unit : MonoBehaviour
     public Unit_Skill Skill;
     public Unit_Ui Ui;
     public Unit_Buff Buff;
+    public Unit_Passive Passive;
 
     public abstract void Init();
     public abstract void TurnStart();
@@ -20,9 +21,9 @@ public abstract class Unit : MonoBehaviour
     {
         Skill.OnUseSkill(i, this);
     }
-    public void OnBuffGained(Buff_Base newBuff)
+    public void OnBuffGained(Buff_Base newBuff, int count)
     {
-        Buff.OnBuffGained(newBuff);
+        Buff.OnBuffGained(newBuff, count);
     }
     public void OnDamaged(float damage, DType dT, int ignore)
     {

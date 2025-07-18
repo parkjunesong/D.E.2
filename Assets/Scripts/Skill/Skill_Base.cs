@@ -7,21 +7,29 @@ public abstract class Skill_Base : ScriptableObject
 {
     public int[] Skill_Cost;
     public int Skill_CoolTime;
-    public int CurrentCooldown = 0;
+    public int CurrentCoolTime = 0;
     public string Skill_Name;
     public Sprite Skill_Icon;
     public Effect_Base[] Effects;
 
     public abstract void Execute(Unit caster, List<Unit> targets);
 
-    public void TickCooldown()
+    public void TickCoolTime()
     {
-        if (CurrentCooldown > 0)
-            CurrentCooldown--;
+        if (CurrentCoolTime > 0)
+            CurrentCoolTime--;
     }
-
-    public void ResetCooldown()
+    public void ResetCoolTime()
     {
-        CurrentCooldown = Skill_CoolTime + 1;
+        CurrentCoolTime = Skill_CoolTime + 1;
+    }
+    public void ReduceCoolTime(int reduce)
+    {
+        if (CurrentCoolTime > 0)
+            CurrentCoolTime -= reduce;
+        if (CurrentCoolTime <= 0)
+            CurrentCoolTime = 0;
+
+        SkillManager.Instance.uiReset();
     }
 }

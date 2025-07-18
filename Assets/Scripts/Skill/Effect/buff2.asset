@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2254f9fcb46f144a7fff15e7fc6ccf, type: 3}
   m_Name: buff2
   m_EditorClassIdentifier: 
+  Range: 0
   AimType: 1
   AimTarget: 0
   Buff: {fileID: 11400000, guid: 6f9a0be47ee69bb499717d83b98b0edb, type: 2}
+  AddCount: 1
