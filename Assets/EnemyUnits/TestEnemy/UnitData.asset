@@ -26,5 +26,5 @@ MonoBehaviour:
   Standing: {fileID: 1656123705495100252, guid: 84e9a87d7bf39484fabe4d5b5fcc1251, type: 3}
   Dead: {fileID: 0}
   Skills:
-  - {fileID: 11400000, guid: d65e0c5adf883ff4faa7a4300ff80d3c, type: 2}
+  - {fileID: 11400000, guid: 86f29115776fe524d9d9975e16dded24, type: 2}
   Passive: {fileID: 0}

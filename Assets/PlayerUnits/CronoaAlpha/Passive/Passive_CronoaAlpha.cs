@@ -21,10 +21,5 @@ public class Passive_CronoaAlpha : Unit_Passive
                     skill.ReduceCoolTime(overflow);
                 }                   
         }
-    }
-    public override void OnTurnEnd()
-    {
-
-    }
-
+    } 
 }

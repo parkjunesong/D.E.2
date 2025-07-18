@@ -20,6 +20,7 @@ public class CharaUnit : Unit
         foreach(Skill_Base skill in Data.Skills)
         {
             Skill_Base instance = Instantiate(skill);
+            instance.SetEffect();
             Skills.Add(instance);
         }
         Skill = new Unit_Skill(Skills);

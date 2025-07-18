@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Effect_Buff", menuName = "Scriptable Object/EffectData/Effect_Buff", order = int.MaxValue)]
 public class Effect_Buff : Effect_Base
 {
     public Buff_Base Buff;
-    public int AddCount;
-    public override void Execute(Unit caster, List<Unit> targets)
+    public int stackAmount;
+
+    public Effect_Buff(float value, int range, AType aimType, ATarget aimTarget, Buff_Base buff, int stackamount) : base(value, range, aimType, aimTarget)
     {
-        foreach (var target in targets)
+        Buff = buff;
+        stackAmount = stackamount;
+    }
+
+
+    public override void Execute(Unit caster)
+    {
+        foreach (var target in setTarget(caster))
         {
-            target.OnBuffGained(Buff, AddCount);
+            target.OnBuffGained(Buff, stackAmount);
         }
     }
 }

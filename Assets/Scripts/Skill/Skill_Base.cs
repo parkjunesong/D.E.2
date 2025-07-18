@@ -10,9 +10,10 @@ public abstract class Skill_Base : ScriptableObject
     public int CurrentCoolTime = 0;
     public string Skill_Name;
     public Sprite Skill_Icon;
-    public Effect_Base[] Effects;
+    public List<Effect_Base> EffectList = new();
 
-    public abstract void Execute(Unit caster, List<Unit> targets);
+    public abstract void SetEffect();
+    public abstract void Execute(Unit caster);
 
     public void TickCoolTime()
     {

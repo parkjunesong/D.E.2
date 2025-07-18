@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9345815270aa59746a3a8f595ef23ee8, type: 3}
-  m_Name: Skill_CronoaAlpha_1
+  m_Script: {fileID: 11500000, guid: ebae4ef106c345740bfba8a58faa4419, type: 3}
+  m_Name: Skill_Cronoa_Alpha_3
   m_EditorClassIdentifier: 
-  Skill_Cost: 010000000100000000000000
-  Skill_CoolTime: 3
+  Skill_Cost: 030000000300000000000000
+  Skill_CoolTime: 6
   CurrentCoolTime: 0
-  Skill_Name: Time Flow
+  Skill_Name: Vortex of Time
   Skill_Icon: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
-  buff: {fileID: 11400000, guid: 8eb569f2fe24b2a4d98f7f9649197350, type: 2}

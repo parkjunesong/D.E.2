@@ -6,12 +6,19 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Skill_Cronoa_Alpha_2", menuName = "Scriptable Object/SkillData/CronoaAlpha_2", order = int.MaxValue)]
 public class Skill_CronoaAlpha_2 : Skill_Base
 {
-    public override void Execute(Unit caster, List<Unit> targets)
+    public override void SetEffect()
     {
-        Effects[0].Execute(caster, targets); // 0.4AT 관통공격
+        Effect_Base effect1 = new Effect_Damage(0.4f, 0, AType.Select, ATarget.Enemy, DType.Penetrate);
+        Effect_Base effect2 = new Effect_Damage(0.2f, 0, AType.Select, ATarget.Enemy, DType.Penetrate);
+        EffectList.Add(effect1);
+        EffectList.Add(effect2);
+    }
+    public override void Execute(Unit caster)
+    {
+        EffectList[0].Execute(caster); // 0.4AT 관통피해
         for(int i = 0; i< caster.Passive.PassiveStack; i++)
         {
-            Effects[1].Execute(caster, targets); // 0.2AT * '시간의 톱니바퀴' 관통공격
+            EffectList[1].Execute(caster); // 0.2AT 관통피해 * '시간의 톱니바퀴' 횟수
         }
     }
 }
