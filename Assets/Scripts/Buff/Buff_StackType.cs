@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Buff_Simple", menuName = "Scriptable Object/Buff/Buff_Simple", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "Buff_StackType", menuName = "Scriptable Object/Buff/Buff_StackType", order = int.MaxValue)]
 public class Buff_StackType : Buff_Base
 {
     /* Stack Type Buff
@@ -29,6 +29,15 @@ public class Buff_StackType : Buff_Base
         Duration = currentStack;
         wasAppliedThisTurn = true;
     }
+    public override void SubStack(int stack)
+    {
+        currentStack -= stack;
+        if (currentStack < 0)
+            currentStack = 0;
+
+        Level = currentStack;
+        Duration = currentStack;
+    }
     public override void TurnStart() { }
     public override void TurnEnd()
     {
@@ -37,8 +46,7 @@ public class Buff_StackType : Buff_Base
             wasAppliedThisTurn = false;
             return;
         }
-        currentStack--;
-        Level = currentStack;
-        Duration = currentStack;
+        if (!isPermanent)
+            SubStack(1);
     }   
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Unit_Skill
 {
@@ -11,7 +12,7 @@ public class Unit_Skill
         SkillList = skills;
     }
 
-    public List<Unit> setTarget(int Range, AType AimType, ATarget AimTarget)
+    public List<Unit> setTarget(int Range, AType AimType, ATarget AimTarget, Unit caster)
     {
         BattleManager BM = BattleManager.Instance;
         if (AimTarget == ATarget.Enemy)
@@ -27,7 +28,7 @@ public class Unit_Skill
                 case AType.Random:
                     return GetNearUnits(BM.EnemyUnits[Random.Range(0, BM.EnemyUnits.Count)], Range, BM.EnemyUnits);         
                 case AType.Self:
-                    return null;
+                    return new List<Unit>() { caster };
             }
         }
         else if (AimTarget == ATarget.Player)
@@ -43,7 +44,7 @@ public class Unit_Skill
                 case AType.Random:
                     return GetNearUnits(BM.alivePlayerUnits[Random.Range(0, BM.alivePlayerUnits.Count)], Range, BM.alivePlayerUnits);    
                 case AType.Self:
-                    return null;
+                    return new List<Unit>() { caster };
             }
         }
         return null;
@@ -79,32 +80,24 @@ public class Unit_Skill
         {
             if(caster.Ability.Team == "Player" && skill.CurrentCooldown <= 0)
             {
-                List<List<Unit>> effectTargets = new List<List<Unit>>();
-
+                List<Unit> targets = new();
                 foreach (var effect in skill.Effects)
                 {
-                    List<Unit> targets = new List<Unit>();
-
-                    targets = setTarget(effect.Range, effect.AimType, effect.AimTarget);
-                    effectTargets.Add(targets);
+                    targets = setTarget(effect.Range, effect.AimType, effect.AimTarget, caster);
                 }
-                skill.Execute(caster, effectTargets);
+                skill.Execute(caster, targets);
                 skill.ResetCooldown();
                 CostManager.Instance.CostUse(SkillCost);
                 BattleManager.Instance.TurnEnd();
             }
             else if(caster.Ability.Team == "Enemy")
             {
-                List<List<Unit>> effectTargets = new List<List<Unit>>();
-
+                List<Unit> targets = new List<Unit>();
                 foreach (var effect in skill.Effects)
                 {
-                    List<Unit> targets = new List<Unit>();
-
-                    targets = setTarget(effect.Range, effect.AimType, effect.AimTarget);
-                    effectTargets.Add(targets);
+                    targets = setTarget(effect.Range, effect.AimType, effect.AimTarget, caster);
                 }
-                skill.Execute(caster, effectTargets);
+                skill.Execute(caster, targets);
                 skill.ResetCooldown();
                 CostManager.Instance.CostUse(SkillCost);
             }           

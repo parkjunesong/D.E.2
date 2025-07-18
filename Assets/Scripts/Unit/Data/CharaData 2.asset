@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: CharaData 2
   m_EditorClassIdentifier: 
   Name: Chara
-  Element: None
-  UT: 0
+  Element: 0
   AT: 100
   SP: 10
   HP: 500
@@ -25,7 +24,8 @@ MonoBehaviour:
   ID: 0
   Face: {fileID: -4446505711168334986, guid: 3d55d052cf4a6024f9413d16a754cad5, type: 3}
   Standing: {fileID: -4446505711168334986, guid: 3d55d052cf4a6024f9413d16a754cad5, type: 3}
+  Dead: {fileID: 0}
   Skills:
-  - {fileID: 11400000, guid: 75404c36b0fa717448594c2b6d9aec93, type: 2}
-  - {fileID: 11400000, guid: 75404c36b0fa717448594c2b6d9aec93, type: 2}
-  - {fileID: 11400000, guid: 75404c36b0fa717448594c2b6d9aec93, type: 2}
+  - {fileID: 11400000, guid: 86f29115776fe524d9d9975e16dded24, type: 2}
+  - {fileID: 11400000, guid: 86f29115776fe524d9d9975e16dded24, type: 2}
+  - {fileID: 11400000, guid: 86f29115776fe524d9d9975e16dded24, type: 2}

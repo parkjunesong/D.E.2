@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b19e262d6fd36949a8cb2e20af519e2, type: 3}
-  m_Name: CharaData 3
+  m_Name: UnitData
   m_EditorClassIdentifier: 
-  Name: Chara
+  Name: Cronoa_Alpha
   Element: 0
   AT: 100
   SP: 10
@@ -22,8 +22,8 @@ MonoBehaviour:
   CD: 0
   RD: 0
   ID: 0
-  Face: {fileID: 2033137780978210098, guid: 4e13ab02919fbe644a68a32f1b56b24c, type: 3}
-  Standing: {fileID: 2033137780978210098, guid: 4e13ab02919fbe644a68a32f1b56b24c, type: 3}
+  Face: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
+  Standing: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
   Dead: {fileID: 0}
   Skills:
   - {fileID: 11400000, guid: 86f29115776fe524d9d9975e16dded24, type: 2}

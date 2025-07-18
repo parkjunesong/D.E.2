@@ -12,38 +12,9 @@ public abstract class Unit : MonoBehaviour
     public Unit_Ui Ui;
     public Unit_Buff Buff;
 
-    public virtual void Init()
-    {
-        List<Skill_Base> Skills = new List<Skill_Base>();
-        foreach (Skill_Base skill in Data.Skills)
-        {
-            Skill_Base instance = Instantiate(skill);
-            Skills.Add(instance);
-        }
-        Skill = new Unit_Skill(Skills);
-
-        Ability = new Unit_Ablity(Data);
-        Animation = new Unit_Animation(this);
-        Ui = gameObject.AddComponent<Unit_Ui>();
-        Buff = gameObject.AddComponent<Unit_Buff>();
-    }
-
-    public virtual void TurnStart()
-    {
-        Skill.OnTurnStart();
-        Buff.OnTurnStart();
-    }
-    public virtual void TurnEnd()
-    {
-        Skill.OnTurnEnd();
-        Buff.OnTurnEnd();
-    }
-    public virtual void Died() 
-    {
-        //버프 삭제, 능력치 초기화, ui 원복
-        Animation.Dead();
-        BattleManager.Instance.OnUnitDied(this);
-    }
+    public abstract void Init();
+    public abstract void TurnStart();
+    public abstract void TurnEnd();   
 
     public void OnSkillUsed(int i)
     {
@@ -60,7 +31,7 @@ public abstract class Unit : MonoBehaviour
         Ui.UpdateShildBar(Ability.Shild, Ability.maxHP);
 
         if (Ability.HP <= 0)
-            Died();
+            OnDied();
     }
     public void OnHealed(float heal)
     {
@@ -71,5 +42,11 @@ public abstract class Unit : MonoBehaviour
     {
         Ability.OnShieldGained(this, shild);
         Ui.UpdateShildBar(Ability.Shild, Ability.maxHP);
+    }
+    public void OnDied()
+    {
+        //버프 삭제, 능력치 초기화, ui 원복
+        Animation.Dead();
+        BattleManager.Instance.OnUnitDied(this);
     }
 }

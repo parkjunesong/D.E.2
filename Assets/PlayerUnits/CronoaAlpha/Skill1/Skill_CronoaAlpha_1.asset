@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9345815270aa59746a3a8f595ef23ee8, type: 3}
+  m_Name: Skill_CronoaAlpha_1
+  m_EditorClassIdentifier: 
+  Skill_Cost: 010000000100000000000000
+  Skill_CoolTime: 3
+  CurrentCooldown: 0
+  Skill_Name: Time Flow
+  Skill_Icon: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
+  Effects:
+  - {fileID: 11400000, guid: 0d2e390c98ed3da4488ffdb67d888784, type: 2}
+  - {fileID: 11400000, guid: 75e01f6eb593c224190d62853af4910e, type: 2}

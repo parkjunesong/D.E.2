@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56aa504bdfb61cb4eaa672f83e9b609d, type: 3}
   m_Name: FE_Balance
   m_EditorClassIdentifier: 
+  isPermanent: 1
   Name: FE_Balance
   Icon: {fileID: 0}
   Level: 1

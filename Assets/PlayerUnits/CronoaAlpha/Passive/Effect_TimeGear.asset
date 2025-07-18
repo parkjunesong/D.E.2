@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e2254f9fcb46f144a7fff15e7fc6ccf, type: 3}
-  m_Name: buff1
+  m_Name: Effect_TimeGear
   m_EditorClassIdentifier: 
   Range: 0
-  AimType: 1
+  AimType: 4
   AimTarget: 0
-  Buff: {fileID: 11400000, guid: 8eb569f2fe24b2a4d98f7f9649197350, type: 2}
+  Buff: {fileID: 11400000, guid: c7f10b5607e675c458d3f62da577c9ec, type: 2}

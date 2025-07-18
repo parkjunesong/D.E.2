@@ -10,17 +10,11 @@ public enum UnitState
     Summon,      // 소환된 유닛 (소환수 등)
     Structure    // 구조물 (타겟팅 불가, 이동 불가 등)
 }
-public enum Position
-{
-    Front,
-    Middle,
-    Back
-}
 
 public class Unit_Ablity
 {
     public string Name;
-    public string Element;
+    public Element Element;
     public int AT, SP, HP, DF;
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
@@ -28,8 +22,7 @@ public class Unit_Ablity
     public int maxHP;
     public string Team;
     public int GroupID;
-    public UnitState State;
-    public Position Position;
+    public UnitState State;   
 
     protected UnitData Data;
     protected BuffModifier BuffModifiers;

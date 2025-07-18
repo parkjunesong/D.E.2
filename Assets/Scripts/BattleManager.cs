@@ -46,7 +46,7 @@ public class BattleManager : MonoBehaviour
 
         alivePlayerUnits = PlayerUnits;
         for (int i = 0; i < alivePlayerUnits.Count; i++)
-            alivePlayerUnits[i].Ability.Position = (Position)i;
+            alivePlayerUnits[i].GetComponent<CharaUnit>().Position = (Position)i;
 
 
         TurnStart();
@@ -93,7 +93,7 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < alivePlayerUnits.Count; i++)
         {
-            alivePlayerUnits[i].Ability.Position = (Position)i;
+            alivePlayerUnits[i].GetComponent<CharaUnit>().Position = (Position)i;
             alivePlayerUnits[i].transform.position = GetPositionVector((Position)i);
         }
 
@@ -145,21 +145,21 @@ public class BattleManager : MonoBehaviour
             for (int i = 0; i < deadPlayerUnits.Count && i < 1; i++)
             {
                 Position pos = (Position)(1 - i);
-                deadPlayerUnits[i].Ability.Position = pos;
+                deadPlayerUnits[i].GetComponent<CharaUnit>().Position = pos;
                 deadPlayerUnits[i].transform.position = GetPositionVector(pos);
             }
 
             // 지금 죽은 유닛 처리
             unit.Ability.State = UnitState.Dead;
-            unit.Ability.Position = Position.Back;
+            unit.GetComponent<CharaUnit>().Position = Position.Back;
             unit.transform.position = GetPositionVector(Position.Back);
             deadPlayerUnits.Add(unit);
 
             // 살아있는 유닛 재정렬
-            alivePlayerUnits = PlayerUnits.Where(u => u.Ability.State == UnitState.Alive).OrderBy(u => u.Ability.Position).ToList();
+            alivePlayerUnits = PlayerUnits.Where(u => u.Ability.State == UnitState.Alive).OrderBy(u => u.GetComponent<CharaUnit>().Position).ToList();
             for (int i = 0; i < alivePlayerUnits.Count; i++)
             {
-                alivePlayerUnits[i].Ability.Position = (Position)i;
+                alivePlayerUnits[i].GetComponent<CharaUnit>().Position = (Position)i;
                 alivePlayerUnits[i].transform.position = GetPositionVector((Position)i);
             }
             if (SelectedPlayerUnit == unit)
