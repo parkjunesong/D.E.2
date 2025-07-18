@@ -11,7 +11,6 @@ public class Unit_Ui : MonoBehaviour
     private Transform SelectIcon;
     private RectTransform BuffSlot;
     private Transform unitCanvas;
-    private GameObject floatingText;
 
     void Awake()
     {
@@ -22,7 +21,6 @@ public class Unit_Ui : MonoBehaviour
         BuffSlot = unitCanvas.GetChild(0).GetChild(2).GetComponent<RectTransform>();
         CountText = unitCanvas.GetChild(1).GetChild(0).GetComponent<Text>();
         SelectIcon = unitCanvas.GetChild(2);
-        floatingText = unitCanvas.GetChild(3).gameObject;
     }
 
     public void UpdateHPBar(int inGame, int inData)
@@ -93,11 +91,13 @@ public class Unit_Ui : MonoBehaviour
         }
     }
     public void ShowFloatingText(string text, Color color)
-    {    
-        GameObject obj = Instantiate(floatingText, unitCanvas);
-        obj.transform.position = transform.position + new Vector3(0, 150, 0);
+    {
+        GameObject obj = FloatingTextPool.Instance.Get();
+        obj.transform.SetParent(unitCanvas);
 
-        // 텍스트 설정
+        int activeTextCount = unitCanvas.childCount - 4;
+        obj.transform.position = transform.position + new Vector3(0, 150 + (30f * activeTextCount), 0);
+
         Text txt = obj.GetComponentInChildren<Text>();
         txt.text = text;
         txt.color = color;
@@ -108,9 +108,8 @@ public class Unit_Ui : MonoBehaviour
     {
         CanvasGroup group = obj.GetComponent<CanvasGroup>();
         RectTransform rect = obj.GetComponent<RectTransform>();
-        int rand = Random.Range(-20, 20);
 
-        Vector3 start = rect.anchoredPosition + new Vector2(rand, rand);
+        Vector3 start = rect.anchoredPosition;
         Vector3 end = start + new Vector3(0, 30, 0);
 
         float t = 0f;
@@ -124,6 +123,6 @@ public class Unit_Ui : MonoBehaviour
 
             yield return null;
         }
-        Destroy(obj);
+        FloatingTextPool.Instance.Return(obj);
     }
 }

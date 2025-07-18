@@ -83,7 +83,7 @@ public class CostFieldManager : MonoBehaviour
         {
             if (CostNow[0] == CostNow[1] && CostNow[2] + CostNow[3] == 0)
             {
-                Debug.Log("Balance");
+
                 return CostFieldStatus.Balance;               
             }
             else if (CostNow[0] > CostNow[1])
