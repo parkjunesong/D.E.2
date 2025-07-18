@@ -133,7 +133,7 @@ public class CostManager : MonoBehaviour
                 }
             }
             no++;
-        }
+        }     
         return result;
     }
     

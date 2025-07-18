@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CostFieldStatus { Balance, ManaHigh, PranaHigh, KarnaHigh }
+public enum CostFieldStatus { Balance, ManaHigh, PranaHigh, KarnaHigh, Null}
 
 public class CostFieldManager : MonoBehaviour
 {
@@ -30,6 +30,7 @@ public class CostFieldManager : MonoBehaviour
             case CostFieldStatus.Balance:
                 {
                     currentEffect = FieldEffects[0];
+                    BattleManager.Instance.GetFreeRotation(1);
 
                     foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
                     {
@@ -80,9 +81,10 @@ public class CostFieldManager : MonoBehaviour
         }
         else
         {
-            if (CostNow[0] == CostNow[1])
+            if (CostNow[0] == CostNow[1] && CostNow[2] + CostNow[3] == 0)
             {
-                return CostFieldStatus.Balance;
+                Debug.Log("Balance");
+                return CostFieldStatus.Balance;               
             }
             else if (CostNow[0] > CostNow[1])
             {
@@ -93,7 +95,7 @@ public class CostFieldManager : MonoBehaviour
                 return CostFieldStatus.PranaHigh;
             }
         }
-        return 0;
+        return CostFieldStatus.Null;
     }
 
 }

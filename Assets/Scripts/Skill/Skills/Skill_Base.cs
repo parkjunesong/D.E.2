@@ -12,7 +12,6 @@ public abstract class Skill_Base : ScriptableObject
     public Sprite Skill_Icon;
     public Effect_Base[] Effects;
 
-
     public abstract void Execute(Unit caster, List<List<Unit>> effectTargets);
 
     public void TickCooldown()

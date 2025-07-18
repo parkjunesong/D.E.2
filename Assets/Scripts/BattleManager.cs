@@ -19,6 +19,8 @@ public class BattleManager : MonoBehaviour
 
     public int Turn;
     GameObject TurnUi;
+    GameObject RotationUi;
+    int FreeRotateCount;
 
     void Awake()
     {
@@ -34,7 +36,9 @@ public class BattleManager : MonoBehaviour
     public void BattleStart()
     {
         Turn = 0;
+        FreeRotateCount = 0;
         TurnUi = GameObject.Find("Turn");
+        RotationUi = GameObject.Find("rotation");
         SelectedPlayerUnit = PlayerUnits[0];
         SelectedPlayerUnit.Ui.UpdateSelectIcon(true);
         SelectedEnemyUnit = EnemyUnits[0];
@@ -94,7 +98,21 @@ public class BattleManager : MonoBehaviour
         }
 
         CostManager.Instance.CostReset();
-        TurnEnd();
+        if (FreeRotateCount > 0)
+        {
+            FreeRotateCount--;
+            if (FreeRotateCount > 0)
+                RotationUi.transform.GetChild(0).GetComponent<Text>().text = FreeRotateCount.ToString();
+            else
+                RotationUi.transform.GetChild(0).GetComponent<Text>().text = "";
+        }
+        else 
+            TurnEnd();
+    }
+    public void GetFreeRotation(int count)
+    {
+        FreeRotateCount += count;
+        RotationUi.transform.GetChild(0).GetComponent<Text>().text = FreeRotateCount.ToString();
     }
 
     public void UnitSpawn(UnitData data, Vector2 xy, string Team, int GroupID)
