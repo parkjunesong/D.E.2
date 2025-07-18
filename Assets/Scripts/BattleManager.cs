@@ -191,5 +191,5 @@ public class BattleManager : MonoBehaviour
             Position.Back => new Vector2(-760, 1100),
             _ => new Vector2(0, 0)
         };
-    }
+    }   
 }

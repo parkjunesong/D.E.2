@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8d43c827c1df34894e4d6538494cea, type: 3}
   m_Name: damage1
   m_EditorClassIdentifier: 
+  Range: 1
   AimType: 0
   AimTarget: 1
   DamageType: 0

@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AType { Select, Front, Back, Random, Near, All, Self };
-public enum ATarget { Player, Enemy };
-
 public class Unit_Skill
 {
     public List<Skill_Base> SkillList;
@@ -14,7 +11,7 @@ public class Unit_Skill
         SkillList = skills;
     }
 
-    public List<Unit> setTargets(AType AimType, ATarget AimTarget)
+    public List<Unit> setTarget(int Range, AType AimType, ATarget AimTarget)
     {
         BattleManager BM = BattleManager.Instance;
         if (AimTarget == ATarget.Enemy)
@@ -22,17 +19,13 @@ public class Unit_Skill
             switch (AimType)
             {
                 case AType.Select:
-                    return new List<Unit> { BM.SelectedEnemyUnit };
+                    return GetNearUnits(BM.SelectedEnemyUnit, Range, BM.EnemyUnits);
                 case AType.Front:
-                    return new List<Unit> { BM.EnemyUnits[0] };
+                    return GetNearUnits(BM.EnemyUnits[0], Range, BM.EnemyUnits);
                 case AType.Back:
-                    return new List<Unit> { BM.EnemyUnits[BM.EnemyUnits.Count - 1] };
+                    return GetNearUnits(BM.EnemyUnits[BM.EnemyUnits.Count - 1], Range, BM.EnemyUnits); 
                 case AType.Random:
-                    return new List<Unit> { BM.EnemyUnits[Random.Range(0, BM.EnemyUnits.Count)] };
-                case AType.Near:
-                    return null;
-                case AType.All:
-                    return null;
+                    return GetNearUnits(BM.EnemyUnits[Random.Range(0, BM.EnemyUnits.Count)], Range, BM.EnemyUnits);         
                 case AType.Self:
                     return null;
             }
@@ -42,23 +35,40 @@ public class Unit_Skill
             switch (AimType)
             {
                 case AType.Select:
-                    return new List<Unit> { BM.SelectedPlayerUnit };
+                    return GetNearUnits(BM.SelectedPlayerUnit, Range, BM.alivePlayerUnits); 
                 case AType.Front:
-                    return new List<Unit> { BM.alivePlayerUnits[0] };
+                    return GetNearUnits(BM.alivePlayerUnits[0], Range, BM.alivePlayerUnits); 
                 case AType.Back:
-                    return new List<Unit> { BM.alivePlayerUnits[BM.alivePlayerUnits.Count - 1] };
+                    return GetNearUnits(BM.alivePlayerUnits[BM.alivePlayerUnits.Count - 1], Range, BM.alivePlayerUnits); 
                 case AType.Random:
-                    return new List<Unit> { BM.alivePlayerUnits[Random.Range(0, BM.alivePlayerUnits.Count)] };
-                case AType.Near:
-                    return null;
-                case AType.All:
-                    return null;
+                    return GetNearUnits(BM.alivePlayerUnits[Random.Range(0, BM.alivePlayerUnits.Count)], Range, BM.alivePlayerUnits);    
                 case AType.Self:
                     return null;
             }
         }
         return null;
     }
+    public List<Unit> GetNearUnits(Unit middle, int range, List<Unit> group)
+    {
+        List<Unit> nearby = new List<Unit>();
+
+        if (range == 0) 
+        {
+            nearby.Add(middle);
+        }
+        else
+        {
+            for (int i = -range; i <= range; i++)
+            {
+                int targetIndex = group.IndexOf(middle) + i;
+
+                if (targetIndex >= 0 && targetIndex < group.Count)
+                    nearby.Add(group[targetIndex]);
+            }
+        }      
+        return nearby;
+    } 
+
     public void OnUseSkill(int i, Unit caster)
     {
         Skill_Base skill = SkillList[i];
@@ -75,7 +85,7 @@ public class Unit_Skill
                 {
                     List<Unit> targets = new List<Unit>();
 
-                    targets = setTargets(effect.AimType, effect.AimTarget);
+                    targets = setTarget(effect.Range, effect.AimType, effect.AimTarget);
                     effectTargets.Add(targets);
                 }
                 skill.Execute(caster, effectTargets);
@@ -91,7 +101,7 @@ public class Unit_Skill
                 {
                     List<Unit> targets = new List<Unit>();
 
-                    targets = setTargets(effect.AimType, effect.AimTarget);
+                    targets = setTarget(effect.Range, effect.AimType, effect.AimTarget);
                     effectTargets.Add(targets);
                 }
                 skill.Execute(caster, effectTargets);
