@@ -24,6 +24,11 @@ public abstract class Unit : MonoBehaviour
     public void OnBuffGained(Buff_Base newBuff, int count)
     {
         Buff.OnBuffGained(newBuff, count);
+        Passive.OnBuffGained(newBuff);
+    }
+    public void OnAttackExecuted(Unit target)
+    {
+        Passive.OnAttackExecuted(target);
     }
     public void OnDamaged(float damage, DType dT, int ignore)
     {

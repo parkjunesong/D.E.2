@@ -35,8 +35,8 @@ public class Unit_Buff : MonoBehaviour
         if (buff != null)
         {
             buff.Remove();
-            Buffs.Remove(buff);
             Unit.Ability.RecalculBuff(Buffs);
+            Buffs.Remove(buff);
             Unit.Ui.UpdateBuffUI(Buffs);
         }
     }
@@ -57,7 +57,7 @@ public class Unit_Buff : MonoBehaviour
             var buff = Buffs[i];
             buff.TurnEnd();
 
-            if (buff.Duration <= 0)
+            if (buff.Duration <= 0 && !buff.isPermanent)
             {
                 buff.Remove();
                 Unit.Ability.RecalculBuff(Buffs);

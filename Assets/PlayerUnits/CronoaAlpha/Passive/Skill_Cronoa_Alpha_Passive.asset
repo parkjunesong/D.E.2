@@ -9,21 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e2a9f0462d5fe4d83b4b78bb8e3ba2, type: 3}
-  m_Name: Buff_Defence
+  m_Script: {fileID: 11500000, guid: c327512f6c8dc954eac9804d332008c8, type: 3}
+  m_Name: Skill_Cronoa_Alpha_Passive
   m_EditorClassIdentifier: 
-  isPermanent: 0
-  Name: Buff_Defence
-  Icon: {fileID: 0}
-  Level: 1
-  Duration: 0
-  Modifier:
-    AT: 0
-    SP: 0
-    HP: 0
-    DF: 15
-    CR: 0
-    CD: 0
-    RD: 0
-    ID: 0
-  maxStack: 3
+  Skill_Cost: 
+  Skill_CoolTime: 0
+  CurrentCoolTime: 0
+  Skill_Name: TimeTime
+  Skill_Icon: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}

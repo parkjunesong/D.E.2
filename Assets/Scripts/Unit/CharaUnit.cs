@@ -29,7 +29,9 @@ public class CharaUnit : Unit
         Ui = gameObject.AddComponent<Unit_Ui>();
         Buff = gameObject.AddComponent<Unit_Buff>();
         if (Data.Passive != null)
+        {
             Passive = Instantiate(Data.Passive, transform).GetComponent<Unit_Passive>();
+        }
     }
     public override void TurnStart()
     {

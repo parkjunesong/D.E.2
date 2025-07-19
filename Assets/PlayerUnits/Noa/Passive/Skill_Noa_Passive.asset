@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9206d20cb9f06004fbf807c851f13d5a, type: 3}
-  m_Name: Skill_TestEnemy
+  m_Script: {fileID: 11500000, guid: b00980d12be79694497c7e3cedd5fb5d, type: 3}
+  m_Name: Skill_Noa_Passive
   m_EditorClassIdentifier: 
   Skill_Cost: 000000000000000000000000
-  Skill_CoolTime: 4
+  Skill_CoolTime: 0
   CurrentCoolTime: 0
-  Skill_Name: test
-  Skill_Icon: {fileID: 1656123705495100252, guid: 84e9a87d7bf39484fabe4d5b5fcc1251, type: 3}
-  Effects:
-  - {fileID: 11400000, guid: 389d04498ce7fd34898f62a65cc6ff21, type: 2}
+  Skill_Name: Noa_Passive
+  Skill_Icon: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}

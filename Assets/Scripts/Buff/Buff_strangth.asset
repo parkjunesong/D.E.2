@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e2a9f0462d5fe4d83b4b78bb8e3ba2, type: 3}
   m_Name: Buff_Strangth
   m_EditorClassIdentifier: 
-  Name: Strangth
+  isPermanent: 0
+  Name: Buff_Strangth
   Icon: {fileID: 0}
   Level: 1
   Duration: 0

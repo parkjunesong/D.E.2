@@ -12,6 +12,7 @@ public class EnemyUnit : Unit
         foreach (Skill_Base skill in Data.Skills)
         {
             Skill_Base instance = Instantiate(skill);
+            instance.SetEffect();
             Skills.Add(instance);
         }
         Skill = new Unit_Skill(Skills);
@@ -20,7 +21,9 @@ public class EnemyUnit : Unit
         Ui = gameObject.AddComponent<Unit_Ui>();
         Buff = gameObject.AddComponent<Unit_Buff>();
         if (Data.Passive != null)
+        {
             Passive = Instantiate(Data.Passive, transform).GetComponent<Unit_Passive>();
+        }
 
         skillNo = 0;
         MoveCount = Skill.SkillList[skillNo].Skill_CoolTime; // 패턴 따라 스킬 교체

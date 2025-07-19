@@ -30,7 +30,6 @@ public abstract class Skill_Base : ScriptableObject
             CurrentCoolTime -= reduce;
         if (CurrentCoolTime <= 0)
             CurrentCoolTime = 0;
-
         SkillManager.Instance.uiReset();
     }
 }
