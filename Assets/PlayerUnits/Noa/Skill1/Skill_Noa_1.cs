@@ -17,6 +17,6 @@ public class Skill_Noa_1 : Skill_Base
     public override void Execute(Unit caster)
     {
         EffectList[0].Execute(caster); // 1.0AT Àü¹æ°ø°İ
-        //EffectList[1].Execute(caster); // Èû ¹öÇÁ È¹µæ
+        EffectList[1].Execute(caster); // Èû ¹öÇÁ È¹µæ
     }
 }
