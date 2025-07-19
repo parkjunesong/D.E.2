@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerUnitData:
   - {fileID: 11400000, guid: 177f923aa89e7fc429ee178b34b315a3, type: 2}
-  - {fileID: 11400000, guid: 30321300956986f4dbdcaea5ef43db1f, type: 2}
+  - {fileID: 11400000, guid: 6d7ca6ce596868e4699a7106c3ec4bde, type: 2}
   - {fileID: 11400000, guid: d27066dbcb922864e8931ad72dff94a4, type: 2}
   EnemyUnitData:
   - {fileID: 11400000, guid: 568b9c3ee5065a648b6e4735c2fce779, type: 2}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b19e262d6fd36949a8cb2e20af519e2, type: 3}
   m_Name: UnitData
   m_EditorClassIdentifier: 
-  Name: Cronoa_Alpha
-  Element: 0
+  Name: Noa
+  Element: 5
   AT: 100
   SP: 10
   HP: 500
@@ -22,11 +22,11 @@ MonoBehaviour:
   CD: 0
   RD: 0
   ID: 0
-  Face: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
-  Standing: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
-  Dead: {fileID: 0}
+  Face: {fileID: 1274519464305497331, guid: 2696b99fd4b859b41bba267fdf43861a, type: 3}
+  Standing: {fileID: 1274519464305497331, guid: 2696b99fd4b859b41bba267fdf43861a, type: 3}
+  Dead: {fileID: 3904167472952893590, guid: a9d9387f595e0ee42a38faf7d46e735b, type: 3}
   Skills:
-  - {fileID: 11400000, guid: 86f29115776fe524d9d9975e16dded24, type: 2}
-  - {fileID: 11400000, guid: a01b4c19570fb4f40be067b3d366ccb5, type: 2}
-  - {fileID: 11400000, guid: a8a1590681d8d7f4aba139dfe9661154, type: 2}
-  Passive: {fileID: 1792866763154144688, guid: 4e42f58ef5976644a833b678a0d10e11, type: 3}
+  - {fileID: 11400000, guid: 3c2c8b9b202f3944bbd3709be409ae21, type: 2}
+  - {fileID: 11400000, guid: 42cd278df619a1a4a9da254a12c11162, type: 2}
+  - {fileID: 11400000, guid: 44027242dba9f754786b98b4d97fb60f, type: 2}
+  Passive: {fileID: 1792866763154144688, guid: e72e8a18e07b64a49b8bdcd1bd5543e4, type: 3}

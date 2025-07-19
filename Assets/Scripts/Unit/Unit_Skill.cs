@@ -20,7 +20,7 @@ public class Unit_Skill
 
         if ((CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2])))
         {
-            if (caster.Ability.Team == "Player" && skill.CurrentCoolTime <= 0)
+            if (caster.Ability.Team == "Player" && skill.CurrentCoolTime <= 0 && skill.IsAvailable(caster))
             {
                 skill.Execute(caster);
                 skill.ResetCoolTime();
@@ -41,6 +41,8 @@ public class Unit_Skill
     public void OnTurnEnd() 
     {
         foreach (var skill in SkillList)
+        {
             skill.TickCoolTime();
+        }
     }
 }

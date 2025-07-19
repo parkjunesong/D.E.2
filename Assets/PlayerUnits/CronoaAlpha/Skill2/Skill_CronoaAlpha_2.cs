@@ -8,8 +8,8 @@ public class Skill_CronoaAlpha_2 : Skill_Base
 {
     public override void SetEffect()
     {
-        Effect_Base effect1 = new Effect_Damage(0.4f, 0, AType.Select, ATarget.Enemy, DType.Penetrate);
-        Effect_Base effect2 = new Effect_Damage(0.2f, 0, AType.Select, ATarget.Enemy, DType.Penetrate);
+        Effect_Base effect1 = new Effect_Damage(0.4f, 0, AType.Select, ATarget.Enemy, DType.Penetrate, 0);
+        Effect_Base effect2 = new Effect_Damage(0.2f, 0, AType.Select, ATarget.Enemy, DType.Penetrate, 0);
         EffectList.Add(effect1);
         EffectList.Add(effect2);
     }

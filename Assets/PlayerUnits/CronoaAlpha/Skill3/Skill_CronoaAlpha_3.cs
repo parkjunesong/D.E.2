@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Skill_Cronoa_Alpha_3", menuName = "Scriptable Object/SkillData/CronoaAlpha_3", order = int.MaxValue)]
 public class Skill_CronoaAlpha_3 : Skill_Base
-{  
+{   
     public override void SetEffect()
     {
-        Effect_Base effect1 = new Effect_Damage(2.0f, 10, AType.Select, ATarget.Enemy, DType.Penetrate);
-        Effect_Base effect2 = new Effect_Damage(0.3f, 0, AType.Random, ATarget.Enemy, DType.True);
+        Effect_Base effect1 = new Effect_Damage(2.0f, 10, AType.Select, ATarget.Enemy, DType.Penetrate, 0);
+        Effect_Base effect2 = new Effect_Damage(0.3f, 0, AType.Random, ATarget.Enemy, DType.True, 0);
         EffectList.Add(effect1);
         EffectList.Add(effect2);
     }
