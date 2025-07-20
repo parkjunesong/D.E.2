@@ -115,25 +115,25 @@ public class BattleManager : MonoBehaviour
         RotationUi.transform.GetChild(0).GetComponent<Text>().text = FreeRotateCount.ToString();
     }
 
-    public void UnitSpawn(UnitData data, Vector2 xy, string Team, int GroupID)
+    public void UnitSpawn(UnitData data, Vector2 xy, string team)
     {
+        UnitData uData = Instantiate(data);
         GameObject UnitGameObject = Instantiate(origin, new Vector2(xy.x, xy.y), Quaternion.identity);
 
-        if (Team == "Player")
+        if (team == "Player")
             UnitGameObject.AddComponent<CharaUnit>();
-        else if (Team == "Enemy")
+        else if (team == "Enemy")
             UnitGameObject.AddComponent<EnemyUnit>();
 
         Unit unit = UnitGameObject.GetComponent<Unit>();
-        unit.Data = data;
+        unit.Data = uData;
         unit.Init();
-        unit.Ability.Team = Team;
-        unit.Ability.GroupID = GroupID;
-        unit.name = Team + GroupID;
+        unit.Ability.Team = team;
+        unit.name = unit.Ability.Name;
         
-        if (Team == "Player")
+        if (team == "Player")
             PlayerUnits.Add(unit);
-        else if (Team == "Enemy")
+        else if (team == "Enemy")
             EnemyUnits.Add(unit);        
     }
 

@@ -21,7 +21,6 @@ public class Unit_Ablity
     public int Shild;
     public int maxHP;
     public string Team;
-    public int GroupID;
     public UnitState State;   
 
     protected UnitData Data;

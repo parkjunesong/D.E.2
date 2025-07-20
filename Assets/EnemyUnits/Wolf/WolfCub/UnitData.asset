@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b19e262d6fd36949a8cb2e20af519e2, type: 3}
   m_Name: UnitData
   m_EditorClassIdentifier: 
-  Name: TestEnemy
-  Element: 0
-  AT: 100
+  Name: Wolf_Cub
+  Element: 1
+  AT: 50
   SP: 0
-  HP: 1000
-  DF: 50
+  HP: 100
+  DF: 10
   CR: 0
   CD: 0
   RD: 0
