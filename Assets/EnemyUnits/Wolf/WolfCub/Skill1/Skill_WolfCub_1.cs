@@ -9,7 +9,7 @@ public class Skill_WolfCub : Skill_Base
     public UnitData SummonUnit;
     public override void SetEffect() 
     {
-        Effect_Base effect = new Effect_Summon(1, 0, 0, ATarget.Enemy, SummonUnit, Position.Back);
+        Effect_Base effect = new Effect_Summon(0, 0, 0, ATarget.Enemy, SummonUnit, Position.Back);
         EffectList.Add(effect);
     }
     public override void Execute(Unit caster)

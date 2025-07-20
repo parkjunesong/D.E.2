@@ -32,4 +32,8 @@ public abstract class Unit_Passive : MonoBehaviour
     {
 
     }
+    public virtual void OnDied()
+    {
+
+    }
 }
