@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d01ba0330c31cf499c65242d9c8c8aa, type: 3}
-  m_Name: Skill_WolfCub
+  m_Script: {fileID: 11500000, guid: 902bc00a1df5eac42a582bfcb72f53f0, type: 3}
+  m_Name: Skill_WolfBeast_Passive
   m_EditorClassIdentifier: 
   Skill_Cost: 000000000000000000000000
-  Skill_CoolTime: 5
+  Skill_CoolTime: 0
   CurrentCoolTime: 0
-  Skill_Name: summon
+  Skill_Name: 
   Skill_Icon: {fileID: 0}
-  SummonUnit: {fileID: 11400000, guid: 19b364dbc29076c4899a2a68366a9960, type: 2}
