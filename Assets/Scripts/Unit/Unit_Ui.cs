@@ -64,7 +64,7 @@ public class Unit_Ui : MonoBehaviour
 
                 // 위치 재조정
                 RectTransform rect = icon.GetComponent<RectTransform>();
-                rect.anchoredPosition = new Vector2(-100 + iconIndex * 30f, 0);
+                rect.anchoredPosition = new Vector2(-70 + iconIndex * 16.5f, 0);
 
                 iconIndex++;
             }
@@ -85,7 +85,7 @@ public class Unit_Ui : MonoBehaviour
             icon.SetActive(true);
 
             RectTransform rect = icon.GetComponent<RectTransform>();
-            rect.anchoredPosition = new Vector2(-100 + iconIndex * 30f, 0);
+            rect.anchoredPosition = new Vector2(-70 + iconIndex * 16.5f, 0);
 
             iconIndex++;
         }

@@ -20,13 +20,13 @@ public class SystemManager : MonoBehaviour
             i = 0;
             foreach (UnitData data in sData.mData.PlayerUnitData)
             {
-                BattleManager.Instance.UnitSpawn(data, new Vector2(-200 - 280 * i, 1100), "Player");               
+                BattleManager.Instance.UnitSpawn(data, i, "Player");               
                 i++;
             }
             i = 0;
             foreach (UnitData data in sData.mData.EnemyUnitData)
             {
-                BattleManager.Instance.UnitSpawn(data, new Vector2(200 + 280 * i, 1100), "Enemy");
+                BattleManager.Instance.UnitSpawn(data, i, "Enemy");
                 i++;
             }
             BattleManager.Instance.BattleStart();

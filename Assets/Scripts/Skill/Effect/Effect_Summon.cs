@@ -15,7 +15,6 @@ public class Effect_Summon : Effect_Base
 
     public override void Execute(Unit caster)
     {
-        int p = 0;
         if (AimTarget == ATarget.Player)
         {
             /*
@@ -27,10 +26,7 @@ public class Effect_Summon : Effect_Base
         }
         else if (AimTarget == ATarget.Enemy)
         {
-            if (Position == Position.Front) p = 0;
-            else if (Position == Position.Back) p = BattleManager.Instance.EnemyUnits.Count;
-
-            BattleManager.Instance.UnitSpawn(Data, new Vector2(200 + 280 * p, 1100), "Enemy");
+            BattleManager.Instance.UnitSpawn(Data, BattleManager.Instance.EnemyUnits.Count, "Enemy");
         }
     }
 }
