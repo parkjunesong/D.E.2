@@ -6,9 +6,9 @@ public class Effect_Shild : Effect_Base
 {
     public Effect_Shild(float value, int range, AType aimType, ATarget aimTarget) : base(value, range, aimType, aimTarget) { }
 
-    public override void Execute(Unit caster)
+    public override void Execute(Unit caster, float CoE)
     {
-        float shild = Value * caster.Ability.AT; //* (1 + caster.회복량 / 100);
+        float shild = Value * CoE; //* (1 + caster.회복량 / 100);
   
         foreach (var target in setTarget(caster))
         {

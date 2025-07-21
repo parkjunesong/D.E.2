@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEditor.Playables;
 using UnityEngine;
 
@@ -9,6 +10,34 @@ public enum UnitState
     Dead,        // 사망
     Summon,      // 소환된 유닛 (소환수 등)
     Structure    // 구조물 (타겟팅 불가, 이동 불가 등)
+}
+public class Ability
+{
+    public int AT, SP, HP, DF;
+    public float CR, CD;
+    public float RD, ID;
+    public Ability()
+    {
+        AT = 0;
+        SP = 0;
+        HP = 0;
+        DF = 0;
+        CR = 0;
+        CD = 0;
+        RD = 0;
+        ID = 0;
+    }
+    public Ability(int at, int sp, int hp, int df, float cr, float cd, float rd, float id)
+    {       
+        AT = at;
+        SP = sp;
+        HP = hp;
+        DF = df;
+        CR = cr;
+        CD = cd;
+        RD = rd;
+        ID = id;
+    }
 }
 
 public class Unit_Ablity
@@ -24,7 +53,7 @@ public class Unit_Ablity
     public UnitState State;   
 
     protected UnitData Data;
-    protected BuffModifier BuffModifiers;
+    protected Ability BuffModifiers;
 
     public Unit_Ablity(UnitData data)
     {
@@ -46,18 +75,18 @@ public class Unit_Ablity
 
     public void RecalculBuff(List<Buff_Base> buffs)
     {
-        BuffModifiers = new BuffModifier();
+        BuffModifiers = new Ability();
 
         foreach (var buff in buffs)
         {
-            BuffModifiers.AT += buff.Modifier.AT * buff.Level;
-            BuffModifiers.DF += buff.Modifier.DF * buff.Level;
-            BuffModifiers.SP += buff.Modifier.SP * buff.Level;
-            BuffModifiers.HP += buff.Modifier.HP * buff.Level;
-            BuffModifiers.CR += buff.Modifier.CR * buff.Level;
-            BuffModifiers.CD += buff.Modifier.CD * buff.Level;
-            BuffModifiers.RD += buff.Modifier.RD * buff.Level;
-            BuffModifiers.ID += buff.Modifier.ID * buff.Level;
+            BuffModifiers.AT += buff.BuffEffect.AT * buff.Level;
+            BuffModifiers.DF += buff.BuffEffect.DF * buff.Level;
+            BuffModifiers.SP += buff.BuffEffect.SP * buff.Level;
+            BuffModifiers.HP += buff.BuffEffect.HP * buff.Level;
+            BuffModifiers.CR += buff.BuffEffect.CR * buff.Level;
+            BuffModifiers.CD += buff.BuffEffect.CD * buff.Level;
+            BuffModifiers.RD += buff.BuffEffect.RD * buff.Level;
+            BuffModifiers.ID += buff.BuffEffect.ID * buff.Level;
 
             AT = (int)(Data.AT * (1 + BuffModifiers.AT / 100));
             SP = (int)(Data.SP * (1 + BuffModifiers.SP));

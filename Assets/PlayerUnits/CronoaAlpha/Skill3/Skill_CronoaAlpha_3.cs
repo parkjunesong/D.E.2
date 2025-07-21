@@ -15,10 +15,10 @@ public class Skill_CronoaAlpha_3 : Skill_Base
     }
     public override void Execute(Unit caster)
     {
-        EffectList[0].Execute(caster); // 2.0AT 관통피해
+        EffectList[0].Execute(caster, caster.Ability.AT); // 2.0AT 관통피해
         for(int i = 0; i< caster.Passive.PassiveStack; i++)
         {
-            EffectList[1].Execute(caster); // 0.3AT 고정피해 * '시간의 톱니바퀴' 횟수
+            EffectList[1].Execute(caster, caster.Ability.AT); // 0.3AT 고정피해 * '시간의 톱니바퀴' 횟수
         }
         caster.Passive.PassiveStack = 0;
     }

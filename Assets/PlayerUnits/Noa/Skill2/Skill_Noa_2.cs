@@ -15,9 +15,9 @@ public class Skill_Noa_2 : Skill_Base
     }
     public override void Execute(Unit caster)
     {
-        EffectList[0].Execute(caster); // 1.0AT 전방공격
-        EffectList[1].Execute(caster); // 0.3AT 관통공격 3회
-        EffectList[1].Execute(caster); // 0.3AT 관통공격 3회
-        EffectList[1].Execute(caster); // 0.3AT 관통공격 3회
+        EffectList[0].Execute(caster, caster.Ability.AT); // 1.0AT 전방공격
+        EffectList[1].Execute(caster, caster.Ability.AT); // 0.3AT 관통공격 3회
+        EffectList[1].Execute(caster, caster.Ability.AT); // 0.3AT 관통공격 3회
+        EffectList[1].Execute(caster, caster.Ability.AT); // 0.3AT 관통공격 3회
     }
 }

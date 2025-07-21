@@ -20,7 +20,8 @@ public abstract class Effect_Base
         AimType = aimType;
         AimTarget = aimTarget;
     }
-    public abstract void Execute(Unit caster);
+    public virtual void Execute(Unit caster) { }
+    public virtual void Execute(Unit caster, float CoE) { }
 
     public List<Unit> setTarget(Unit caster)
     {

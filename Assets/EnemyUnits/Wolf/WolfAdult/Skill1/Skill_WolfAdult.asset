@@ -17,4 +17,4 @@ MonoBehaviour:
   CurrentCoolTime: 0
   Skill_Name: 
   Skill_Icon: {fileID: 0}
-  buff: {fileID: 0}
+  buff: {fileID: 11400000, guid: 90bea1e7f140b3549881b6a3ef743e21, type: 2}

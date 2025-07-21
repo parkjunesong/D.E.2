@@ -5,20 +5,19 @@ using UnityEngine;
 public class Effect_Buff : Effect_Base
 {
     public Buff_Base Buff;
-    public int stackAmount;
+    public int Stack;
 
-    public Effect_Buff(float value, int range, AType aimType, ATarget aimTarget, Buff_Base buff, int stackamount) : base(value, range, aimType, aimTarget)
+    public Effect_Buff(float value, int range, AType aimType, ATarget aimTarget, Buff_Base buff, int stack) : base(value, range, aimType, aimTarget)
     {
         Buff = buff;
-        stackAmount = stackamount;
+        Stack = stack;
     }
-
 
     public override void Execute(Unit caster)
     {
         foreach (var target in setTarget(caster))
         {
-            target.OnBuffGained(Buff, stackAmount);
+            target.OnBuffGained(Buff, Stack);
         }
     }
 }

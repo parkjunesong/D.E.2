@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,10 +16,15 @@ public abstract class Unit : MonoBehaviour
 
     public abstract void Init();
     public abstract void TurnStart();
-    public abstract void TurnEnd();   
+    public abstract void TurnEnd();
 
+    public void OnActionPerformed()
+    {
+        Buff.OnActionPerformed();
+    }
     public void OnSkillUsed(int i)
     {
+        OnActionPerformed();
         Skill.OnUseSkill(i, this);
     }
     public void OnBuffGained(Buff_Base newBuff, int count)
@@ -26,7 +32,7 @@ public abstract class Unit : MonoBehaviour
         Buff.OnBuffGained(newBuff, count);
         Passive.OnBuffGained(newBuff);
     }
-    public void OnAttackExecuted(Unit target)
+    public void OnAttackExecuted(Unit target) // 매 타격시마다 호출
     {
         Passive.OnAttackExecuted(target);
     }

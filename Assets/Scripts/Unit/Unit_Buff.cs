@@ -17,13 +17,49 @@ public class Unit_Buff : MonoBehaviour
     {
         Buff_Base existing = Buffs.Find(b => b.Name == newBuff.Name);
 
-        if (existing != null) existing.AddStack(count);
+        if (existing != null) existing.AddBuff(count);
         else
         {
             Buff_Base instance = Instantiate(newBuff);
-            instance.Apply();
+            instance.OnApply(count);
             Buffs.Add(instance);
         }
+
+        Unit.Ability.RecalculBuff(Buffs);
+        Unit.Ui.UpdateBuffUI(Buffs);
+    }
+
+    public void OnTurnStart()
+    {
+        foreach (var buff in Buffs)
+            buff.OnTurnStart();
+
+        Unit.Ability.RecalculBuff(Buffs);
+        Unit.Ui.UpdateBuffUI(Buffs);
+    }
+
+    public void OnTurnEnd()
+    {
+        for (int i = Buffs.Count - 1; i >= 0; i--)
+        {
+            var buff = Buffs[i];
+            buff.OnTurnEnd();
+            if (buff.Level <= 0)
+            {
+                buff.Remove();
+                Unit.Ability.RecalculBuff(Buffs);               
+                Buffs.RemoveAt(i);
+                Unit.Ui.UpdateBuffUI(Buffs);
+            }
+        }
+        Unit.Ability.RecalculBuff(Buffs);
+        Unit.Ui.UpdateBuffUI(Buffs);
+    }
+
+    public void OnActionPerformed()
+    {
+        foreach (var buff in Buffs)
+            buff.OnActionPerformed(Unit);
 
         Unit.Ability.RecalculBuff(Buffs);
         Unit.Ui.UpdateBuffUI(Buffs);
@@ -40,29 +76,5 @@ public class Unit_Buff : MonoBehaviour
             Unit.Ui.UpdateBuffUI(Buffs);
         }
     }
-
-    public void OnTurnStart()
-    {
-        foreach (var buff in Buffs)
-            buff.TurnStart();
-
-        Unit.Ability.RecalculBuff(Buffs);
-        Unit.Ui.UpdateBuffUI(Buffs);
-    }
-
-    public void OnTurnEnd()
-    {
-        for (int i = Buffs.Count - 1; i >= 0; i--)
-        {
-            var buff = Buffs[i];
-            buff.TurnEnd();
-
-            if (buff.Duration <= 0 && !buff.isPermanent)
-            {
-                buff.Remove();
-                Unit.Ability.RecalculBuff(Buffs);
-                Buffs.RemoveAt(i);
-            }
-        }
-    }
+    
 }

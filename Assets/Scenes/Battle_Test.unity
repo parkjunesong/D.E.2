@@ -165,10 +165,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FieldEffects:
-  - {fileID: 11400000, guid: 5c2a2be81a907ca4fbff3a0db4aacf86, type: 2}
-  - {fileID: 11400000, guid: 5c2a2be81a907ca4fbff3a0db4aacf86, type: 2}
-  - {fileID: 11400000, guid: 5c2a2be81a907ca4fbff3a0db4aacf86, type: 2}
-  - {fileID: 11400000, guid: 5c2a2be81a907ca4fbff3a0db4aacf86, type: 2}
+  - {fileID: 11400000, guid: f4eb32b2bde7e9f43825099d3f551b5b, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &200913258
 MonoBehaviour:
   m_ObjectHideFlags: 0

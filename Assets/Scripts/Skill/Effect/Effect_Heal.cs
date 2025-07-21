@@ -6,10 +6,10 @@ public class Effect_Heal : Effect_Base
 {
     public Effect_Heal(float value, int range, AType aimType, ATarget aimTarget) : base(value, range, aimType, aimTarget) { }
     
-    public override void Execute(Unit caster)
+    public override void Execute(Unit caster, float CoE)
     {
-        float heal = Value * caster.Ability.AT; //* (1 + caster.회복량 / 100);
-  
+        float heal = Value * CoE; //* (1 + caster.회복량 / 100);
+
         foreach (var target in setTarget(caster))
         {
             target.OnHealed(heal);

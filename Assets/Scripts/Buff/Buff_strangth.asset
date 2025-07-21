@@ -9,21 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e2a9f0462d5fe4d83b4b78bb8e3ba2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b6ccf8565cd45545a23cd8525d99007, type: 3}
   m_Name: Buff_Strangth
   m_EditorClassIdentifier: 
-  isPermanent: 0
-  Name: Buff_Strangth
-  Icon: {fileID: 0}
-  Level: 1
-  Duration: 0
-  Modifier:
-    AT: 15
-    SP: 0
-    HP: 0
-    DF: 0
-    CR: 0
-    CD: 0
-    RD: 0
-    ID: 0
-  maxStack: 3
+  Name: Strangth
+  Icon: {fileID: 4975741955291382485, guid: 3ecf3fd9d718c664887f1f528cb74eb4, type: 3}
+  Level: 0
+  maxLevel: 3

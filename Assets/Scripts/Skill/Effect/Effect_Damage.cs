@@ -16,17 +16,17 @@ public class Effect_Damage : Effect_Base
         IgnoreDefence = ignoreDefence;
     }
 
-    public override void Execute(Unit caster)
+    public override void Execute(Unit caster, float CoE)
     {
         foreach (var target in setTarget(caster))
         {
-            target.OnDamaged(getDamage(caster), DamageType, IgnoreDefence);
+            target.OnDamaged(getDamage(caster, CoE), DamageType, IgnoreDefence);
             caster.OnAttackExecuted(target);
         }               
     }
-    public float getDamage(Unit caster)
+    public float getDamage(Unit caster, float CoE)
     {
-        float damage = Value * caster.Ability.AT * (1 + caster.Ability.ID / 100);
+        float damage = Value * CoE * (1 + caster.Ability.ID / 100);
         if (caster.Ability.CR >= Random.Range(0, 100)) 
             damage *= (1 + caster.Ability.CD / 100);
 

@@ -17,4 +17,4 @@ MonoBehaviour:
   CurrentCoolTime: 0
   Skill_Name: WolfCub_Passive
   Skill_Icon: {fileID: 0}
-  SummonUnit: {fileID: 11400000, guid: 10f4e335f61ffdd4098596a82852ec34, type: 2}
+  SummonUnit: {fileID: 11400000, guid: 61e3a3733a5a65540a38f3158fe79bbe, type: 2}

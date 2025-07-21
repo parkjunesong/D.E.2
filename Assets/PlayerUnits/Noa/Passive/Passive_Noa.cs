@@ -13,7 +13,7 @@ public class Passive_Noa : Unit_Passive
         if(PassiveStack >= 10) // ÆÐ½Ãºê´Â ÁßÃ¸ ¾È½×ÀÓ
         {
             Effect_Damage damage = new Effect_Damage(0.1f, 0, AType.Select, ATarget.Enemy, DType.True, 0);
-            target.OnDamaged(damage.getDamage(Unit), damage.DamageType, 0);
+            target.OnDamaged(damage.getDamage(Unit, Unit.Ability.AT), damage.DamageType, 0);
         }
         if (passiveCount < 1)
             passiveCount++;
@@ -27,7 +27,7 @@ public class Passive_Noa : Unit_Passive
     }
     public override void OnBuffGained(Buff_Base buff)
     {
-        if (buff.Name == "Buff_Strangth")
+        if (buff.Name == "Strangth")
         {
             Execute();
         }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b19e262d6fd36949a8cb2e20af519e2, type: 3}
   m_Name: UnitData
   m_EditorClassIdentifier: 
-  Name: Wolf_Beast
+  Name: Wolf_Adult
   Element: 1
-  AT: 50
+  AT: 80
   SP: 0
-  HP: 1000
+  HP: 500
   DF: 10
   CR: 0
   CD: 0
@@ -26,5 +26,5 @@ MonoBehaviour:
   Standing: {fileID: 1656123705495100252, guid: 84e9a87d7bf39484fabe4d5b5fcc1251, type: 3}
   Dead: {fileID: 0}
   Skills:
-  - {fileID: 11400000, guid: 4b9ebe104c69b314193e33bf8e41c472, type: 2}
-  Passive: {fileID: 1792866763154144688, guid: 4cc74d97c75d1bb4e83331ca176a0baa, type: 3}
+  - {fileID: 11400000, guid: fd1529f275ae03b4794b5ed0c6744b95, type: 2}
+  Passive: {fileID: 1792866763154144688, guid: 64c9f9788eca072408948211b056d311, type: 3}
