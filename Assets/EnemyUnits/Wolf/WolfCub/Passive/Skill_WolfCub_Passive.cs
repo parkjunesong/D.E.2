@@ -17,5 +17,7 @@ public class Skill_WolfCub_Passive : Skill_Base
     public override void Execute(Unit caster)
     {
         new Effect_Summon(0, 0, 0, ATarget.Enemy, SummonUnit, Position.Back).Execute(caster);
+        new Effect_Summon(0, 0, 0, ATarget.Enemy, SummonUnit, Position.Back).Execute(caster);
+
     }
 }
