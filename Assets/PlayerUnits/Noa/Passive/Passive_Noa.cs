@@ -12,6 +12,7 @@ public class Passive_Noa : Unit_Passive
     {        
         if(PassiveStack >= 10) // ÆÐ½Ãºê´Â ÁßÃ¸ ¾È½×ÀÓ
         {
+            Unit.OnActionPerformed();
             Effect_Damage damage = new Effect_Damage(0.1f, 0, AType.Select, ATarget.Enemy, DType.True, 0);
             target.OnDamaged(damage.getDamage(Unit, Unit.Ability.AT), damage.DamageType, 0);
         }

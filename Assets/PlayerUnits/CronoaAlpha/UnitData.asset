@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   Name: Cronoa_Alpha
-  Element: 0
+  Elements: 01000000
   AT: 100
   SP: 10
   HP: 500

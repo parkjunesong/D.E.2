@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   Name: Wolf_Adult
-  Element: 1
+  Elements: 0100000006000000
   AT: 80
   SP: 0
   HP: 500

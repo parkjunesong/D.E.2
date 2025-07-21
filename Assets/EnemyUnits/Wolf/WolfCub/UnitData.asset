@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   Name: Wolf_Cub
-  Element: 1
+  Elements: 0600000001000000
   AT: 50
   SP: 0
   HP: 100

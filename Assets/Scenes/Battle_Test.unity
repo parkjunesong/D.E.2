@@ -1156,6 +1156,7 @@ GameObject:
   - component: {fileID: 1949508763}
   - component: {fileID: 1949508764}
   - component: {fileID: 1949508765}
+  - component: {fileID: 1949508766}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1237,6 +1238,18 @@ MonoBehaviour:
   SelectedPlayerUnit: {fileID: 0}
   SelectedEnemyUnit: {fileID: 0}
   Turn: 0
+--- !u!114 &1949508766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949508755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1989ad3b004c94f868777d74a4742d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &19421556724532282
 MonoBehaviour:
   m_ObjectHideFlags: 0

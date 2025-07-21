@@ -20,7 +20,8 @@ public abstract class Unit : MonoBehaviour
 
     public void OnActionPerformed()
     {
-        Buff.OnActionPerformed();
+        Ability.OnActionPerformed();
+        Buff.OnActionPerformed();        
     }
     public void OnSkillUsed(int i)
     {

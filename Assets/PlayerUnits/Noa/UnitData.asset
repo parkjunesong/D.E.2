@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   Name: Noa
-  Element: 5
+  Elements: 06000000
   AT: 100
   SP: 10
   HP: 500

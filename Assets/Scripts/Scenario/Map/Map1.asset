@@ -17,4 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d7ca6ce596868e4699a7106c3ec4bde, type: 2}
   - {fileID: 11400000, guid: 6d7ca6ce596868e4699a7106c3ec4bde, type: 2}
   EnemyUnitData:
-  - {fileID: 11400000, guid: 61e3a3733a5a65540a38f3158fe79bbe, type: 2}
+  - {fileID: 11400000, guid: 10f4e335f61ffdd4098596a82852ec34, type: 2}

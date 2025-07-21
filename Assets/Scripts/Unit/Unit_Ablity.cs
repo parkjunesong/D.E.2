@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.Playables;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public enum UnitState
 {
@@ -43,7 +45,9 @@ public class Ability
 public class Unit_Ablity
 {
     public string Name;
-    public Element Element;
+    public Element Element; // 플레이어 유닛의 속성, 다속성 플레이어 유닛의 경우 속성 교체 필요
+    public List<Element> Elements;
+    public ElementReactionState ReactionState = new ElementReactionState();
     public int AT, SP, HP, DF;
     public float CR, CD;
     public float RD, ID; // ReduceDamage, IncreaseDamage 
@@ -59,7 +63,8 @@ public class Unit_Ablity
     {
         Data = data;
         Name = data.Name;
-        Element = data.Element;
+        Elements = data.Elements;
+        Element = Elements[0];
         AT = data.AT;
         SP = data.SP;
         HP = data.HP;
@@ -71,6 +76,71 @@ public class Unit_Ablity
         ID = data.ID;
         Shild = 0;
         State = UnitState.Alive;
+    }
+   
+    public void OnActionPerformed()
+    {
+        ElementManager.Instance.OnActionPerformed(ReactionState);
+    }
+    public void OnDamaged(Unit unit, float damage, DType dT, int ignore)
+    {
+        float dam = damage * 100 / (100 + DF * (1f - ignore / 100));
+        switch (dT)
+        {
+            case DType.Normal:
+                {
+                    unit.Ui.ShowFloatingText(((int)(dam * (1.0f - RD / 100))).ToString(), Color.red);
+
+                    if (Shild > 0)
+                    {
+                        Shild -= (int)(dam * (1.0f - RD / 100));
+                        if (Shild <= 0)
+                        {
+                            HP -= -Shild;
+                            Shild = 0;
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        HP -= (int)(dam * (1.0f - RD / 100));
+                        break;
+                    }         
+                }
+            case DType.Penetrate:
+                {
+                    unit.Ui.ShowFloatingText(((int)(dam * (1.0f - RD / 100))).ToString(), Color.red);
+
+                    HP -= (int)(dam * (1.0f - RD / 100));
+                    break;
+                }
+            case DType.True: 
+                {
+                    unit.Ui.ShowFloatingText(((int)damage).ToString(), Color.red);
+
+                    HP -= (int)damage;
+                    break;
+                }
+        }
+
+        
+        if (HP <= 0)
+            HP = 0;          
+    }
+
+    public void OnHealed(Unit unit, float heal)
+    {
+        unit.Ui.ShowFloatingText(heal.ToString(), Color.green);
+
+        if (heal + HP < maxHP)
+            HP += (int)(heal);
+        else
+            HP = maxHP;
+    }
+    public void OnShieldGained(Unit unit, float shild)
+    {
+        unit.Ui.ShowFloatingText(shild.ToString(), Color.yellow);
+        Shild += (int)(shild);
     }
 
     public void RecalculBuff(List<Buff_Base> buffs)
@@ -97,66 +167,5 @@ public class Unit_Ablity
             RD = Data.RD + BuffModifiers.RD;
             ID = Data.ID + BuffModifiers.ID;
         }
-    }
-
-    public void OnDamaged(Unit target, float damage, DType dT, int ignore)
-    {
-        float dam = damage * 100 / (100 + DF * (1f - ignore / 100));
-
-        switch (dT)
-        {
-            case DType.Normal:
-                {
-                    target.Ui.ShowFloatingText(((int)(dam * (1.0f - RD / 100))).ToString(), Color.red);
-
-                    if (Shild > 0)
-                    {
-                        Shild -= (int)(dam * (1.0f - RD / 100));
-                        if (Shild <= 0)
-                        {
-                            HP -= -Shild;
-                            Shild = 0;
-                        }
-                        break;
-                    }
-                    else
-                    {
-                        HP -= (int)(dam * (1.0f - RD / 100));
-                        break;
-                    }         
-                }
-            case DType.Penetrate:
-                {
-                    target.Ui.ShowFloatingText(((int)(dam * (1.0f - RD / 100))).ToString(), Color.red);
-
-                    HP -= (int)(dam * (1.0f - RD / 100));
-                    break;
-                }
-            case DType.True: 
-                {
-                    target.Ui.ShowFloatingText(((int)damage).ToString(), Color.red);
-
-                    HP -= (int)damage;
-                    break;
-                }
-        }
-
-        if (HP <= 0)
-            HP = 0;          
-    }
-
-    public void OnHealed(Unit target, float heal)
-    {
-        target.Ui.ShowFloatingText(heal.ToString(), Color.green);
-
-        if (heal + HP < maxHP)
-            HP += (int)(heal);
-        else
-            HP = maxHP;
-    }
-    public void OnShieldGained(Unit target, float shild)
-    {
-        target.Ui.ShowFloatingText(shild.ToString(), Color.yellow);
-        Shild += (int)(shild);
     }
 }
