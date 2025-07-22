@@ -22,13 +22,15 @@ public class Unit_Skill
         {
             if (caster.Ability.Team == "Player" && skill.CurrentCoolTime <= 0 && skill.IsAvailable(caster))
             {
+                caster.OnActionPerformed();
                 skill.Execute(caster);
                 skill.ResetCoolTime();
                 CostManager.Instance.CostUse(SkillCost);
                 BattleManager.Instance.TurnEnd();
             }
             else if (caster.Ability.Team == "Enemy")
-            {                              
+            {
+                caster.OnActionPerformed();
                 skill.Execute(caster);
                 skill.ResetCoolTime();
                 CostManager.Instance.CostUse(SkillCost);

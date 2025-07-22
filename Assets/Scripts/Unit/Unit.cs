@@ -25,7 +25,6 @@ public abstract class Unit : MonoBehaviour
     }
     public void OnSkillUsed(int i)
     {
-        OnActionPerformed();
         Skill.OnUseSkill(i, this);
     }
     public void OnBuffGained(Buff_Base newBuff, int count)
