@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ccb849058cb5a4ea8ff19afa8d6522, type: 3}
   m_Name: Skill_Noa_2
   m_EditorClassIdentifier: 
-  Skill_Cost: 020000000200000000000000
+  Skill_Cost: 000000000300000000000000
   Skill_CoolTime: 2
   CurrentCoolTime: 0
   Skill_Name: noa2

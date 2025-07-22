@@ -166,9 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FieldEffects:
   - {fileID: 11400000, guid: f4eb32b2bde7e9f43825099d3f551b5b, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 5dd44bdbfc6aef44f8502053aad3c858, type: 2}
+  - {fileID: 11400000, guid: c4a90b526544eee4c97953e53e2038c4, type: 2}
+  - {fileID: 11400000, guid: 020b5dda5e8d92b47b980f6b7e0e9687, type: 2}
 --- !u!114 &200913258
 MonoBehaviour:
   m_ObjectHideFlags: 0

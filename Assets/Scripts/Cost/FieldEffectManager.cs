@@ -24,11 +24,11 @@ public class FieldEffectManager : MonoBehaviour
     public void UpdateFieldEffect()
     {
         RemoveFieldEffect();
-
+        Debug.Log(CostFieldCheck());
         switch (CostFieldCheck())
         {
             case CostFieldStatus.Balance:
-                {
+                {                   
                     currentEffect = FieldEffects[0];
                     BattleManager.Instance.GetFreeRotation(1);
 
@@ -116,6 +116,27 @@ public class FieldEffectManager : MonoBehaviour
             }
         }
         return CostFieldStatus.Null;
+    }
+    public CostType GetcurrentEffectCost()
+    {
+        if(currentEffect == null)
+            return CostType.Null;
+        switch (currentEffect.Name)
+        {          
+            case "ManaHigh":
+                {
+                    return CostType.Mana;
+                }
+            case "PranaHigh":
+                {
+                    return CostType.Prana;
+                }
+            case "KarnaHigh":
+                {
+                    return CostType.Karna;
+                }
+        }
+        return CostType.Null;
     }
 
 }

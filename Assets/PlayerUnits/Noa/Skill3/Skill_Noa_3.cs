@@ -24,14 +24,14 @@ public class Skill_Noa_3: Skill_Base
         {
             for (int i = 0; i < caster.Passive.PassiveStack; i++)
             {
-                EffectList[0].Execute(caster, caster.Ability.AT); // 0.6AT * 스택 횟수
+                EffectList[0].Execute(caster, caster.Ability.AT, Skill_Cost); // 0.6AT * 스택 횟수
             }                      
         }
         else // 10스택 이상, 강화 후
         {
             for (int i = 0; i < caster.Passive.PassiveStack; i++)
             {
-                EffectList[1].Execute(caster, caster.Ability.AT); // 0.6AT * 스택 횟수, 방무30%
+                EffectList[1].Execute(caster, caster.Ability.AT, Skill_Cost); // 0.6AT * 스택 횟수, 방무30%
             }
         }
         caster.Passive.PassiveStack = 0;

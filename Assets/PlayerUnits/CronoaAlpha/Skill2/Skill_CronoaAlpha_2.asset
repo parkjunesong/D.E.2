@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0290557b0f86d2346bde62f70e0ac5ae, type: 3}
   m_Name: Skill_CronoaAlpha_2
   m_EditorClassIdentifier: 
-  Skill_Cost: 020000000200000000000000
+  Skill_Cost: 030000000000000000000000
   Skill_CoolTime: 1
   CurrentCoolTime: 0
   Skill_Name: Tide of Time
   Skill_Icon: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
-  Effects:
-  - {fileID: 11400000, guid: 70837d966c09cf847948cc0bade67114, type: 2}
-  - {fileID: 11400000, guid: dd5308267d0067c4d92c0d336feabb30, type: 2}

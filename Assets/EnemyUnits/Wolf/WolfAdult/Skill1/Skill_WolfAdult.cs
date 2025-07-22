@@ -17,7 +17,7 @@ public class Skill_WolfAdult : Skill_Base
     }
     public override void Execute(Unit caster)
     {
-        EffectList[0].Execute(caster, caster.Ability.AT);
+        EffectList[0].Execute(caster, caster.Ability.AT, Skill_Cost);
         EffectList[1].Execute(caster);
     }
 }

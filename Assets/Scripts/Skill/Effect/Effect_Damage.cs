@@ -16,20 +16,23 @@ public class Effect_Damage : Effect_Base
         IgnoreDefence = ignoreDefence;
     }
 
-    public override void Execute(Unit caster, float CoE)
+    public override void Execute(Unit caster, float CoE, int[] cost)
     {
         foreach (var target in setTarget(caster))
         {
             ElementManager.Instance.Resolve(caster, target);
-            target.OnDamaged(getDamage(caster, CoE), DamageType, IgnoreDefence);
+            target.OnDamaged(getDamage(caster, CoE, cost), DamageType, IgnoreDefence);
             caster.OnAttackExecuted(target);
         }               
     }
-    public float getDamage(Unit caster, float CoE)
+    public float getDamage(Unit caster, float CoE, int[] cost)
     {
         float damage = Value * CoE * (1 + caster.Ability.ID / 100);
+        if (FieldEffectManager.Instance.GetcurrentEffectCost() != CostType.Null)
+            damage *= (1 + cost[(int)FieldEffectManager.Instance.GetcurrentEffectCost()] * 3 / 100f);
         if (caster.Ability.CR >= Random.Range(0, 100)) 
             damage *= (1 + caster.Ability.CD / 100);
+
 
         return damage;
     }

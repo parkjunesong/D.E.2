@@ -16,7 +16,7 @@ public class Skill_Noa_1 : Skill_Base
     }
     public override void Execute(Unit caster)
     {
-        EffectList[0].Execute(caster, caster.Ability.AT); // 1.0AT 전방공격
+        EffectList[0].Execute(caster, caster.Ability.AT, Skill_Cost); // 1.0AT 전방공격
         EffectList[1].Execute(caster); // 힘 버프 획득
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebae4ef106c345740bfba8a58faa4419, type: 3}
   m_Name: Skill_Cronoa_Alpha_3
   m_EditorClassIdentifier: 
-  Skill_Cost: 030000000300000000000000
+  Skill_Cost: 060000000000000000000000
   Skill_CoolTime: 6
   CurrentCoolTime: 0
   Skill_Name: Vortex of Time

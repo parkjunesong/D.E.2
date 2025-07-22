@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a59e345f96016a45be76b7faf94b0a3, type: 3}
-  m_Name: FE_Balance
+  m_Name: FE_KarnaHigh
   m_EditorClassIdentifier: 
   BuffEffect:
     AT: 0
@@ -19,9 +19,9 @@ MonoBehaviour:
     DF: 0
     CR: 0
     CD: 0
-    RD: 10
+    RD: 0
     ID: 0
-  Name: Balance
+  Name: KarnaHigh
   Icon: {fileID: -2775032874363633056, guid: 538c69b773d8c8a4eb4bc8e6fa2627ca, type: 3}
   Level: 1
   maxLevel: 1
