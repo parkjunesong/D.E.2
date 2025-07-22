@@ -13,11 +13,11 @@ public enum UnitState
     Summon,      // 소환된 유닛 (소환수 등)
     Structure    // 구조물 (타겟팅 불가, 이동 불가 등)
 }
+
+[System.Serializable]
 public class Ability
 {
-    public int AT, SP, HP, DF;
-    public float CR, CD;
-    public float RD, ID;
+    public float AT, SP, HP, DF, CR, CD, RD, ID;
     public Ability()
     {
         AT = 0;

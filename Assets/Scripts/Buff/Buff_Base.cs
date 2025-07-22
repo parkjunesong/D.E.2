@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Buff_Base : ScriptableObject
 {
-    public Ability BuffEffect = new();
+    public Ability BuffEffect;
     public string Name;
     public Sprite Icon;
     public int Level;

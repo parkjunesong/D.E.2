@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum CostFieldStatus { Balance, ManaHigh, PranaHigh, KarnaHigh, Null}
 
-public class CostFieldManager : MonoBehaviour
+public class FieldEffectManager : MonoBehaviour
 {
-    public static CostFieldManager Instance { get; private set; }
+    public static FieldEffectManager Instance { get; private set; }
     public Buff_Base[] FieldEffects = new Buff_Base[4];
     private Buff_Base currentEffect;
 
@@ -44,10 +44,30 @@ public class CostFieldManager : MonoBehaviour
                 }
             case CostFieldStatus.ManaHigh:
                 {
+                    currentEffect = FieldEffects[1];
+
+                    foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
+                    {
+                        unit.Buff.OnBuffGained(currentEffect, 1);
+                    }
+                    foreach (Unit unit in BattleManager.Instance.EnemyUnits)
+                    {
+                        unit.Buff.OnBuffGained(currentEffect, 1);
+                    }
                     break;
                 }
             case CostFieldStatus.PranaHigh:
                 {
+                    currentEffect = FieldEffects[2];
+
+                    foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
+                    {
+                        unit.Buff.OnBuffGained(currentEffect, 1);
+                    }
+                    foreach (Unit unit in BattleManager.Instance.EnemyUnits)
+                    {
+                        unit.Buff.OnBuffGained(currentEffect, 1);
+                    }
                     break;
                 }
             case CostFieldStatus.KarnaHigh:

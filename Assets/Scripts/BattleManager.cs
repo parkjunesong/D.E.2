@@ -64,7 +64,7 @@ public class BattleManager : MonoBehaviour
         }
         if (Turn % 5 == 0) // 5배수 턴마다 FieldEffect 갱신
         {
-            CostFieldManager.Instance.UpdateFieldEffect();
+            FieldEffectManager.Instance.UpdateFieldEffect();
         }
     }
     public void TurnEnd()
