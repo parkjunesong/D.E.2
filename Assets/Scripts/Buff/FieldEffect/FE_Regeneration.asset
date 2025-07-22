@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a59e345f96016a45be76b7faf94b0a3, type: 3}
+  m_Name: FE_Regeneration
+  m_EditorClassIdentifier: 
+  BuffEffect:
+    AT: 0
+    SP: 0
+    HP: 0
+    DF: 0
+    CR: 0
+    CD: 0
+    RD: -10
+    ID: 0
+  Name: Regeneration
+  Icon: {fileID: -2775032874363633056, guid: 538c69b773d8c8a4eb4bc8e6fa2627ca, type: 3}
+  Level: 1
+  maxLevel: 1

@@ -62,10 +62,7 @@ public class BattleManager : MonoBehaviour
         {
             EnemyUnits[i].TurnStart();
         }
-        if (Turn % 5 == 0) // 5배수 턴마다 FieldEffect 갱신
-        {
-            FieldEffectManager.Instance.UpdateFieldEffect();
-        }
+        FieldEffectManager.Instance.TurnStart();
     }
     public void TurnEnd()
     {

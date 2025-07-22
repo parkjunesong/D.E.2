@@ -169,6 +169,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dd44bdbfc6aef44f8502053aad3c858, type: 2}
   - {fileID: 11400000, guid: c4a90b526544eee4c97953e53e2038c4, type: 2}
   - {fileID: 11400000, guid: 020b5dda5e8d92b47b980f6b7e0e9687, type: 2}
+  - {fileID: 11400000, guid: 44d7dc19ebe6d974c839c4b171f2a041, type: 2}
+  currentEffect: {fileID: 0}
 --- !u!114 &200913258
 MonoBehaviour:
   m_ObjectHideFlags: 0

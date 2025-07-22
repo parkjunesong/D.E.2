@@ -27,9 +27,7 @@ public class Effect_Damage : Effect_Base
     }
     public float getDamage(Unit caster, float CoE, int[] cost)
     {
-        float damage = Value * CoE * (1 + caster.Ability.ID / 100);
-        if (FieldEffectManager.Instance.GetcurrentEffectCost() != CostType.Null)
-            damage *= (1 + cost[(int)FieldEffectManager.Instance.GetcurrentEffectCost()] * 3 / 100f);
+        float damage = Value * CoE * (1 + (caster.Ability.ID + GetFieldEffectCoE(cost)) / 100);
         if (caster.Ability.CR >= Random.Range(0, 100)) 
             damage *= (1 + caster.Ability.CD / 100);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public enum CostType { Mana, Prana, Karna, SemiKarna, Used, Null }
 
@@ -64,28 +65,58 @@ public class CostManager : MonoBehaviour
         int[] goal = new int[3] { 0, 0, 0 };
         while (goal[0] < target[0] || goal[1] < target[1] || goal[2] < target[2])
         {
-            int no = 0;
+            int num = 0;
             foreach (Cost co in CostList)
             {
                 if (co.Type == CostType.Mana && goal[0] < target[0])
                 {
-                    CostList[no].Prev = CostList[no].Type;
-                    CostList[no].Type = CostType.SemiKarna;
+                    CostChangeForce(num, CostType.SemiKarna);
                     goal[0]++;
                 }
                 else if (co.Type == CostType.Prana && goal[1] < target[1])
                 {
-                    CostList[no].Prev = CostList[no].Type;
-                    CostList[no].Type = CostType.SemiKarna;
+                    CostChangeForce(num, CostType.SemiKarna);
                     goal[1]++;
                 }
                 else if ((co.Type == CostType.Karna || co.Type == CostType.SemiKarna) && goal[2] < target[2])
                 {
-                    CostList[no].Prev = CostList[no].Type;
-                    CostList[no].Type = CostType.Used;
+                    CostChangeForce(num, CostType.Used);
                     goal[2]++;
                 }
-                no++;
+                num++;
+            }
+        }
+        ImageReset();
+    }  
+    public void Cost_Change(int num) // [변화]: 필드 위에 존재하는 마나와 프라나의 종류를 바꾼다
+    {
+        if (CostList[num].Type == CostType.Mana) CostChangeForce(num, CostType.Prana);
+        else if (CostList[num].Type == CostType.Prana) CostChangeForce(num, CostType.Mana);
+        ImageReset();
+    }
+    public void Cost_Vanish(int num) // [소멸]: 필드 위의 마나나 프라나를 즉시 카르나로 바꾼다
+    {
+        if (CostList[num].Type == CostType.Mana || CostList[num].Type == CostType.Prana) 
+            CostChangeForce(num, CostType.Karna);
+        ImageReset();
+    }
+    public void Cost_Regeneration(int num) // [재생]: 필드 위의 카르나를 즉시 마나나 프라나로 바꾼다
+    {
+        int[] count = CostCount();
+        if (CostList[num].Type == CostType.Karna || CostList[num].Type == CostType.SemiKarna)
+        {
+            if (count[0] > count[1]) CostChangeForce(num, CostType.Prana);
+            else if (count[0] < count[1]) CostChangeForce(num, CostType.Mana);
+            else
+            {
+                if(Random.Range(0, 2) == 0)
+                {
+                    CostChangeForce(num, CostType.Prana);
+                }
+                else
+                {
+                    CostChangeForce(num, CostType.Mana);
+                }
             }
         }
         ImageReset();
@@ -136,7 +167,17 @@ public class CostManager : MonoBehaviour
         }     
         return result;
     }
-    
+    public int CostFindNum(CostType cost)
+    {
+        return CostList.FindIndex(c => c.Type.Equals(cost));
+    }
+
+    void CostChangeForce(int num, CostType change)
+    {
+        Cost target = CostList[num];
+        target.Prev = target.Type;
+        target.Type = change;
+    }
     void ImageReset()
     {
         CostList.Sort(delegate (Cost A, Cost B)

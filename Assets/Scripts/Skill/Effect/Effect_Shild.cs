@@ -8,9 +8,7 @@ public class Effect_Shild : Effect_Base
 
     public override void Execute(Unit caster, float CoE, int[] cost)
     {
-        float shild = Value * CoE; //* (1 + caster.회복량 / 100);
-        if (FieldEffectManager.Instance.GetcurrentEffectCost() != CostType.Null)
-            shild *= (1 + cost[(int)FieldEffectManager.Instance.GetcurrentEffectCost()] * 3 / 100f);
+        float shild = Value * CoE * (1 + (GetFieldEffectCoE(cost)) / 100); // 회복량 계수 추가바람
 
         foreach (var target in setTarget(caster))
         {
