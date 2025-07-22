@@ -5,22 +5,29 @@ using UnityEngine.UI;
 
 public class Unit_Ui : MonoBehaviour
 {
+    private Transform Info;
     private Slider HpBar;
     private Slider ShildBar;
-    private Text CountText;
-    private Transform SelectIcon;
+    private RectTransform ElementSlot;
     private RectTransform BuffSlot;
-    private Transform unitCanvas;
+
+    public Transform EnemyInfo;
+    private Text CountText;
+
+    private Transform SelectMark;
 
     void Awake()
     {
-        unitCanvas = transform.GetChild(0);
+        Info = transform.GetChild(0).GetChild(0);
+        HpBar = Info.GetChild(0).GetComponent<Slider>();
+        ShildBar = Info.GetChild(1).GetComponent<Slider>();
+        ElementSlot = Info.GetChild(2).GetComponent<RectTransform>();
+        BuffSlot = Info.GetChild(3).GetComponent<RectTransform>();
 
-        HpBar = unitCanvas.GetChild(0).GetChild(0).GetComponent<Slider>();
-        ShildBar = unitCanvas.GetChild(0).GetChild(1).GetComponent<Slider>();
-        BuffSlot = unitCanvas.GetChild(0).GetChild(2).GetComponent<RectTransform>();
-        CountText = unitCanvas.GetChild(1).GetChild(0).GetComponent<Text>();
-        SelectIcon = unitCanvas.GetChild(2);
+        EnemyInfo = transform.GetChild(0).GetChild(1);
+        CountText = EnemyInfo.GetChild(0).GetChild(0).GetComponent<Text>();
+
+        SelectMark = transform.GetChild(0).GetChild(2);
     }
 
     public void UpdateHPBar(int inGame, int inData)
@@ -41,7 +48,7 @@ public class Unit_Ui : MonoBehaviour
     }   
     public void UpdateSelectIcon(bool on)
     {
-        SelectIcon.gameObject.SetActive(on);
+        SelectMark.gameObject.SetActive(on);
     }
 
     public void UpdateBuffUI(List<Buff_Base> activeBuffs)
@@ -59,12 +66,12 @@ public class Unit_Ui : MonoBehaviour
                 Buff_Base buff = activeBuffs[iconIndex];
                 icon.name = buff.Name;
                 icon.GetComponent<Image>().sprite = buff.Icon;
-                icon.GetComponentInChildren<Text>().text = "x" + buff.Level;
+                icon.GetComponentInChildren<Text>().text = buff.Level.ToString();
                 icon.SetActive(true);
 
                 // 위치 재조정
                 RectTransform rect = icon.GetComponent<RectTransform>();
-                rect.anchoredPosition = new Vector2(-70 + iconIndex * 16.5f, 0);
+                rect.anchoredPosition = new Vector2(-55 + iconIndex * 16.5f, 0);
 
                 iconIndex++;
             }
@@ -81,11 +88,11 @@ public class Unit_Ui : MonoBehaviour
             GameObject icon = Instantiate(template, BuffSlot);
             icon.name = buff.Name;
             icon.GetComponent<Image>().sprite = buff.Icon;
-            icon.GetComponentInChildren<Text>().text = "x" + buff.Level;
+            icon.GetComponentInChildren<Text>().text = buff.Level.ToString();
             icon.SetActive(true);
 
             RectTransform rect = icon.GetComponent<RectTransform>();
-            rect.anchoredPosition = new Vector2(-70 + iconIndex * 16.5f, 0);
+            rect.anchoredPosition = new Vector2(-55 + iconIndex * 16.5f, 0);
 
             iconIndex++;
         }
@@ -93,9 +100,9 @@ public class Unit_Ui : MonoBehaviour
     public void ShowFloatingText(string text, Color color)
     {
         GameObject obj = FloatingTextPool.Instance.Get();
-        obj.transform.SetParent(unitCanvas);
+        obj.transform.SetParent(transform.GetChild(0));
 
-        int activeTextCount = unitCanvas.childCount - 4;
+        int activeTextCount = transform.GetChild(0).childCount - 3;
         obj.transform.position = transform.position + new Vector3(0, 150 + (30f * activeTextCount), 0);
 
         Text txt = obj.GetComponentInChildren<Text>();
@@ -124,5 +131,32 @@ public class Unit_Ui : MonoBehaviour
             yield return null;
         }
         FloatingTextPool.Instance.Return(obj);
+    }
+
+    public void setElementIcon(List<Element> element)
+    {
+        for (int i = 0; i < element.Count; i++)
+        {
+            GameObject icon = Instantiate(ElementSlot.GetChild(0).gameObject, ElementSlot);
+            icon.name = element[i].ToString();
+            icon.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load("ElementIcon/" + element[i], typeof(Sprite)) as Sprite;
+            icon.GetComponent<RectTransform>().anchoredPosition = new Vector2(-15 + i * 15f, 0);
+            icon.SetActive(true);
+        }
+    }
+    public void ElementActivation(Unit target)
+    {
+        var state = target.Ability.ReactionState;
+        ShowFloatingText("활성:" + state.Element, Color.yellow);
+    }
+    public void ElementRepel(Unit target)
+    {
+        var state = target.Ability.ReactionState;
+        ShowFloatingText("반발:" + state.Element, Color.yellow);
+        Info.GetChild(4).gameObject.SetActive(true);
+    }
+    public void ElementNone()
+    {
+        Info.GetChild(4).gameObject.SetActive(false);
     }
 }

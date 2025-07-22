@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skill_WolfAdult
   m_EditorClassIdentifier: 
   Skill_Cost: 000000000000000000000000
-  Skill_CoolTime: 3
+  Skill_CoolTime: 10
   CurrentCoolTime: 0
   Skill_Name: 
   Skill_Icon: {fileID: 0}

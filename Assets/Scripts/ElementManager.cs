@@ -49,14 +49,16 @@ public class ElementManager : MonoBehaviour
         Instance = this;
     }
 
-    public void OnActionPerformed(ElementReactionState ERS)
+    public void OnActionPerformed(Unit target)
     {
-        if (ERS.Type == ElementReactionType.Activation || ERS.Type == ElementReactionType.Repel)
+        var state = target.Ability.ReactionState;
+        if (state.Type == ElementReactionType.Activation || state.Type == ElementReactionType.Repel)
         {
-            ERS.RemainTurn--;
-            if (ERS.RemainTurn <= 0)
+            state.RemainTurn--;
+            if (state.RemainTurn <= 0)
             {
-                ERS.Type = ElementReactionType.None;
+                target.Ui.ElementNone();
+                state.Type = ElementReactionType.None;
             }
         }
     }
@@ -78,7 +80,7 @@ public class ElementManager : MonoBehaviour
                 state.Element = caster.Ability.Element;
                 state.RemainTurn = 1;
 
-                target.Ui.ShowFloatingText("반발!", Color.yellow);
+                target.Ui.ElementRepel(target);
                 return ElementReactionType.Repel;
             }
             if (caster.Ability.Element == targetElement)
@@ -87,11 +89,10 @@ public class ElementManager : MonoBehaviour
                 state.Element = caster.Ability.Element;
                 state.RemainTurn = 1;
 
-                target.Ui.ShowFloatingText("활성!", Color.yellow);
+                target.Ui.ElementActivation(target);
                 return ElementReactionType.Activation;
             }
         }
-
         return ElementReactionType.None;
     }
 }

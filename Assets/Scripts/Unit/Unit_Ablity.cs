@@ -78,9 +78,9 @@ public class Unit_Ablity
         State = UnitState.Alive;
     }
    
-    public void OnActionPerformed()
+    public void OnActionPerformed(Unit unit)
     {
-        ElementManager.Instance.OnActionPerformed(ReactionState);
+        ElementManager.Instance.OnActionPerformed(unit);
     }
     public void OnDamaged(Unit unit, float damage, DType dT, int ignore)
     {
