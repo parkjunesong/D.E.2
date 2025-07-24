@@ -43,7 +43,6 @@ public class FieldEffectManager : MonoBehaviour
 
     public void UpdateFieldEffect()
     {
-        Debug.Log(currentFieldStatus);
         executeCount = 0;        
 
         // 이전 필드효과 삭제
@@ -104,8 +103,8 @@ public class FieldEffectManager : MonoBehaviour
         int[] CostNow = CostManager.Instance.CostCount();
 
         if (CostNow[2] >= CostNow[0] + CostNow[1] + CostNow[3] + CostNow[4] || 
-            CostNow[0] >= CostManager.Instance.CostMax || 
-            CostNow[1] >= CostManager.Instance.CostMax)
+            CostNow[0] >= CostManager.Instance.CostList.Count || 
+            CostNow[1] >= CostManager.Instance.CostList.Count)
         {
             currentFieldStatus = CostFieldStatus.KarnaHigh;
         }
@@ -153,7 +152,7 @@ public class FieldEffectManager : MonoBehaviour
             CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana));
         }
 
-        if (count[2] == CostManager.Instance.CostMax)
+        if (count[2] == CostManager.Instance.CostList.Count)
         {
             currentFieldStatus = CostFieldStatus.Regeneration;
             UpdateFieldEffect();

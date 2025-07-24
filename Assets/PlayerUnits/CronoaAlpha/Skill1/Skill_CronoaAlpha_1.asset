@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skill_CronoaAlpha_1
   m_EditorClassIdentifier: 
   Skill_Cost: 020000000000000000000000
-  Skill_CoolTime: 3
+  Skill_CoolTime: 2
   CurrentCoolTime: 0
   Skill_Name: Time Flow
   Skill_Icon: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}

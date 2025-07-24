@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,10 +63,10 @@ public class ElementManager : MonoBehaviour
             }
         }
     }
-    public void OnDamaged(Unit target)
+    public void OnDamaged(Unit caster, Unit target)
     {
-        if (target.Ability.ReactionState.Type == ElementReactionType.Activation && Random.Range(0, 10) == 0)
-            Activation(target, target.Ability.ReactionState.Element);
+        if (target.Ability.ReactionState.Type == ElementReactionType.Activation)
+            Activation(caster, target, target.Ability.ReactionState.Element);
     }
 
     public ElementReactionType Resolve(Unit caster, Unit target)
@@ -131,12 +132,15 @@ public class ElementManager : MonoBehaviour
                 }
         }
     }
-    void Activation(Unit target, Element element)
+    void Activation(Unit caster, Unit target, Element element)
     {
+        float damage = 200 * (1 + caster.Ability.SP / (caster.Ability.SP + 500)); // 레벨 계수 포함 예정
         switch (element)
         {
             case Element.Fate:
                 {
+                    if (Random.Range(0, 100) > (10 + caster.Ability.SP * 0.015f)) break;
+
                     if (target.Ability.Team == "Player")
                     {
                         foreach (var unit in BattleManager.Instance.alivePlayerUnits)
@@ -144,12 +148,14 @@ public class ElementManager : MonoBehaviour
                             {
                                 skill.DelayCoolTime(unit, 1);
                             }
+                        target.OnDamaged((0.4f * damage), DType.Normal, 0);
                     }
                     else if (target.Ability.Team == "Enemy")
                     {
                         foreach (var unit in BattleManager.Instance.EnemyUnits)
                             unit.Skill.SkillList[0].DelayCoolTime(unit, 1);
-                    }                    
+                        target.OnDamaged((0.4f * damage), DType.Normal, 0);
+                    }
                     break;
                 }
             case Element.Order:
@@ -158,6 +164,17 @@ public class ElementManager : MonoBehaviour
                 }
             case Element.Creation:
                 {
+                    if (Random.Range(0, 100) > (10 + caster.Ability.SP * 0.015f)) break;
+
+                    if (target.Ability.Team == "Player")
+                    {                       
+                        target.OnDamaged((0.4f * damage), DType.Normal, 0);
+                    }
+                    else if (target.Ability.Team == "Enemy")
+                    {
+                        CostManager.Instance.Cost_Add(CostType.Universal);
+                        target.OnDamaged((0.4f * damage), DType.Normal, 0);
+                    }
                     break;
                 }
             case Element.Ruin:

@@ -21,6 +21,7 @@ public class Effect_Damage : Effect_Base
         foreach (var target in setTarget(caster))
         {
             ElementManager.Instance.Resolve(caster, target);
+            ElementManager.Instance.OnDamaged(caster, target);
             target.OnDamaged(getDamage(caster, CoE, cost), DamageType, IgnoreDefence);
             caster.OnAttackExecuted(target);
         }               

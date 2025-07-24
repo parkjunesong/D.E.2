@@ -102,7 +102,7 @@ public class Unit_Ui : MonoBehaviour
         GameObject obj = FloatingTextPool.Instance.Get();
         obj.transform.SetParent(transform.GetChild(0));
 
-        int activeTextCount = transform.GetChild(0).childCount - 3;
+        int activeTextCount = transform.GetChild(0).childCount - 5;
         obj.transform.position = transform.position + new Vector3(0, 150 + (30f * activeTextCount), 0);
 
         Text txt = obj.GetComponentInChildren<Text>();
@@ -111,7 +111,7 @@ public class Unit_Ui : MonoBehaviour
 
         StartCoroutine(AnimateText(obj));
     }
-    private IEnumerator AnimateText(GameObject obj, float duration = 1f)
+    private IEnumerator AnimateText(GameObject obj, float duration = 0.5f)
     {
         CanvasGroup group = obj.GetComponent<CanvasGroup>();
         RectTransform rect = obj.GetComponent<RectTransform>();

@@ -1,30 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
-public enum CostType { Mana, Prana, Karna, SemiKarna, Used, Null }
+public enum CostType { Mana, Prana, Karna, SemiKarna, Used, Universal, Null }
 
 public class Cost
 {
-    private CostType now;   
-    private CostType prev;
-
-    public CostType Type
-    {
-        get { return now; }
-        set { now = value; }
-    }
-    public CostType Prev
-    {
-        get { return prev; }
-        set { prev = value; }
-    }
+    public CostType Type { get; set; }
+    public CostType Prev { get; set; }
     public Cost(CostType type)
     {
-        now = type;
-        prev = CostType.Null;
+        Type = type;
+        Prev = CostType.Null;
     }
 }
 
@@ -33,59 +23,71 @@ public class CostManager : MonoBehaviour
     public static CostManager Instance { get; private set; }
     public int CostMax;
     public List<Cost> CostList = new();
-    public GameObject CostUi;
-    private Sprite[] CostSprite = new Sprite[5];
+
+    private Transform CostUi;
+    private Transform CostPrefab;
+    private Sprite[] CostSprite = new Sprite[6];
 
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
 
-        CostMax = 12;
+        CostMax = 15;
     }
     void Start()
     {
-        CostUi = GameObject.Find("코스트보드");
+        CostUi = GameObject.Find("코스트보드").transform;
+        CostPrefab = CostUi.GetChild(0);
         CostSprite[0] = Resources.Load("Mana", typeof(Sprite)) as Sprite;
         CostSprite[1] = Resources.Load("Prana", typeof(Sprite)) as Sprite;
         CostSprite[2] = Resources.Load("Karna", typeof(Sprite)) as Sprite;
         CostSprite[3] = Resources.Load("SemiKarna", typeof(Sprite)) as Sprite;
         CostSprite[4] = Resources.Load("Used", typeof(Sprite)) as Sprite;
+        CostSprite[5] = Resources.Load("Universal", typeof(Sprite)) as Sprite;
 
-        // 초기 세팅 작업
-        for (int i = 0; i < CostMax / 2; i++) CostList.Add(new Cost(CostType.Mana));
-        for (int i = CostMax / 2; i < CostMax; i++) CostList.Add(new Cost(CostType.Prana));
-        ImageReset();
+        for (int i = 0; i < 6; i++) Cost_Add(CostType.Mana);
+        for (int i = 6; i < 12; i++) Cost_Add(CostType.Prana);
     }
 
     public void CostUse(int[] target)
     {
         int[] goal = new int[3] { 0, 0, 0 };
-        while (goal[0] < target[0] || goal[1] < target[1] || goal[2] < target[2])
+
+        // 1. Universal 코스트 우선 사용 (완전 삭제)
+        for (int i = CostList.Count - 1; i >= 0; i--)
         {
-            int num = 0;
-            foreach (Cost co in CostList)
-            {
-                if (co.Type == CostType.Mana && goal[0] < target[0])
-                {
-                    CostChangeForce(num, CostType.SemiKarna);
-                    goal[0]++;
-                }
-                else if (co.Type == CostType.Prana && goal[1] < target[1])
-                {
-                    CostChangeForce(num, CostType.SemiKarna);
-                    goal[1]++;
-                }
-                else if ((co.Type == CostType.Karna || co.Type == CostType.SemiKarna) && goal[2] < target[2])
-                {
-                    CostChangeForce(num, CostType.Used);
-                    goal[2]++;
-                }
-                num++;
-            }
+            var co = CostList[i];
+            if (co.Type != CostType.Universal) continue;
+            if (goal[0] < target[0]) { CostRemoveForce(i); goal[0]++; continue; }
+            if (goal[1] < target[1]) { CostRemoveForce(i); goal[1]++; continue; }
+            if (goal[2] < target[2]) { CostRemoveForce(i); goal[2]++; continue; }
+        }
+        for (int i = 0; i < CostList.Count; i++)
+        {
+            var co = CostList[i];
+            if (co.Type == CostType.Mana && goal[0] < target[0]) { CostChangeForce(i, CostType.SemiKarna); goal[0]++; }
+            else if (co.Type == CostType.Prana && goal[1] < target[1]) { CostChangeForce(i, CostType.SemiKarna); goal[1]++; }
+            else if ((co.Type == CostType.Karna || co.Type == CostType.SemiKarna) && goal[2] < target[2]) { CostChangeForce(i, CostType.Used); goal[2]++; }
         }
         ImageReset();
-    }  
+    }
+    public void Cost_Add(CostType type) // [생성]: 필드 위에 코스트를 추가한다.
+    {
+        if (CostList.Count >= CostMax) return;
+
+        Cost newCost = new Cost(type);
+        CostList.Add(newCost);
+        Instantiate(CostPrefab.gameObject, CostUi).SetActive(true);
+        ImageReset();
+    }
+    public void Cost_Remove(int num) // [제거]: 필드 위에 존재하는 코스트를 제거한다.
+    {
+        if (CostList.Count <= 0) return;
+
+        CostRemoveForce(num);
+        ImageReset();
+    }
     public void Cost_Change(int num) // [변화]: 필드 위에 존재하는 마나와 프라나의 종류를 바꾼다
     {
         if (CostList[num].Type == CostType.Mana) CostChangeForce(num, CostType.Prana);
@@ -176,21 +178,22 @@ public class CostManager : MonoBehaviour
         target.Prev = target.Type;
         target.Type = change;
     }
+    void CostRemoveForce(int num)
+    {
+        if (num < 0 || num >= CostList.Count) return;
+
+        Destroy(CostUi.GetChild(num + 1).gameObject);
+        CostList.RemoveAt(num);
+    }   
     void ImageReset()
     {
-        CostList.Sort(delegate (Cost A, Cost B)
-        {
-            if (A.Type < B.Type) return -1;
-            else return 1;
-        });
+        CostList.Sort((a, b) => a.Type.CompareTo(b.Type));
+        var images = CostUi.GetComponentsInChildren<Image>();
 
-        int no = 0;
-        foreach (Cost co in CostList)
+        for (int i = 0; i < CostList.Count; i++)
         {
-            for (int i = 0; i <= 4; i++) // null 제외되있음
-                if (co.Type == (CostType)i)
-                    CostUi.GetComponentsInChildren<Image>()[no + 1].sprite = CostSprite[i];                    
-            no++;
+            images[i + 1].sprite = CostSprite[(int)CostList[i].Type];
+            images[i + 1].gameObject.SetActive(true);
         }
     }   
 }
