@@ -14,7 +14,7 @@ public class Skill_CronoaAlpha_Passive : Skill_Base
         foreach (var unit in BattleManager.Instance.alivePlayerUnits)
             foreach (var skill in unit.Skill.SkillList)
             {
-                skill.ReduceCoolTime(caster.Passive.PassiveStack);
+                skill.ReduceCoolTime(unit, caster.Passive.PassiveStack);
             }
     }
 }

@@ -82,20 +82,20 @@ public abstract class Effect_Base
     public float GetFieldEffectCoE(int[] cost)
     {
         int value = 0;
-        if (FieldEffectManager.Instance.currentEffect == null) return 0;
-        switch (FieldEffectManager.Instance.currentEffect.Name)
+        if (FieldEffectManager.Instance.currentFieldStatus == CostFieldStatus.Null) return 0;
+        switch (FieldEffectManager.Instance.currentFieldStatus)
         {
-            case "ManaHigh":
+            case CostFieldStatus.ManaHigh:
                 {
                     value += cost[0] * 3;
                     break;
                 }
-            case "PranaHigh":
+            case CostFieldStatus.PranaHigh:
                 {
                     value += cost[1] * 3;
                     break;
                 }
-            case "KarnaHigh":
+            case CostFieldStatus.KarnaHigh:
                 {
                     if (cost[2] != 0)
                     {

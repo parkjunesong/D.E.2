@@ -158,5 +158,5 @@ public class Unit_Ui : MonoBehaviour
     public void ElementNone()
     {
         Info.GetChild(4).gameObject.SetActive(false);
-    }
+    }   
 }

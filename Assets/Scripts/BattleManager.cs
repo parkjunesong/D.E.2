@@ -44,7 +44,8 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < alivePlayerUnits.Count; i++)
             alivePlayerUnits[i].GetComponent<CharaUnit>().Position = (Position)i;
 
-
+        FieldEffectManager.Instance.currentFieldStatus = CostFieldStatus.Balance;
+        FieldEffectManager.Instance.UpdateFieldEffect();
         TurnStart();
     }
 

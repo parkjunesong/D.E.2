@@ -26,12 +26,33 @@ public abstract class Skill_Base : ScriptableObject
     {
         CurrentCoolTime = Skill_CoolTime + 1;
     }
-    public void ReduceCoolTime(int reduce)
+    public void ReduceCoolTime(Unit target, int reduce)
     {
-        if (CurrentCoolTime > 0)
+        if(target.Ability.Team == "Player")
+        {
             CurrentCoolTime -= reduce;
-        if (CurrentCoolTime <= 0)
-            CurrentCoolTime = 0;
-        SkillManager.Instance.uiReset();
+            if (CurrentCoolTime <= 0) CurrentCoolTime = 0;
+            SkillManager.Instance.uiReset();
+        }
+        else if (target.Ability.Team == "Enemy")
+        {
+            target.GetComponent<EnemyUnit>().MoveCount -= reduce;
+            if (target.GetComponent<EnemyUnit>().MoveCount <= 0) target.GetComponent<EnemyUnit>().MoveCount = 0;
+        }
+        target.Ui.ShowFloatingText("Reduce:" + reduce, Color.blue);
+
+    }
+    public void DelayCoolTime(Unit target, int delay)
+    {
+        if (target.Ability.Team == "Player")
+        {
+            CurrentCoolTime += delay;
+            SkillManager.Instance.uiReset();
+        }
+        else if (target.Ability.Team == "Enemy")
+        {
+            target.GetComponent<EnemyUnit>().MoveCount += delay;
+        }
+        target.Ui.ShowFloatingText("Delay:" + delay, Color.blue);
     }
 }

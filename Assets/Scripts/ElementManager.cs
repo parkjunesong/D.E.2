@@ -62,6 +62,11 @@ public class ElementManager : MonoBehaviour
             }
         }
     }
+    public void OnDamaged(Unit target)
+    {
+        if (target.Ability.ReactionState.Type == ElementReactionType.Activation && Random.Range(0, 10) == 0)
+            Activation(target, target.Ability.ReactionState.Element);
+    }
 
     public ElementReactionType Resolve(Unit caster, Unit target)
     {
@@ -94,5 +99,79 @@ public class ElementManager : MonoBehaviour
             }
         }
         return ElementReactionType.None;
+    }
+    
+    void Repel(Unit caster, Unit Target, Element element)
+    {
+        switch (element)
+        {
+            case Element.Fate:
+                {
+                    break;
+                }
+            case Element.Order:
+                {
+                    break;
+                }
+            case Element.Creation:
+                {
+                    break;
+                }
+            case Element.Ruin:
+                {
+                    break;
+                }
+            case Element.Chaos:
+                {
+                    break;
+                }
+            case Element.Void:
+                {
+                    break;
+                }
+        }
+    }
+    void Activation(Unit target, Element element)
+    {
+        switch (element)
+        {
+            case Element.Fate:
+                {
+                    if (target.Ability.Team == "Player")
+                    {
+                        foreach (var unit in BattleManager.Instance.alivePlayerUnits)
+                            foreach (var skill in unit.Skill.SkillList)
+                            {
+                                skill.DelayCoolTime(unit, 1);
+                            }
+                    }
+                    else if (target.Ability.Team == "Enemy")
+                    {
+                        foreach (var unit in BattleManager.Instance.EnemyUnits)
+                            unit.Skill.SkillList[0].DelayCoolTime(unit, 1);
+                    }                    
+                    break;
+                }
+            case Element.Order:
+                {
+                    break;
+                }
+            case Element.Creation:
+                {
+                    break;
+                }
+            case Element.Ruin:
+                {
+                    break;
+                }
+            case Element.Chaos:
+                {
+                    break;
+                }
+            case Element.Void:
+                {
+                    break;
+                }
+        }
     }
 }

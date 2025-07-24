@@ -31,32 +31,30 @@ public class Cost
 public class CostManager : MonoBehaviour
 {
     public static CostManager Instance { get; private set; }
+    public int CostMax;
     public List<Cost> CostList = new();
     public GameObject CostUi;
     private Sprite[] CostSprite = new Sprite[5];
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject); // 중복 방지
-            return;
-        }
-
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+
+        CostMax = 12;
     }
     void Start()
     {
         CostUi = GameObject.Find("코스트보드");
         CostSprite[0] = Resources.Load("Mana", typeof(Sprite)) as Sprite;
         CostSprite[1] = Resources.Load("Prana", typeof(Sprite)) as Sprite;
-        CostSprite[2] = Resources.Load("Karna", typeof(Sprite)) as Sprite;        
+        CostSprite[2] = Resources.Load("Karna", typeof(Sprite)) as Sprite;
         CostSprite[3] = Resources.Load("SemiKarna", typeof(Sprite)) as Sprite;
         CostSprite[4] = Resources.Load("Used", typeof(Sprite)) as Sprite;
 
         // 초기 세팅 작업
-        for (int i = 0; i < 6; i++) CostList.Add(new Cost(CostType.Mana));    
-        for (int i = 6; i < 12; i++) CostList.Add(new Cost(CostType.Prana));
+        for (int i = 0; i < CostMax / 2; i++) CostList.Add(new Cost(CostType.Mana));
+        for (int i = CostMax / 2; i < CostMax; i++) CostList.Add(new Cost(CostType.Prana));
         ImageReset();
     }
 

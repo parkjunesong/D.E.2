@@ -39,6 +39,7 @@ public abstract class Unit : MonoBehaviour
     public void OnDamaged(float damage, DType dT, int ignore)
     {
         Ability.OnDamaged(this, damage, dT, ignore);
+        ElementManager.Instance.OnDamaged(this);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
         Ui.UpdateShildBar(Ability.Shild, Ability.maxHP);
 
