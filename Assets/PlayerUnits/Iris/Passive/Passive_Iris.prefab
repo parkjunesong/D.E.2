@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveSkill: {fileID: 11400000, guid: 0a7fda578ab58e44b962808265dec3b4, type: 2}
-  PassiveStack: 0
+  PassiveStack: 1
   MaxStack: 2

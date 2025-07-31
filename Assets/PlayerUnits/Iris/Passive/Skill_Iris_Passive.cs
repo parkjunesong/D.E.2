@@ -14,6 +14,6 @@ public class Skill_Iris_Passive : Skill_Base
     }
     public override void Execute(Unit caster)
     {
-        caster.Skill.UseSkill(caster.Skill.currentUsedSkillNo, caster, true);    
+        caster.Skill.UseSkill(caster.Skill.prevSkillNo, caster, true);    
     }
 }

@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Unit_Skill
 {
     public List<Skill_Base> SkillList;
-    public int currentUsedSkillNo;
+    public int currentSkillNo;
+    public int prevSkillNo;
 
     public Unit_Skill(List<Skill_Base> skills)
     {
         SkillList = skills;
-        currentUsedSkillNo = -1;
+        currentSkillNo = -1;
+        prevSkillNo = -1;
     }
 
     public void UseSkill(int i, Unit caster, bool forced = false)
@@ -22,9 +23,10 @@ public class Unit_Skill
 
         if (forced) // 스킬 발동 조건 없이 사용
         {
+            currentSkillNo = i;
             caster.OnActionExcuted();
             skill.Execute(caster);
-            currentUsedSkillNo = i;
+            prevSkillNo = i;
         }
         else
         {
@@ -32,19 +34,21 @@ public class Unit_Skill
             {
                 if (caster.Ability.Team == "Player" && skill.currentCoolTime <= 0 && skill.IsAvailable(caster))
                 {
+                    currentSkillNo = i;
                     caster.OnActionExcuted();
                     skill.Execute(caster);
                     skill.ResetCoolTime();
-                    currentUsedSkillNo = i;
+                    prevSkillNo = i;
                     CostManager.Instance.CostUse(SkillCost);
                     BattleManager.Instance.TurnEnd();
                 }
                 else if (caster.Ability.Team == "Enemy")
                 {
+                    currentSkillNo = i;
                     caster.OnActionExcuted();
                     skill.Execute(caster);
                     skill.ResetCoolTime();
-                    currentUsedSkillNo = i;
+                    prevSkillNo = i;
                     CostManager.Instance.CostUse(SkillCost);
                 }
             }

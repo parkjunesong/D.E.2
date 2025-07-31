@@ -7,11 +7,19 @@ public class Passive_Iris : Unit_Passive
 {
     public override void OnActionExecuted()
     {
-        PassiveStack++;
-        if (PassiveStack > MaxStack)
+        if(Unit.Skill.prevSkillNo == -1) PassiveStack++;
+        else if (Unit.Skill.currentSkillNo == Unit.Skill.prevSkillNo)
+        {
+            PassiveStack++;
+            if (PassiveStack > MaxStack)
+            {
+                PassiveStack = 0;
+                Execute();
+            }
+        }
+        else
         {
             PassiveStack = 0;
-            Execute();
         }
     }
 }

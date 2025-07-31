@@ -30,6 +30,7 @@ public class CastingSkill
         {
             currentCastingTime = 0;
             Skill.CastingExecute(Caster);
+            SkillManager.Instance.CastingList.Remove(this);
         }
     }
 }

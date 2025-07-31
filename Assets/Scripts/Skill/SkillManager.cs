@@ -25,10 +25,11 @@ public class SkillManager : MonoBehaviour
     }
     public void TurnEnd()
     {
-        foreach(CastingSkill skill in CastingList)
+        for (int i = CastingList.Count - 1; i >= 0; i--)
         {
-            skill.TickCastingTime();
+            CastingList[i].TickCastingTime();
         }
+        Debug.Log(CastingList.Count);
     }
 
 

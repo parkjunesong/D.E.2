@@ -79,9 +79,9 @@ public class BattleManager : MonoBehaviour
     {
         if (alivePlayerUnits.Count <= 1) return;
 
-        var last = alivePlayerUnits[alivePlayerUnits.Count - 1];
-        alivePlayerUnits.RemoveAt(alivePlayerUnits.Count - 1);
-        alivePlayerUnits.Insert(0, last);
+        var tmp = alivePlayerUnits[0];
+        alivePlayerUnits.RemoveAt(0);
+        alivePlayerUnits.Insert(alivePlayerUnits.Count, tmp);
 
         for (int i = 0; i < alivePlayerUnits.Count; i++)
         {
