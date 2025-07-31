@@ -24,6 +24,10 @@ public abstract class Unit_Passive : MonoBehaviour
     {
 
     }
+    public virtual void OnActionExecuted()
+    {
+
+    }
     public virtual void OnAttackExecuted(Unit target)
     {
 

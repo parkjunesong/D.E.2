@@ -6,38 +6,51 @@ using static UnityEngine.GraphicsBuffer;
 public class Unit_Skill
 {
     public List<Skill_Base> SkillList;
+    public int currentUsedSkillNo;
 
     public Unit_Skill(List<Skill_Base> skills)
     {
         SkillList = skills;
+        currentUsedSkillNo = -1;
     }
 
-    public void OnUseSkill(int i, Unit caster)
+    public void UseSkill(int i, Unit caster, bool forced = false)
     {
         Skill_Base skill = SkillList[i];
         int[] SkillCost = skill.Skill_Cost;
         int[] CostNow = CostManager.Instance.CostCount();
 
-        if ((CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2])))
+        if (forced) // 스킬 발동 조건 없이 사용
         {
-            if (caster.Ability.Team == "Player" && skill.CurrentCoolTime <= 0 && skill.IsAvailable(caster))
-            {
-                caster.OnActionPerformed();
-                skill.Execute(caster);
-                skill.ResetCoolTime();
-                CostManager.Instance.CostUse(SkillCost);
-                BattleManager.Instance.TurnEnd();
-            }
-            else if (caster.Ability.Team == "Enemy")
-            {
-                caster.OnActionPerformed();
-                skill.Execute(caster);
-                skill.ResetCoolTime();
-                CostManager.Instance.CostUse(SkillCost);
-            }
+            caster.OnActionExcuted();
+            skill.Execute(caster);
+            currentUsedSkillNo = i;
         }
         else
-            Debug.Log("Can't Use Skill");
+        {
+            if ((CostNow[0] >= SkillCost[0] && CostNow[1] >= SkillCost[1] && (CostNow[2] >= SkillCost[2] || CostNow[3] >= SkillCost[2])))
+            {
+                if (caster.Ability.Team == "Player" && skill.currentCoolTime <= 0 && skill.IsAvailable(caster))
+                {
+                    caster.OnActionExcuted();
+                    skill.Execute(caster);
+                    skill.ResetCoolTime();
+                    currentUsedSkillNo = i;
+                    CostManager.Instance.CostUse(SkillCost);
+                    BattleManager.Instance.TurnEnd();
+                }
+                else if (caster.Ability.Team == "Enemy")
+                {
+                    caster.OnActionExcuted();
+                    skill.Execute(caster);
+                    skill.ResetCoolTime();
+                    currentUsedSkillNo = i;
+                    CostManager.Instance.CostUse(SkillCost);
+                }
+            }
+            else
+                Debug.Log("Can't Use Skill");
+        }       
     }
     public void OnTurnStart() { }
     public void OnTurnEnd() 

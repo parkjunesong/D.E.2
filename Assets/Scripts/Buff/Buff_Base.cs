@@ -13,7 +13,7 @@ public abstract class Buff_Base : ScriptableObject
     public virtual void OnApply(int stack) { Level = stack; }
     public virtual void OnTurnStart() { }
     public virtual void OnTurnEnd() { }
-    public virtual void OnActionPerformed(Unit unit) { }
+    public virtual void OnActionExcuted(Unit unit) { }
     public virtual void AddBuff(int stack)
     {
         Level += stack;

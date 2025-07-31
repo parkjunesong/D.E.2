@@ -50,7 +50,7 @@ public class ElementManager : MonoBehaviour
         Instance = this;
     }
 
-    public void OnActionPerformed(Unit target)
+    public void OnActionExcuted(Unit target)
     {
         var state = target.Ability.ReactionState;
         if (state.Type == ElementReactionType.Activation || state.Type == ElementReactionType.Repel)

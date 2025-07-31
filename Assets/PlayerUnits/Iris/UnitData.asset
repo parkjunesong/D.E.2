@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b19e262d6fd36949a8cb2e20af519e2, type: 3}
+  m_Name: UnitData
+  m_EditorClassIdentifier: 
+  Name: Iris
+  Elements: 03000000
+  AT: 100
+  SP: 10
+  HP: 500
+  DF: 20
+  CR: 0
+  CD: 0
+  RD: 0
+  ID: 0
+  Face: {fileID: 4654279883089615125, guid: fac9e12ec70889f4a804ef2f7b5baa2a, type: 3}
+  Standing: {fileID: -953510432057787995, guid: b7212bd5a5f73584ca7b8b2aa219e671, type: 3}
+  Dead: {fileID: 0}
+  Skills:
+  - {fileID: 11400000, guid: dfe2950e05a18984e9e41c530514b070, type: 2}
+  - {fileID: 11400000, guid: dfe2950e05a18984e9e41c530514b070, type: 2}
+  - {fileID: 11400000, guid: dfe2950e05a18984e9e41c530514b070, type: 2}
+  Passive: {fileID: 1792866763154144688, guid: e21d0c317a5bca84b842263d8f46add8, type: 3}

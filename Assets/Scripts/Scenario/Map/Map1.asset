@@ -15,6 +15,6 @@ MonoBehaviour:
   PlayerUnitData:
   - {fileID: 11400000, guid: 177f923aa89e7fc429ee178b34b315a3, type: 2}
   - {fileID: 11400000, guid: 6d7ca6ce596868e4699a7106c3ec4bde, type: 2}
-  - {fileID: 11400000, guid: 6d7ca6ce596868e4699a7106c3ec4bde, type: 2}
+  - {fileID: 11400000, guid: 80604903ceb81d34fb8d7d76add86a00, type: 2}
   EnemyUnitData:
   - {fileID: 11400000, guid: 10f4e335f61ffdd4098596a82852ec34, type: 2}

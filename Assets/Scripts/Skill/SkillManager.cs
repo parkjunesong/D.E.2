@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance { get; private set; }
+
+    public List<CastingSkill> CastingList = new();
     private GameObject[] skillUi = new GameObject[3];
 
     void Awake()
@@ -21,20 +23,28 @@ public class SkillManager : MonoBehaviour
         skillUi[1] = GameObject.Find("스킬2");
         skillUi[2] = GameObject.Find("스킬3");
     }
+    public void TurnEnd()
+    {
+        foreach(CastingSkill skill in CastingList)
+        {
+            skill.TickCastingTime();
+        }
+    }
+
 
     public void FrontUnitUseSkill(int i)
     {
-        BattleManager.Instance.alivePlayerUnits[0].OnSkillUsed(i);
+        BattleManager.Instance.alivePlayerUnits[0].Skill.UseSkill(i, BattleManager.Instance.alivePlayerUnits[0]);
     }
     public void uiReset()
     {
         for (int i = 0; i < 3; i++)
         {
             skillUi[i].transform.GetChild(0).GetComponent<Image>().sprite = BattleManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].Skill_Icon;
-            if (BattleManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].CurrentCoolTime > 0)
+            if (BattleManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].currentCoolTime > 0)
             {
                 skillUi[i].transform.GetChild(1).gameObject.SetActive(true);
-                skillUi[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = BattleManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].CurrentCoolTime.ToString();
+                skillUi[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = BattleManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].currentCoolTime.ToString();
             }
             else
             {

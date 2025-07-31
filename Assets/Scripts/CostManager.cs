@@ -171,6 +171,13 @@ public class CostManager : MonoBehaviour
     {
         return CostList.FindIndex(c => c.Type.Equals(cost));
     }
+    public int RandCostFindNum() // 마나, 프라나 중 랜덤 탐색
+    {
+        int rand = Random.Range(0, 2);
+        if (rand == 0) return CostFindNum(CostType.Mana);
+        if (rand == 1) return CostFindNum(CostType.Prana);
+        return 0;
+    }
 
     void CostChangeForce(int num, CostType change)
     {

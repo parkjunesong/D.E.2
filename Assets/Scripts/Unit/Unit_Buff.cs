@@ -56,10 +56,10 @@ public class Unit_Buff : MonoBehaviour
         Unit.Ui.UpdateBuffUI(Buffs);
     }
 
-    public void OnActionPerformed()
+    public void OnActionExcuted()
     {
         foreach (var buff in Buffs)
-            buff.OnActionPerformed(Unit);
+            buff.OnActionExcuted(Unit);
 
         Unit.Ability.RecalculBuff(Buffs);
         Unit.Ui.UpdateBuffUI(Buffs);

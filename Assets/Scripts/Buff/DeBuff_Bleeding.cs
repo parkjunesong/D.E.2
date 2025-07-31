@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class DeBuff_Bleeding : Buff_Base
 {
-    public override void OnActionPerformed(Unit unit)
+    public override void OnActionExcuted(Unit unit)
     {
         unit.OnDamaged(0.1f * unit.Ability.HP, DType.Normal, 0);
         SubBuff(1);

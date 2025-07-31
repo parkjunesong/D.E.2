@@ -121,7 +121,7 @@ public class Unit_Ui : MonoBehaviour
             icon.SetActive(true);
 
             RectTransform rect = icon.GetComponent<RectTransform>();
-            rect.anchoredPosition = new Vector2(-55 + iconIndex * 16.5f, 0);
+            rect.anchoredPosition = new Vector2(-90 + iconIndex * 21f, 0);
 
             iconIndex++;
         }

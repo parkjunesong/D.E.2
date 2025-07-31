@@ -42,7 +42,7 @@ public class EnemyUnit : Unit
     {       
         if (MoveCount == 0)
         {
-            OnSkillUsed(skillNo);
+            Skill.UseSkill(skillNo, this);
             MoveCount = Skill.SkillList[0].Skill_CoolTime;
         }
         Skill.OnTurnEnd();

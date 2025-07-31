@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public abstract class Unit : MonoBehaviour
 {
@@ -17,26 +18,17 @@ public abstract class Unit : MonoBehaviour
     public abstract void Init();
     public abstract void TurnStart();
     public abstract void TurnEnd();
-
-    public void OnActionPerformed()
+    public void OnActionExcuted() // 행동 당 한번 호출(스킬 발동 시 호출)
     {
-        Ability.OnActionPerformed(this);
-        Buff.OnActionPerformed();        
+        ElementManager.Instance.OnActionExcuted(this);
+        Buff.OnActionExcuted();
+        Passive.OnActionExecuted();
     }
-    public void OnSkillUsed(int i)
-    {
-        Skill.OnUseSkill(i, this);
-    }
-    public void OnBuffGained(Buff_Base newBuff, int count)
-    {
-        Buff.OnBuffGained(newBuff, count);
-        Passive.OnBuffGained(newBuff);
-    }
-    public void OnAttackExecuted(Unit target) // 매 타격시마다 호출
+    public void OnAttackExecuted(Unit target) // 매 타격마다 호출
     {
         Passive.OnAttackExecuted(target);
     }
-    public void OnDamaged(float damage, DType dT, int ignore)
+    public void OnDamaged(float damage, DType dT, int ignore) // 피격 시 호출
     {
         Ability.OnDamaged(this, damage, dT, ignore);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
@@ -45,12 +37,17 @@ public abstract class Unit : MonoBehaviour
         if (Ability.HP <= 0)
             OnDied();
     }
-    public void OnHealed(float heal)
+    public void OnBuffGained(Buff_Base newBuff, int count) // 버프 획득 시 호출
+    {
+        Buff.OnBuffGained(newBuff, count);
+        Passive.OnBuffGained(newBuff);
+    }
+    public void OnHealed(float heal) // 체력 회복 시 호출
     {
         Ability.OnHealed(this, heal);
         Ui.UpdateHPBar(Ability.HP, Data.HP);
     }
-    public void OnShieldGained(float shild)
+    public void OnShieldGained(float shild) // 실드 획득 시 호출
     {
         Ability.OnShieldGained(this, shild);
         Ui.UpdateShildBar(Ability.Shild, Ability.maxHP);

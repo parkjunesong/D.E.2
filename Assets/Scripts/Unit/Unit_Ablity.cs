@@ -77,11 +77,7 @@ public class Unit_Ablity
         Shild = 0;
         State = UnitState.Alive;
     }
-   
-    public void OnActionPerformed(Unit unit)
-    {
-        ElementManager.Instance.OnActionPerformed(unit);
-    }
+      
     public void OnDamaged(Unit unit, float damage, DType dT, int ignore)
     {
         float dam = damage * 100 / (100 + DF * (1f - ignore / 100));

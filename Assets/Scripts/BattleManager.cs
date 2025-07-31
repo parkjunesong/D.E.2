@@ -72,6 +72,7 @@ public class BattleManager : MonoBehaviour
         {
             EnemyUnits[i].TurnEnd();
         }
+        SkillManager.Instance.TurnEnd();
         TurnStart();
     }
     public void Rotation()
