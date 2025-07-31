@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   Name: Cronoa_Alpha
-  Elements: 03000000
+  Elements: 01000000
   AT: 100
   SP: 10
   HP: 500
@@ -22,8 +22,8 @@ MonoBehaviour:
   CD: 0
   RD: 0
   ID: 0
-  Face: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
-  Standing: {fileID: -459659878784695823, guid: b8c01fd685460ac4e969b79fcee001d0, type: 3}
+  Face: {fileID: -8357373452800408170, guid: e1e78c763e3e4b545a98c87a150c7533, type: 3}
+  Standing: {fileID: 7753792332709414754, guid: 6162ac777bb2f274abb0c18d15deb35d, type: 3}
   Dead: {fileID: 0}
   Skills:
   - {fileID: 11400000, guid: 86f29115776fe524d9d9975e16dded24, type: 2}

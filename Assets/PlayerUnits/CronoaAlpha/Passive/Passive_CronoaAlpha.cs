@@ -9,7 +9,7 @@ public class Passive_CronoaAlpha : Unit_Passive
     public override void OnTurnStart()
     {
         PassiveStack += 1;
-        if(Unit.GetComponent<CharaUnit>().Position == Position.Front)
+        if(Unit.GetComponent<PlayerUnit>().Position == Position.Front)
             PassiveStack += 1;
         if (PassiveStack > MaxStack)
         {

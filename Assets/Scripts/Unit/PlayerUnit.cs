@@ -10,7 +10,7 @@ public enum Position
     Back
 }
 
-public class CharaUnit : Unit
+public class PlayerUnit : Unit
 {
     public Position Position;
 
@@ -27,7 +27,6 @@ public class CharaUnit : Unit
         Ability = new Unit_Ablity(Data);
         Animation = new Unit_Animation(this);
         Ui = gameObject.AddComponent<Unit_Ui>();
-        Ui.setElementIcon(Ability.Elements);
         Buff = gameObject.AddComponent<Unit_Buff>();
         if (Data.Passive != null)
         {

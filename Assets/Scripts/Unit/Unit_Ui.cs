@@ -1,33 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Unit_Ui : MonoBehaviour
 {
-    private Transform Info;
+    public RectTransform PlayerInfo;
+
+    private Transform SelectMark;
     private Slider HpBar;
     private Slider ShildBar;
     private RectTransform ElementSlot;
     private RectTransform BuffSlot;
-
-    public Transform EnemyInfo;
     private Text CountText;
 
-    private Transform SelectMark;
-
-    void Awake()
+    private void Awake()
     {
-        Info = transform.GetChild(0).GetChild(0);
-        HpBar = Info.GetChild(0).GetComponent<Slider>();
-        ShildBar = Info.GetChild(1).GetComponent<Slider>();
-        ElementSlot = Info.GetChild(2).GetComponent<RectTransform>();
-        BuffSlot = Info.GetChild(3).GetComponent<RectTransform>();
-
-        EnemyInfo = transform.GetChild(0).GetChild(1);
-        CountText = EnemyInfo.GetChild(0).GetChild(0).GetComponent<Text>();
-
-        SelectMark = transform.GetChild(0).GetChild(2);
+        SelectMark = transform.GetChild(0).GetChild(0);
+    }
+    public void PlayerSet(Position position, Sprite face)
+    {
+        PlayerInfo = GameObject.Find(position.ToString()).GetComponent<RectTransform>();
+        PlayerInfo.GetChild(0).GetComponent<Image>().sprite = face;
+        HpBar = PlayerInfo.GetChild(1).GetComponent<Slider>();
+        ShildBar = PlayerInfo.GetChild(2).GetComponent<Slider>();
+        BuffSlot = PlayerInfo.GetChild(3).GetComponent<RectTransform>();
+        ElementSlot = transform.GetChild(0).GetChild(2).GetComponent<RectTransform>();
+    }
+    public void EnemySet()
+    {
+        HpBar = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Slider>();
+        ShildBar = transform.GetChild(0).GetChild(1).GetChild(1).GetComponent<Slider>();
+        BuffSlot = transform.GetChild(0).GetChild(1).GetChild(2).GetComponent<RectTransform>();
+        CountText = transform.GetChild(0).GetChild(1).GetChild(3).GetChild(0).GetComponent<Text>();
+        ElementSlot = transform.GetChild(0).GetChild(2).GetComponent<RectTransform>();
+    }
+    public void UiRotation(Position position)
+    {
+        switch (position)
+        {
+            case Position.Front:
+                {
+                    PlayerInfo.anchoredPosition = new Vector2(53, -407);
+                    break;
+                }
+            case Position.Middle:
+                {
+                    PlayerInfo.anchoredPosition = new Vector2(-247, -407);
+                    break;
+                }
+            case Position.Back:
+                {
+                    PlayerInfo.anchoredPosition = new Vector2(-547, -407);
+                    break;
+                }
+        }
     }
 
     public void UpdateHPBar(int inGame, int inData)
@@ -71,7 +100,7 @@ public class Unit_Ui : MonoBehaviour
 
                 // 위치 재조정
                 RectTransform rect = icon.GetComponent<RectTransform>();
-                rect.anchoredPosition = new Vector2(-55 + iconIndex * 16.5f, 0);
+                rect.anchoredPosition = new Vector2(-90 + iconIndex * 21f, 0);
 
                 iconIndex++;
             }
@@ -102,8 +131,8 @@ public class Unit_Ui : MonoBehaviour
         GameObject obj = FloatingTextPool.Instance.Get();
         obj.transform.SetParent(transform.GetChild(0));
 
-        int activeTextCount = transform.GetChild(0).childCount - 5;
-        obj.transform.position = transform.position + new Vector3(0, 150 + (30f * activeTextCount), 0);
+        int activeTextCount = transform.GetChild(0).childCount - 3;
+        obj.transform.position = transform.position + new Vector3(0, 100 + (30f * activeTextCount), 0);
 
         Text txt = obj.GetComponentInChildren<Text>();
         txt.text = text;
@@ -111,7 +140,7 @@ public class Unit_Ui : MonoBehaviour
 
         StartCoroutine(AnimateText(obj));
     }
-    private IEnumerator AnimateText(GameObject obj, float duration = 0.5f)
+    private IEnumerator AnimateText(GameObject obj, float duration = 1f)
     {
         CanvasGroup group = obj.GetComponent<CanvasGroup>();
         RectTransform rect = obj.GetComponent<RectTransform>();
@@ -139,8 +168,7 @@ public class Unit_Ui : MonoBehaviour
         {
             GameObject icon = Instantiate(ElementSlot.GetChild(0).gameObject, ElementSlot);
             icon.name = element[i].ToString();
-            icon.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load("ElementIcon/" + element[i], typeof(Sprite)) as Sprite;
-            icon.GetComponent<RectTransform>().anchoredPosition = new Vector2(-15 + i * 15f, 0);
+            icon.transform.GetComponent<Image>().sprite = Resources.Load("ElementIcon/" + element[i], typeof(Sprite)) as Sprite;
             icon.SetActive(true);
         }
     }
@@ -153,10 +181,10 @@ public class Unit_Ui : MonoBehaviour
     {
         var state = target.Ability.ReactionState;
         ShowFloatingText("반발:" + state.Element, Color.yellow);
-        Info.GetChild(4).gameObject.SetActive(true);
+        ElementSlot.GetComponent<Image>().color = Color.black;
     }
     public void ElementNone()
     {
-        Info.GetChild(4).gameObject.SetActive(false);
-    }   
+        ElementSlot.GetComponent<Image>().color = new Color(1, 1, 1, 10 / 255f);
+    }
 }

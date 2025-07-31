@@ -9,8 +9,7 @@ using static UnityEditor.PlayerSettings;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance { get; private set; }
-
-    public GameObject origin;
+   
     public List<Unit> PlayerUnits = new();
     public List<Unit> EnemyUnits = new();
 
@@ -41,9 +40,7 @@ public class BattleManager : MonoBehaviour
         SelectedEnemyUnit.Ui.UpdateSelectIcon(true);
 
         alivePlayerUnits = PlayerUnits;
-        for (int i = 0; i < alivePlayerUnits.Count; i++)
-            alivePlayerUnits[i].GetComponent<CharaUnit>().Position = (Position)i;
-
+                  
         FieldEffectManager.Instance.currentFieldStatus = CostFieldStatus.Balance;
         FieldEffectManager.Instance.UpdateFieldEffect();
         TurnStart();
@@ -87,8 +84,9 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < alivePlayerUnits.Count; i++)
         {
-            alivePlayerUnits[i].GetComponent<CharaUnit>().Position = (Position)i;
+            alivePlayerUnits[i].GetComponent<PlayerUnit>().Position = (Position)i;
             alivePlayerUnits[i].transform.position = GetPositionPlayer((Position)i);
+            alivePlayerUnits[i].Ui.UiRotation((Position)i);
         }
 
         CostManager.Instance.CostReset();
@@ -107,39 +105,7 @@ public class BattleManager : MonoBehaviour
     {
         FreeRotateCount += count;
         RotationUi.transform.GetChild(0).GetComponent<Text>().text = FreeRotateCount.ToString();
-    }
-
-    public void UnitSpawn(UnitData data, int count, string team)
-    {
-        if (team == "Player")
-        {
-            UnitData uData = Instantiate(data);
-            GameObject UnitGameObject = Instantiate(origin, new Vector2(0, 0), Quaternion.identity);
-
-            UnitGameObject.AddComponent<CharaUnit>();
-            UnitGameObject.transform.position = GetPositionPlayer((Position)count);
-            Unit unit = UnitGameObject.GetComponent<Unit>();
-            unit.Data = uData;
-            unit.Init();
-            unit.Ability.Team = team;
-            unit.name = unit.Ability.Name;
-            PlayerUnits.Add(unit);
-        }
-        else if (team == "Enemy" && EnemyUnits.Count < 7)
-        {
-            UnitData uData = Instantiate(data);
-            GameObject UnitGameObject = Instantiate(origin, new Vector2(0, 0), Quaternion.identity);
-
-            UnitGameObject.AddComponent<EnemyUnit>();
-            UnitGameObject.transform.position = GetPositionEnemy(count);
-            Unit unit = UnitGameObject.GetComponent<Unit>();
-            unit.Data = uData;
-            unit.Init();
-            unit.Ability.Team = team;
-            unit.name = unit.Ability.Name;
-            EnemyUnits.Add(unit);
-        }
-    }
+    }   
 
     public void OnUnitDied(Unit unit)
     {      
@@ -149,21 +115,21 @@ public class BattleManager : MonoBehaviour
             for (int i = 0; i < deadPlayerUnits.Count && i < 1; i++)
             {
                 Position pos = (Position)(1 - i);
-                deadPlayerUnits[i].GetComponent<CharaUnit>().Position = pos;
+                deadPlayerUnits[i].GetComponent<PlayerUnit>().Position = pos;
                 deadPlayerUnits[i].transform.position = GetPositionPlayer(pos);
             }
 
             // 지금 죽은 유닛 처리
             unit.Ability.State = UnitState.Dead;
-            unit.GetComponent<CharaUnit>().Position = Position.Back;
+            unit.GetComponent<PlayerUnit>().Position = Position.Back;
             unit.transform.position = GetPositionPlayer(Position.Back);
             deadPlayerUnits.Add(unit);
 
             // 살아있는 유닛 재정렬
-            alivePlayerUnits = PlayerUnits.Where(u => u.Ability.State == UnitState.Alive).OrderBy(u => u.GetComponent<CharaUnit>().Position).ToList();
+            alivePlayerUnits = PlayerUnits.Where(u => u.Ability.State == UnitState.Alive).OrderBy(u => u.GetComponent<PlayerUnit>().Position).ToList();
             for (int i = 0; i < alivePlayerUnits.Count; i++)
             {
-                alivePlayerUnits[i].GetComponent<CharaUnit>().Position = (Position)i;
+                alivePlayerUnits[i].GetComponent<PlayerUnit>().Position = (Position)i;
                 alivePlayerUnits[i].transform.position = GetPositionPlayer((Position)i);
             }
             if (SelectedPlayerUnit == unit)
@@ -195,9 +161,9 @@ public class BattleManager : MonoBehaviour
     {
         return pos switch
         {
-            Position.Front => new Vector2(-200, 1100),
-            Position.Middle => new Vector2(-400, 1100),
-            Position.Back => new Vector2(-600, 1100),
+            Position.Front => new Vector2(-400, 1000),
+            Position.Middle => new Vector2(-600, 1000),
+            Position.Back => new Vector2(-800, 1000),
             _ => new Vector2(0, 0)
         };
     }
@@ -206,12 +172,12 @@ public class BattleManager : MonoBehaviour
         return i switch
         {
             0 => new Vector2(200, 1000),
-            1 => new Vector2(320, 1200),
-            2 => new Vector2(400, 1000),
-            3 => new Vector2(520, 1200),
-            4 => new Vector2(600, 1000),
-            5 => new Vector2(720, 1200),
-            6 => new Vector2(800, 1000),
+            1 => new Vector2(400, 1000),
+            2 => new Vector2(600, 1000),
+            3 => new Vector2(800, 1000),
+            4 => new Vector2(1000, 1000),
+            5 => new Vector2(1200, 1000),
+            6 => new Vector2(1400, 1000),
             _ => new Vector2(0, 0)
         };
     }
