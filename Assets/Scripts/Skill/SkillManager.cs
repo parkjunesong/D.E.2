@@ -29,14 +29,12 @@ public class SkillManager : MonoBehaviour
         {
             CastingList[i].TickCastingTime();
         }
-        Debug.Log(CastingList.Count);
     }
-
-
     public void FrontUnitUseSkill(int i)
     {
         BattleManager.Instance.alivePlayerUnits[0].Skill.UseSkill(i, BattleManager.Instance.alivePlayerUnits[0]);
     }
+
     public void uiReset()
     {
         for (int i = 0; i < 3; i++)

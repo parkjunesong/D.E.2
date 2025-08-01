@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28ca5d3dc96f6d439c0feeecd106bd5, type: 3}
+  m_Name: Skill_Iris_3
+  m_EditorClassIdentifier: 
+  Skill_Name: iris_3
+  Skill_Icon: {fileID: 0}
+  Skill_Cost: 000000000000000005000000
+  Skill_CoolTime: 0
+  currentCoolTime: 0
+  newSkills:
+  - {fileID: 11400000, guid: d26c438fe1aa4b94cb45f5f78f14f0be, type: 2}
+  - {fileID: 11400000, guid: efe37c9717b134943904ba03bc02faf5, type: 2}
+  - {fileID: 11400000}
+  temp: []

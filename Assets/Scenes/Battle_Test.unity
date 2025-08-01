@@ -1244,7 +1244,7 @@ GameObject:
   - component: {fileID: 1104074565}
   - component: {fileID: 1104074564}
   m_Layer: 0
-  m_Name: "\uCEA1\uCC98_0"
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

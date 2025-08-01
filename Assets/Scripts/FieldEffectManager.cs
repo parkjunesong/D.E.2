@@ -130,26 +130,26 @@ public class FieldEffectManager : MonoBehaviour
 
         if (count[0] >= 1 && count[1] >= 1)
         {
-            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Mana));
-            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana));
+            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Mana), true);
+            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana), true);
         }
         else if (count[0] >= 2)
         {
-            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Mana));
-            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Mana));
+            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Mana), true);
+            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Mana), true);
         }
         else if (count[1] >= 2)
         {
-            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana));
-            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana));
+            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana), true);
+            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana), true);
         }
         else if (count[0] == 1)
         {
-            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Mana));
+            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Mana), true);
         }
         else if (count[1] == 1)
         {
-            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana));
+            CostManager.Instance.Cost_Vanish(CostManager.Instance.CostFindNum(CostType.Prana), true);
         }
 
         if (count[2] == CostManager.Instance.CostList.Count)
@@ -163,12 +163,12 @@ public class FieldEffectManager : MonoBehaviour
         int[] count = CostManager.Instance.CostCount();
         if (count[2] >= 2)
         {
-            CostManager.Instance.Cost_Regeneration(CostManager.Instance.CostFindNum(CostType.Karna));
-            CostManager.Instance.Cost_Regeneration(CostManager.Instance.CostFindNum(CostType.Karna));
+            CostManager.Instance.Cost_Regeneration(CostManager.Instance.CostFindNum(CostType.Karna), true);
+            CostManager.Instance.Cost_Regeneration(CostManager.Instance.CostFindNum(CostType.Karna), true);
         }
         else if (count[2] == 1)
         {
-            CostManager.Instance.Cost_Regeneration(CostManager.Instance.CostFindNum(CostType.Karna));
+            CostManager.Instance.Cost_Regeneration(CostManager.Instance.CostFindNum(CostType.Karna), true);
         }
 
         if (count[2] + count[3] + count[4] == 0)

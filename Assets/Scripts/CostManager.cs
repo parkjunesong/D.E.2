@@ -94,13 +94,22 @@ public class CostManager : MonoBehaviour
         else if (CostList[num].Type == CostType.Prana) CostChangeForce(num, CostType.Mana);
         ImageReset();
     }
-    public void Cost_Vanish(int num) // [소멸]: 필드 위의 마나나 프라나를 즉시 카르나로 바꾼다
+    public void Cost_Vanish(int num, bool isFieldEffect = false) // [소멸]: 필드 위의 마나나 프라나를 즉시 카르나로 바꾼다
     {
         if (CostList[num].Type == CostType.Mana || CostList[num].Type == CostType.Prana) 
             CostChangeForce(num, CostType.Karna);
+
+        if (!isFieldEffect)
+        {
+            foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
+                unit.Passive.OnCostVanished();
+            foreach (Unit unit in BattleManager.Instance.EnemyUnits)
+                unit.Passive.OnCostVanished();
+        }
+
         ImageReset();
     }
-    public void Cost_Regeneration(int num) // [재생]: 필드 위의 카르나를 즉시 마나나 프라나로 바꾼다
+    public void Cost_Regeneration(int num, bool isFieldEffect = false) // [재생]: 필드 위의 카르나를 즉시 마나나 프라나로 바꾼다
     {
         int[] count = CostCount();
         if (CostList[num].Type == CostType.Karna || CostList[num].Type == CostType.SemiKarna)
@@ -119,6 +128,11 @@ public class CostManager : MonoBehaviour
                 }
             }
         }
+        if (!isFieldEffect)
+        {
+
+        }
+
         ImageReset();
     }
 

@@ -36,6 +36,10 @@ public abstract class Unit_Passive : MonoBehaviour
     {
 
     }
+    public virtual void OnCostVanished()
+    {
+
+    }
     public virtual void OnDied()
     {
 

@@ -16,8 +16,8 @@ MonoBehaviour:
   Elements: 03000000
   AT: 50
   SP: 0
-  HP: 1000
-  DF: 10
+  HP: 3000
+  DF: 100
   CR: 0
   CD: 0
   RD: 0
