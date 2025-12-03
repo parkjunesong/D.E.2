@@ -1,13 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "Skill_Iris_Passive", menuName = "Scriptable Object/SkillData/Iris_Passive", order = int.MaxValue)]
-public class Skill_Iris_Passive : Skill_Base
-{  
+[CreateAssetMenu(fileName = "Iris_Passive", menuName = "Scriptable Object/SkillData/Iris_Passive")]
+public class Skill_Iris_Passive : Skill_Passive
+{
+    public override PassiveInstance CreateInstance(Unit caster)
+    {
+        return new PassiveInstance_Iris(this, caster);
+    }
     public override void SetEffect()
     {
 

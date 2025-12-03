@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-public class Passive_CronoaAlpha : Unit_Passive
+[CreateAssetMenu(fileName = "Cronoa_Alpha_Passive", menuName = "Scriptable Object/SkillData/CronoaAlpha_Passive")]
+public class Passive_CronoaAlpha : Skill_Passive
 {
-    public override void OnTurnStart()
+    public override PassiveInstance CreateInstance(Unit caster)
     {
-        PassiveStack += 1;
-        if(Unit.GetComponent<PlayerUnit>().Position == Position.Front)
-            PassiveStack += 1;
-        if (PassiveStack > MaxStack)
-        {
-            PassiveStack = PassiveStack - MaxStack;
-            Execute();
-            PassiveStack = MaxStack;
-        }
-    }   
+        return new PassiveInstance_CronoaAlpha(this, caster);
+    }
+    public override void SetEffect() { }
+    public override void Execute(Unit caster)
+    {
+        foreach (var unit in UnitManager.Instance.alivePlayerUnits)
+            foreach (var skill in unit.Skill.SkillList)
+                skill.ReduceCoolTime(unit, unit.Skill.Passive.CurrentStack);
+    }
 }

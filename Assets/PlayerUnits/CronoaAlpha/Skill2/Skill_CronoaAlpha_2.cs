@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Skill_Cronoa_Alpha_2", menuName = "Scriptable Object/SkillData/CronoaAlpha_2", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "Cronoa_Alpha_2", menuName = "Scriptable Object/SkillData/CronoaAlpha_2")]
 public class Skill_CronoaAlpha_2 : Skill_Base
 {
     public override void SetEffect()
@@ -16,7 +15,7 @@ public class Skill_CronoaAlpha_2 : Skill_Base
     public override void Execute(Unit caster)
     {
         EffectList[0].Execute(caster, caster.Ability.AT, Skill_Cost); // 0.4AT 관통피해
-        for(int i = 0; i< caster.Passive.PassiveStack; i++)
+        for(int i = 0; i< caster.Skill.Passive.CurrentStack; i++)
         {
             EffectList[1].Execute(caster, caster.Ability.AT, Skill_Cost); // 0.2AT 관통피해 * '시간의 톱니바퀴' 횟수
         }

@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-public class Passive_WolfAdult : Unit_Passive
+public class PassiveInstance_WolfAdult : PassiveInstance
 {
-    
+    public PassiveInstance_WolfAdult(Skill_Passive passive, Unit caster) : base(passive, caster) { }
 }

@@ -1,15 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "Skill_WolfCub_Passive", menuName = "Scriptable Object/SkillData/WolfCub_Passive", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "WolfCub_Passive", menuName = "Scriptable Object/SkillData/WolfCub_Passive")]
 
-public class Skill_WolfCub_Passive : Skill_Base
+public class Skill_WolfCub_Passive : Skill_Passive
 {
     public UnitData SummonUnit;
+
+    public override PassiveInstance CreateInstance(Unit caster)
+    {
+        return new PassiveInstance_WolfCub(this, caster);
+    }
     public override void SetEffect()
     {
 

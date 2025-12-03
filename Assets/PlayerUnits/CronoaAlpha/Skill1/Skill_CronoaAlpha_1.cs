@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Skill_Cronoa_Alpha_1", menuName = "Scriptable Object/SkillData/CronoaAlpha_1", order = int.MaxValue)]
+
+[CreateAssetMenu(fileName = "Cronoa_Alpha_1", menuName = "Scriptable Object/SkillData/CronoaAlpha_1")]
 public class Skill_CronoaAlpha_1 : Skill_Base
 {
     public Buff_Base buff;
@@ -16,6 +15,6 @@ public class Skill_CronoaAlpha_1 : Skill_Base
     public override void Execute(Unit caster)
     {
         EffectList[0].Execute(caster); // Èû ¹öÇÁ È¹µæ
-        caster.Passive.PassiveStack += 2;
+        caster.Skill.Passive.CurrentStack += 2;
     }
 }

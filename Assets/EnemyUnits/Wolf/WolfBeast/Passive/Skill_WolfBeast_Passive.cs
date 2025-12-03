@@ -1,14 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "Skill_WolfBeast_Passive", menuName = "Scriptable Object/SkillData/WolfBeast_Passive", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "WolfBeast_Passive", menuName = "Scriptable Object/SkillData/WolfBeast_Passive")]
 
-public class Skill_WolfBeast_Passive : Skill_Base
-{   
+public class Skill_WolfBeast_Passive : Skill_Passive
+{
+    public override PassiveInstance CreateInstance(Unit caster)
+    {
+        return new PassiveInstance_WolfBeast(this, caster);
+    }
     public override void SetEffect()
     {
 

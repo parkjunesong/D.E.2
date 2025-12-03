@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -102,9 +100,9 @@ public class CostManager : MonoBehaviour
         if (!isFieldEffect)
         {
             foreach (Unit unit in UnitManager.Instance.alivePlayerUnits)
-                unit.Passive.OnCostVanished();
+                unit.Skill.Passive.OnCostVanished();
             foreach (Unit unit in UnitManager.Instance.EnemyUnits)
-                unit.Passive.OnCostVanished();
+                unit.Skill.Passive.OnCostVanished();
         }
 
         ImageReset();

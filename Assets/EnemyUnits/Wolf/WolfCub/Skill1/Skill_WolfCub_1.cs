@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Skill_WolfCub", menuName = "Scriptable Object/SkillData/Skill_WolfCub", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "WolfCub_1", menuName = "Scriptable Object/SkillData/Skill_WolfCub")]
 
-public class Skill_WolfCub : Skill_Base
+public class Skill_WolfCub_1 : Skill_Base
 {
     public UnitData SummonUnit;
     public override void SetEffect() 

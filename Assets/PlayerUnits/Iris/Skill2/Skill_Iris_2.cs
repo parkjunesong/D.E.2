@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Skill_Iris_2", menuName = "Scriptable Object/SkillData/Iris_2", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "Iris_2", menuName = "Scriptable Object/SkillData/Iris_2")]
 public class Skill_Iris_2 : Skill_Base
 {
     public override void SetEffect()

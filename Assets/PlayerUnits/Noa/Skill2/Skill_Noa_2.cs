@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Skill_Noa_2", menuName = "Scriptable Object/SkillData/Noa_2", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "Noa_2", menuName = "Scriptable Object/SkillData/Noa_2")]
 public class Skill_Noa_2 : Skill_Base
 {  
     public override void SetEffect()

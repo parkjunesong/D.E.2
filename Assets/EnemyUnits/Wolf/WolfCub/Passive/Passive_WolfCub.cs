@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class Passive_WolfCub : Unit_Passive
+public class PassiveInstance_WolfCub : PassiveInstance
 {
+    public PassiveInstance_WolfCub(Skill_Passive passive, Unit caster) : base(passive, caster) { }
+
     public override void OnDied()
     {
-        Execute();
+        PassiveSkill.Execute(Unit);
     }   
 }

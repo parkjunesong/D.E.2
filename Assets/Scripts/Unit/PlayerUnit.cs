@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public enum Position
@@ -23,28 +22,23 @@ public class PlayerUnit : Unit
             instance.SetEffect();
             Skills.Add(instance);
         }
-        Skill = new Unit_Skill(Skills);
+        Skill = new Unit_Skill(Skills, Instantiate(Data.Passive), this);
         Ability = new Unit_Ablity(Data);
         Animation = new Unit_Animation(this);
         Ui = gameObject.AddComponent<Unit_Ui>();
         Buff = gameObject.AddComponent<Unit_Buff>();
-        if (Data.Passive != null)
-        {
-            Passive = Instantiate(Data.Passive, transform).GetComponent<Unit_Passive>();
-        }
     }
     public override void TurnStart()
     {
         Skill.OnTurnStart();
         Buff.OnTurnStart();
-        if (Passive != null)
-            Passive.OnTurnStart();
+        if (Skill.Passive != null) Skill.Passive.OnTurnStart();
     }
     public override void TurnEnd()
     {
         Skill.OnTurnEnd();
         Buff.OnTurnEnd();
-        if (Passive != null)
-            Passive.OnTurnEnd();
+        if (Skill.Passive != null) Skill.Passive.OnTurnEnd();
+
     }
 }

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Skill_Noa_1", menuName = "Scriptable Object/SkillData/Noa_1", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "Noa_1", menuName = "Scriptable Object/SkillData/Noa_1")]
 public class Skill_Noa_1 : Skill_Base
 {
     public Buff_Base buff;

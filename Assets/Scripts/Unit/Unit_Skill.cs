@@ -5,12 +5,14 @@ using UnityEngine;
 public class Unit_Skill
 {
     public List<Skill_Base> SkillList;
+    public PassiveInstance Passive;
     public int currentSkillNo;
     public int prevSkillNo;
 
-    public Unit_Skill(List<Skill_Base> skills)
+    public Unit_Skill(List<Skill_Base> skills, Skill_Passive passive, Unit unit)
     {
         SkillList = skills;
+        Passive = passive.CreateInstance(unit);
         currentSkillNo = -1;
         prevSkillNo = -1;
     }

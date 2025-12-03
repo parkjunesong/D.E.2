@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Playables;
 using UnityEngine;
 
 public enum AType { Select, Front, Back, Random, Self };
