@@ -1,6 +1,6 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class UnitManager : MonoBehaviour
@@ -12,6 +12,11 @@ public class UnitManager : MonoBehaviour
     public List<Unit> alivePlayerUnits = new();
     public List<Unit> deadPlayerUnits = new();
     public Unit SelectedPlayerUnit, SelectedEnemyUnit;
+
+    [SerializeField]
+    private GameObject PlayerPrefab;
+    [SerializeField]
+    private GameObject EnemyPrefab;
 
     void Awake()
     {
@@ -99,6 +104,40 @@ public class UnitManager : MonoBehaviour
         }
     }
 
+    public void Spawn(UnitData data, int count, string team)
+    {
+        if (team == "Player")
+        {
+            GameObject UnitGameObject = Instantiate(PlayerPrefab, new Vector2(0, 0), Quaternion.identity);
+
+            UnitGameObject.transform.position = GetPositionPlayer((Position)count);
+            Unit unit = UnitGameObject.GetComponent<Unit>();
+            unit.Data = Instantiate(data);
+            unit.Init();
+            unit.Ability.Team = team;
+            unit.name = unit.Ability.Name;
+            unit.GetComponent<PlayerUnit>().Position = (Position)count;
+            unit.Ui.PlayerSet(unit.GetComponent<PlayerUnit>().Position, data.Face);
+            unit.Ui.setElementIcon(unit.Ability.Elements);
+
+            PlayerUnits.Add(unit);
+        }
+        else if (team == "Enemy")
+        {
+            GameObject UnitGameObject = Instantiate(EnemyPrefab, new Vector2(0, 0), Quaternion.identity);
+
+            UnitGameObject.transform.position = GetPositionEnemy(count);
+            Unit unit = UnitGameObject.GetComponent<Unit>();
+            unit.Data = Instantiate(data);
+            unit.Init();
+            unit.Ability.Team = team;
+            unit.name = unit.Ability.Name;
+            unit.Ui.EnemySet();
+            unit.Ui.setElementIcon(unit.Ability.Elements);
+
+            EnemyUnits.Add(unit);
+        }
+    }
     public Vector2 GetPositionPlayer(Position pos)
     {
         return pos switch

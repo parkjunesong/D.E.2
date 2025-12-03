@@ -1,0 +1,12 @@
+유닛 기초 능력치 설계 -> 공격형, 방어형, 지원형, 벨런스형
+기초 능력치 값 * 레벨 = 기본능력치
+
+패시브 구조 변경: 기존 스킬 시스템 말고 새로운 ScriptableObject로 독립
+
+유닛 데이터 세이브/로드 구조 설계
+1. 유닛 레벨
+2. 유닛 스킬
+3. 유닛 장비
+
+SystemManager -> BattleSceneInitializer 명칭 변경
+UnitManager + UnitSpawn 통합

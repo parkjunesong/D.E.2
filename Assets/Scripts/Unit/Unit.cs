@@ -1,19 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
 
 public abstract class Unit : MonoBehaviour
 {
     public UnitData Data;
     public Unit_Ablity Ability;
-    public Unit_Animation Animation;
     public Unit_Skill Skill;
+    public Unit_Passive Passive;
+    public Unit_Animation Animation;
     public Unit_Ui Ui;
     public Unit_Buff Buff;
-    public Unit_Passive Passive;
 
     public abstract void Init();
     public abstract void TurnStart();

@@ -15,6 +15,7 @@ public class Effect_Summon : Effect_Base
 
     public override void Execute(Unit caster)
     {
+        var UM = UnitManager.Instance;
         if (AimTarget == ATarget.Player)
         {
             /*
@@ -26,7 +27,7 @@ public class Effect_Summon : Effect_Base
         }
         else if (AimTarget == ATarget.Enemy)
         {
-            UnitSpawnManager.Instance.Spawn(Data, UnitManager.Instance.EnemyUnits.Count, "Enemy");
+            UM.Spawn(Data, UM.EnemyUnits.Count, "Enemy");
         }
     }
 }
