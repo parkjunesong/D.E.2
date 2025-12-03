@@ -101,9 +101,9 @@ public class CostManager : MonoBehaviour
 
         if (!isFieldEffect)
         {
-            foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
+            foreach (Unit unit in UnitManager.Instance.alivePlayerUnits)
                 unit.Passive.OnCostVanished();
-            foreach (Unit unit in BattleManager.Instance.EnemyUnits)
+            foreach (Unit unit in UnitManager.Instance.EnemyUnits)
                 unit.Passive.OnCostVanished();
         }
 

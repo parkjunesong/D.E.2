@@ -25,19 +25,19 @@ public abstract class Effect_Base
 
     public List<Unit> setTarget(Unit caster)
     {
-        BattleManager BM = BattleManager.Instance;
+        var UM = UnitManager.Instance;
         if (AimTarget == ATarget.Enemy)
         {
             switch (AimType)
             {
                 case AType.Select:
-                    return GetNearUnits(BM.SelectedEnemyUnit, Range, BM.EnemyUnits);
+                    return GetNearUnits(UM.SelectedEnemyUnit, Range, UM.EnemyUnits);
                 case AType.Front:
-                    return GetNearUnits(BM.EnemyUnits[0], Range, BM.EnemyUnits);
+                    return GetNearUnits(UM.EnemyUnits[0], Range, UM.EnemyUnits);
                 case AType.Back:
-                    return GetNearUnits(BM.EnemyUnits[BM.EnemyUnits.Count - 1], Range, BM.EnemyUnits);
+                    return GetNearUnits(UM.EnemyUnits[UM.EnemyUnits.Count - 1], Range, UM.EnemyUnits);
                 case AType.Random:
-                    return GetNearUnits(BM.EnemyUnits[Random.Range(0, BM.EnemyUnits.Count)], Range, BM.EnemyUnits);
+                    return GetNearUnits(UM.EnemyUnits[Random.Range(0, UM.EnemyUnits.Count)], Range, UM.EnemyUnits);
                 case AType.Self:
                     return new List<Unit>() { caster };
             }
@@ -47,13 +47,13 @@ public abstract class Effect_Base
             switch (AimType)
             {
                 case AType.Select:
-                    return GetNearUnits(BM.SelectedPlayerUnit, Range, BM.alivePlayerUnits);
+                    return GetNearUnits(UM.SelectedPlayerUnit, Range, UM.alivePlayerUnits);
                 case AType.Front:
-                    return GetNearUnits(BM.alivePlayerUnits[0], Range, BM.alivePlayerUnits);
+                    return GetNearUnits(UM.alivePlayerUnits[0], Range, UM.alivePlayerUnits);
                 case AType.Back:
-                    return GetNearUnits(BM.alivePlayerUnits[BM.alivePlayerUnits.Count - 1], Range, BM.alivePlayerUnits);
+                    return GetNearUnits(UM.alivePlayerUnits[UM.alivePlayerUnits.Count - 1], Range, UM.alivePlayerUnits);
                 case AType.Random:
-                    return GetNearUnits(BM.alivePlayerUnits[Random.Range(0, BM.alivePlayerUnits.Count)], Range, BM.alivePlayerUnits);
+                    return GetNearUnits(UM.alivePlayerUnits[Random.Range(0, UM.alivePlayerUnits.Count)], Range, UM.alivePlayerUnits);
                 case AType.Self:
                     return new List<Unit>() { caster };
             }
@@ -78,7 +78,6 @@ public abstract class Effect_Base
         }
         return nearby;
     }
-
     public float GetFieldEffectCoE(int[] cost)
     {
         int value = 0;

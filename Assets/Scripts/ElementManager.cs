@@ -143,7 +143,7 @@ public class ElementManager : MonoBehaviour
 
                     if (target.Ability.Team == "Player")
                     {
-                        foreach (var unit in BattleManager.Instance.alivePlayerUnits)
+                        foreach (var unit in UnitManager.Instance.alivePlayerUnits)
                             foreach (var skill in unit.Skill.SkillList)
                             {
                                 skill.DelayCoolTime(unit, 1);
@@ -152,7 +152,7 @@ public class ElementManager : MonoBehaviour
                     }
                     else if (target.Ability.Team == "Enemy")
                     {
-                        foreach (var unit in BattleManager.Instance.EnemyUnits)
+                        foreach (var unit in UnitManager.Instance.EnemyUnits)
                             unit.Skill.SkillList[0].DelayCoolTime(unit, 1);
                         target.OnDamaged((0.4f * damage), DType.Normal, 0);
                     }

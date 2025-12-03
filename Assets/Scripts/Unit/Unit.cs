@@ -57,6 +57,6 @@ public abstract class Unit : MonoBehaviour
         //버프 삭제, 능력치 초기화, ui 원복
         Passive.OnDied();
         Animation.Dead();
-        BattleManager.Instance.OnUnitDied(this);
+        UnitManager.Instance.OnUnitDied(this);
     }
 }

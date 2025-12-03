@@ -24,7 +24,7 @@ public class UnitSpawnManager : MonoBehaviour
             UnitData uData = Instantiate(data);
             GameObject UnitGameObject = Instantiate(PlayerPrefab, new Vector2(0, 0), Quaternion.identity);
 
-            UnitGameObject.transform.position = BattleManager.Instance.GetPositionPlayer((Position)count);
+            UnitGameObject.transform.position = UnitManager.Instance.GetPositionPlayer((Position)count);
             Unit unit = UnitGameObject.GetComponent<Unit>();
             unit.Data = uData;
             unit.Init();
@@ -34,14 +34,14 @@ public class UnitSpawnManager : MonoBehaviour
             unit.Ui.PlayerSet(unit.GetComponent<PlayerUnit>().Position, data.Face);
             unit.Ui.setElementIcon(unit.Ability.Elements);
 
-            BattleManager.Instance.PlayerUnits.Add(unit);
+            UnitManager.Instance.PlayerUnits.Add(unit);
         }
         else if (team == "Enemy")
         {
             UnitData uData = Instantiate(data);
             GameObject UnitGameObject = Instantiate(EnemyPrefab, new Vector2(0, 0), Quaternion.identity);
 
-            UnitGameObject.transform.position = BattleManager.Instance.GetPositionEnemy(count);
+            UnitGameObject.transform.position = UnitManager.Instance.GetPositionEnemy(count);
             Unit unit = UnitGameObject.GetComponent<Unit>();
             unit.Data = uData;
             unit.Init();
@@ -50,7 +50,7 @@ public class UnitSpawnManager : MonoBehaviour
             unit.Ui.EnemySet();
             unit.Ui.setElementIcon(unit.Ability.Elements);
 
-            BattleManager.Instance.EnemyUnits.Add(unit);
+            UnitManager.Instance.EnemyUnits.Add(unit);
         }
     }
 }

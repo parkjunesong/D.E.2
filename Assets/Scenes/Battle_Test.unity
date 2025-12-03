@@ -2826,6 +2826,7 @@ GameObject:
   - component: {fileID: 1949508765}
   - component: {fileID: 1949508766}
   - component: {fileID: 1949508767}
+  - component: {fileID: 1949508768}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2898,12 +2899,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbc4bc1b84d3924083a5b3d89b440e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerUnits: []
-  EnemyUnits: []
-  alivePlayerUnits: []
-  deadPlayerUnits: []
-  SelectedPlayerUnit: {fileID: 0}
-  SelectedEnemyUnit: {fileID: 0}
   Turn: 0
 --- !u!114 &1949508766
 MonoBehaviour:
@@ -2931,6 +2926,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 2324888412393489709, guid: ee3b35eddfe032a4a8c9eabccf68088a, type: 3}
   EnemyPrefab: {fileID: 2324888412393489709, guid: 67707144f8a45df4eaf49f8d32f6f822, type: 3}
+--- !u!114 &1949508768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949508755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c646ac75750ccc44bebca14a4091bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerUnits: []
+  EnemyUnits: []
+  alivePlayerUnits: []
+  deadPlayerUnits: []
+  SelectedPlayerUnit: {fileID: 0}
+  SelectedEnemyUnit: {fileID: 0}
 --- !u!1 &2082786223
 GameObject:
   m_ObjectHideFlags: 0

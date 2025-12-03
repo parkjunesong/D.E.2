@@ -32,18 +32,18 @@ public class SkillManager : MonoBehaviour
     }
     public void FrontUnitUseSkill(int i)
     {
-        BattleManager.Instance.alivePlayerUnits[0].Skill.UseSkill(i, BattleManager.Instance.alivePlayerUnits[0]);
+        UnitManager.Instance.alivePlayerUnits[0].Skill.UseSkill(i, UnitManager.Instance.alivePlayerUnits[0]);
     }
 
     public void uiReset()
     {
         for (int i = 0; i < 3; i++)
         {
-            skillUi[i].transform.GetChild(0).GetComponent<Image>().sprite = BattleManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].Skill_Icon;
-            if (BattleManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].currentCoolTime > 0)
+            skillUi[i].transform.GetChild(0).GetComponent<Image>().sprite = UnitManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].Skill_Icon;
+            if (UnitManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].currentCoolTime > 0)
             {
                 skillUi[i].transform.GetChild(1).gameObject.SetActive(true);
-                skillUi[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = BattleManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].currentCoolTime.ToString();
+                skillUi[i].transform.GetChild(1).GetChild(0).GetComponent<Text>().text = UnitManager.Instance.alivePlayerUnits[0].Skill.SkillList[i].currentCoolTime.ToString();
             }
             else
             {

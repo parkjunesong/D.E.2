@@ -26,7 +26,7 @@ public class Effect_Summon : Effect_Base
         }
         else if (AimTarget == ATarget.Enemy)
         {
-            UnitSpawnManager.Instance.Spawn(Data, BattleManager.Instance.EnemyUnits.Count, "Enemy");
+            UnitSpawnManager.Instance.Spawn(Data, UnitManager.Instance.EnemyUnits.Count, "Enemy");
         }
     }
 }

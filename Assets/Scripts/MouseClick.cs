@@ -27,22 +27,24 @@ public class MouseClick : MonoBehaviour
     }
     void UpdateSelectIcon(Unit unit)
     {
+        var UM = UnitManager.Instance;
+
         if (unit.Ability.State == UnitState.Dead)
             Debug.Log("Dead Unit");
         else
         {
             if (unit.Ability.Team == "Player")
             {
-                BattleManager.Instance.SelectedPlayerUnit = unit;
+                UM.SelectedPlayerUnit = unit;
 
-                foreach (Unit bu in BattleManager.Instance.alivePlayerUnits)
+                foreach (Unit bu in UM.alivePlayerUnits)
                     bu.Ui.UpdateSelectIcon(false);
                 unit.Ui.UpdateSelectIcon(true);
             }
             else if (unit.Ability.Team == "Enemy")
             {
-                BattleManager.Instance.SelectedEnemyUnit = unit;
-                foreach (Unit bu in BattleManager.Instance.EnemyUnits)
+                UM.SelectedEnemyUnit = unit;
+                foreach (Unit bu in UM.EnemyUnits)
                     bu.Ui.UpdateSelectIcon(false);
                 unit.Ui.UpdateSelectIcon(true);
             }

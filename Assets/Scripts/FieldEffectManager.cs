@@ -48,11 +48,11 @@ public class FieldEffectManager : MonoBehaviour
         // 이전 필드효과 삭제
         if(currentEffect != null)
         {
-            foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
+            foreach (Unit unit in UnitManager.Instance.alivePlayerUnits)
             {
                 unit.Buff.RemoveByName(currentEffect.Name);
             }
-            foreach (Unit unit in BattleManager.Instance.EnemyUnits)
+            foreach (Unit unit in UnitManager.Instance.EnemyUnits)
             {
                 unit.Buff.RemoveByName(currentEffect.Name);
             }
@@ -88,11 +88,11 @@ public class FieldEffectManager : MonoBehaviour
                     break;
                 }
         }
-        foreach (Unit unit in BattleManager.Instance.alivePlayerUnits)
+        foreach (Unit unit in UnitManager.Instance.alivePlayerUnits)
         {
             unit.Buff.OnBuffGained(currentEffect, 1);
         }
-        foreach (Unit unit in BattleManager.Instance.EnemyUnits)
+        foreach (Unit unit in UnitManager.Instance.EnemyUnits)
         {
             unit.Buff.OnBuffGained(currentEffect, 1);
         }
