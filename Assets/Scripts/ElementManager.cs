@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public enum Element { None, Fate, Order, Creation, Ruin, Chaos, Void };
 public enum ElementReactionType { None, Activation, Repel }
